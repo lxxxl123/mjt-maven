@@ -11,6 +11,7 @@
     <modules>
         <module>tools</module>
         <module>test</module>
+        <module>algorithm</module>
     </modules>
 
 
