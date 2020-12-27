@@ -1,5 +1,7 @@
 package chen;
 
+import lombok.Data;
+
 /**
  * 相关概念
  * 左旋:以某个节点左旋 , 自己到左下 , 提拔儿子 , 孙子变儿子
@@ -16,6 +18,32 @@ package chen;
  *
  */
 public class RBTree {
+
+    private RBNode root;
+
+    @Data
+    public static class RBNode {
+        private int val;
+        private RBTree left;
+        private RBTree right;
+    }
+
+
+    public void add(int val) {
+        RBNode cur = root;
+
+
+    }
+
+    public boolean find(int val) {
+        return true;
+    }
+
+    public void delete(int val) {
+
+    }
+
+
     public static void main(String[] args) {
 
     }
