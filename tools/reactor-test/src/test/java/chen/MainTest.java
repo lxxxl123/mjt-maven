@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 import java.time.Duration;
 import java.util.Random;
 
-public class Main {
+public class MainTest {
 
     @Test
     public  void getValInInfiniteStream() {
@@ -100,6 +100,9 @@ public class Main {
         }
     }
 
+    /**
+     * same as sleep ,
+     */
     @Test
     public void sample(){
         ConnectableFlux<Object> publish = Flux.create(fluxSink -> {
@@ -107,11 +110,19 @@ public class Main {
                 fluxSink.next(System.currentTimeMillis());
             }
         })
-                .sample(Duration.ofMillis(500))
+                .sample(Duration.ofMillis(1000))
+                .doOnNext(e->{
+                    System.out.println(e);
+                })
                 .publish();
 
-        publish.subscribe(e -> System.out.println(e));
+        publish.subscribe();
         publish.connect();
+
+    }
+
+    @Test
+    public void abc(){
 
     }
 
