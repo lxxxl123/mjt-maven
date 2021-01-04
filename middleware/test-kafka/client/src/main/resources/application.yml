@@ -1,0 +1,16 @@
+server:
+  port: 8082
+
+
+spring:
+  kafka:
+    # Kafka Consumer 配置项
+    bootstrap-servers: 172.16.100.79:9092
+    consumer:
+      auto-offset-reset: earliest # 设置消费者分组最初的消费进度为 earliest 。可参考博客 https://blog.csdn.net/lishuangzhe7047/article/details/74530417 理解
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+
+debug: true
+
