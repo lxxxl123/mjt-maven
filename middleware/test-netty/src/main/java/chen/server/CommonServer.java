@@ -2,7 +2,6 @@ package chen.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -11,7 +10,7 @@ import io.netty.handler.codec.LineBasedFrameDecoder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetSocketAddress;
-import java.util.Calendar;
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -36,11 +35,11 @@ public class CommonServer {
                 .channel(NioServerSocketChannel.class)
                 .option(ChannelOption.SO_BACKLOG, 1024)
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
-                .childHandler(new LineBasedFrameDecoder(2048))
+                .childHandler(new LineBasedFrameDecoder(2048,true,false))
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
-                        if (handlers != null) {
+                        if (handlers != null && handlers.length > 0) {
                             for (ChannelHandler handler : handlers) {
                                 ch.pipeline().addLast(handler);
                             }
@@ -70,6 +69,7 @@ public class CommonServer {
             ByteBuf buf = (ByteBuf) msg;
             byte [] bytes = new byte[buf.readableBytes()];
             buf.readBytes(bytes);
+            log.info("接收到bytes = [{}]", Arrays.toString(bytes));
             String receive = new String(bytes);
             log.info("接收到消息 = [{}]", receive);
 

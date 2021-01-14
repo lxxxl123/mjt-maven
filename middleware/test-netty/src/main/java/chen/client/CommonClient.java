@@ -21,7 +21,7 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 public class CommonClient implements Runnable {
 
-    private ChannelHandler[] handlers ;
+    private ChannelHandler[] handlers = null;
 
     public CommonClient(ChannelHandler... handlers) {
         this.handlers = handlers;
@@ -38,18 +38,19 @@ public class CommonClient implements Runnable {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
-                        if (handlers != null) {
+                        if (handlers != null && handlers.length > 0) {
                             for (ChannelHandler handler : handlers) {
                                 ch.pipeline().addLast(handler);
                             }
-                        }else {
-                            ch.pipeline().addLast(new ChannelInboundHandlerAdapter(){
+                        } else {
+                            ch.pipeline().addLast(new ChannelInboundHandlerAdapter() {
                                 @Override
                                 public void channelActive(ChannelHandlerContext ctx) throws Exception {
                                     String msg = "成功与服务器建立连接";
                                     log.info("{}", msg);
-                                    ByteBuf byteBuf = Unpooled.copiedBuffer(msg.getBytes());
-                                    ctx.writeAndFlush(byteBuf);
+                                    ctx.writeAndFlush(Unpooled.copiedBuffer("abcd\r\n".getBytes()));
+//                                    ctx.writeAndFlush(Unpooled.copiedBuffer("\r".getBytes()));c
+//                                    ctx.writeAndFlush(Unpooled.copiedBuffer("\n".getBytes()));
                                 }
 
                                 @Override
