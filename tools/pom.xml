@@ -14,6 +14,7 @@
     <modules>
         <module>map-stuct-test</module>
         <module>reactor-test</module>
+        <module>junit-test</module>
     </modules>
 
 
