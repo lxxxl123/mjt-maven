@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -86,10 +88,20 @@ public class CommonServer {
             log.error("",cause);
             ctx.close();
         }
+
+        @Override
+        public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+            log.error("服务端断连接");
+        }
     }
 
     public static void main(String[] args) {
-        CompletableFuture.runAsync(()->new CommonServer().run()).join();
+        CompletableFuture.runAsync(() -> new CommonServer(
+                new IdleHandler(0,0,5, TimeUnit.SECONDS), new TimerHandler()
+        ).run()).join();
+
+        ConcurrentLinkedDeque concurrentLinkedDeque = new ConcurrentLinkedDeque();
+        concurrentLinkedDeque.add()
 
     }
 }

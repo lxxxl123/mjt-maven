@@ -81,6 +81,10 @@ public class CommonClient implements Runnable {
 
     }
 
+    /**
+     * 与服务器连接并发送abcd
+     * @param args
+     */
     public static void main(String[] args) {
         CompletableFuture.runAsync(new CommonClient()).join();
     }
