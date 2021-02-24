@@ -1,7 +1,7 @@
 package chen;
 
 /**
- * @see https://oi-wiki.org/ds/dsu/
+ * @see <a href="https://oi-wiki.org/ds/dsu/"> https://oi-wiki.org/ds/dsu/</a>
  * 并查集  , 用于集合的合并
  *
  */
