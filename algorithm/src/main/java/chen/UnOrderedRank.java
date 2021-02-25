@@ -43,7 +43,7 @@ public class UnOrderedRank {
 
     public static void main(String[] args) {
         System.out.println(new UnOrderedRank().rank(
-                Stream.of("a", "b", "c","d").collect(Collectors.toList()) , 2)
+                Stream.of("a", "b", "d","c","d").collect(Collectors.toList()) , 2)
         );
     }
 }
