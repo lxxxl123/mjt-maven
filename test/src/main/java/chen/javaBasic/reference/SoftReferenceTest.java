@@ -8,10 +8,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
+ * 内存飙升有可能导致来不及回收
+ * 应用场景:大数据量场景 ,MMO时及时抛出异常
  * @author chenwh
  * @date 2021/2/23
  */
-
 public class SoftReferenceTest {
 
 

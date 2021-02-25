@@ -6,7 +6,11 @@ import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
 /**
+ *
+ * @see <a href="https://zhuanlan.zhihu.com/p/55114919">https://zhuanlan.zhihu.com/p/55114919</a>
  * 虚引用 , gc不会回收 , 但会收到通知
+ * 必须在clear 或者把引用置null 后才会回收
+ * 应用场景: 数据库连接池
  */
 public class PhantomReferenceTest {
 
@@ -18,7 +22,7 @@ public class PhantomReferenceTest {
       PhantomReference pr = new PhantomReference (bytes , rq);
       bytes = null;
       // 取出虚引用所引用的对象，并不能通过虚引用获取被引用的对象，所以此处输出null
-      System.out.println(pr.get());
+//      System.out.println(pr.get());
       // 强制垃圾回收
       TimeUnit.SECONDS.sleep(2);
       System.out.println("开始垃圾回收");
@@ -39,8 +43,12 @@ public class PhantomReferenceTest {
       System.runFinalization();
       // 垃圾回收之后，虚引用将被放入引用队列中
       System.out.println("垃圾回收结束2");
+      System.out.println(pr == null);
+
+      System.out.println("end");
 
       TimeUnit.SECONDS.sleep(10);
+
 
 
 

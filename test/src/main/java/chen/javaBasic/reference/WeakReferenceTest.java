@@ -7,10 +7,10 @@ import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 应用场景:ThreadLocal
  * @author chenwh
  * @date 2021/2/24
  */
-
 public class WeakReferenceTest {
 
 
