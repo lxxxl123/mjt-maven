@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 /**
  * 全排列 , 全组合 , 部分排列 , 部分组合
+ * 全排列
  * 经典排列组合算法 , 有序 , 不可重复使用
  * @author chenwh
  * @date 2021/2/25
@@ -42,6 +43,6 @@ public class OrderedRank {
     }
 
     public static void main(String[] args) {
-        System.out.println(new OrderedRank().rank(Stream.of("abc", "bcd", "abc").collect(Collectors.toList())));
+        System.out.println(new OrderedRank().rank(Stream.of("a", "b", "a").collect(Collectors.toList())));
     }
 }
