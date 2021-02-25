@@ -23,10 +23,10 @@ public class UnOrderedRank {
         return rest;
     }
 
-    private void rank(List<List<String>> res, LinkedList<String> selected, List<String> selectAble,int len,int curIdx) {
+    private void rank(List<List<String>> res, LinkedList<String> selected, List<String> selectAble, int len, int curIdx) {
         if (selected.size() == len) {
             res.add(new ArrayList<>(selected));
-            return ;
+            return;
         }
 
         String last = null;
@@ -34,7 +34,7 @@ public class UnOrderedRank {
             String cur = selectAble.get(i);
             if (cur != null && !cur.equals(last)) {
                 selected.add(cur);
-                rank(res, selected, selectAble,len,i+1);
+                rank(res, selected, selectAble, len, i + 1);
                 selected.pollLast();
             }
             last = cur;
@@ -43,7 +43,7 @@ public class UnOrderedRank {
 
     public static void main(String[] args) {
         System.out.println(new UnOrderedRank().rank(
-                Stream.of("a", "b", "d","c","d").collect(Collectors.toList()) , 2)
+                Stream.of("a", "b", "d", "c", "d").collect(Collectors.toList()), 2)
         );
     }
 }
