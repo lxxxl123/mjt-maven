@@ -43,6 +43,7 @@ public class OrderedRank {
     }
 
     public static void main(String[] args) {
-        System.out.println(new OrderedRank().rank(Stream.of("a", "b", "a").collect(Collectors.toList())));
+        System.out.println(new OrderedRank().rank(Stream.of("a", "b","b","c").collect(Collectors.toList())));
+
     }
 }
