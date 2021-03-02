@@ -43,7 +43,7 @@ public class CheckSum implements Callable<Integer> {
     // this example implements Callable, so parsing, error handling and handling user
     // requests for usage help or version help can be done with one line of code.
     public static void main(String... args) {
-        String s = "sftp /home/ipnet/test/test1.txt /home/ipnet/test/test2.txt -i 172.16.100.78 -u ipnet -pw ipnet1234";
+        String s = "sftp /home/ipnet/test/test1.txt /home/ipnet/test/test2.txt -i 111111 -u 33333 -pw 22222";
         String[] arg = s
                 .substring("sftp".length(), s.length())
                 .trim()
