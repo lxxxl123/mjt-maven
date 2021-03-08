@@ -11,6 +11,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-test</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>websocket-test</module>
+    </modules>
 
     <dependencies>
         <dependency>
