@@ -5,7 +5,7 @@ import java.util.UUID;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(true ^ true ^ true);
+        System.out.println("123".hashCode());
 
     }
 }
