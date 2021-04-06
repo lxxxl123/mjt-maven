@@ -1,4 +1,4 @@
-package chen;
+package chen.algorithm;
 
 /**
  * @see <a href="https://oi-wiki.org/ds/dsu/"> https://oi-wiki.org/ds/dsu/</a>

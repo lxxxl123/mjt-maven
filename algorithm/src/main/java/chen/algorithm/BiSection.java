@@ -1,4 +1,4 @@
-package chen;
+package chen.algorithm;
 
 /**
  * 经典算法:二分法

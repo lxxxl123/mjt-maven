@@ -1,4 +1,4 @@
-package chen;
+package chen.algorithm;
 
 /**
  * KMP算法  , 用于匹配子串 , 核心思路:有限状态机
