@@ -1,5 +1,6 @@
 package chen.algorithm;
 
+
 /**
  * 位运算相关
  * @author chenwh
@@ -26,6 +27,10 @@ public class Bit {
     }
 
     public static void main(String[] args) {
-        System.out.println(findRightBit());
+        int i = 144;
+
+        System.out.println(Integer.toBinaryString(i));
+
+        System.out.println(Integer.toBinaryString(findRightBit(i)));
     }
 }
