@@ -1,4 +1,4 @@
-package chen;
+package chen.algorithm;
 
 import java.util.ArrayList;
 import java.util.Comparator;

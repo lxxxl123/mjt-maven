@@ -9,17 +9,19 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tools</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>map-stuct-test</module>
-        <module>reactor-test</module>
-        <module>junit-test</module>
-        <module>picocli-test</module>
-        <module>spring-test</module>
-        <module>http</module>
-        <module>logback</module>
-    </modules>
+    <artifactId>logback</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.7</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

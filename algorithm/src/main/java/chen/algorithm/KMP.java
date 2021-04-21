@@ -1,4 +1,4 @@
-package chen;
+package chen.algorithm;
 
 /**
  * KMP算法  , 用于匹配子串 , 核心思路:有限状态机
@@ -47,7 +47,7 @@ public class KMP {
 
 
     /**
-     * 思路:半-有限状态机 , 效率相对高一点 , 在字haystack符长度不多的情况下
+     * 思路:自动状态机 , 效率相对高一点 , 在字haystack符长度不多的情况下
      */
     public int strStr2(String haystack, String needle) {
         if (needle.equals("")) {
