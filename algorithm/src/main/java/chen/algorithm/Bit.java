@@ -28,9 +28,5 @@ public class Bit {
 
     public static void main(String[] args) {
         int i = 144;
-
-        System.out.println(Integer.toBinaryString(i));
-
-        System.out.println(Integer.toBinaryString(findRightBit(i)));
     }
 }
