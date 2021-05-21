@@ -1,4 +1,4 @@
-package chen.algorithm;
+package chen.struct;
 
 import lombok.Data;
 
