@@ -1,5 +1,6 @@
 package com.chen;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 
@@ -11,12 +12,21 @@ import org.slf4j.MDC;
 @Slf4j
 public class Test1 {
 
+    @Getter
+    private int a = 1;
+
+    public static int test(int a) {
+        return ~a;
+    }
+
     public static void main(String[] args) {
-//        MDC.put("sessionId", "53a1898b-247f-4fd4-bca7-cca8e216b147");
-//        MDC.put("ne","device-25");
+        MDC.put("sessionId", "53a1898b-247f-4fd4-bca7-cca8e216b147");
+        MDC.put("ne","device-25");
         MDC.put("user","dxcj");
-        CatServiceLogUtils.initTraceId();
-        log.info("message");
+//        CatServiceLogUtils.initTraceId();
+        Test2.log("123%X{sessionId}");
+//        System.out.println(new Test1().getA());
 
     }
+
 }

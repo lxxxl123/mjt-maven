@@ -2,6 +2,7 @@ package chen.algorithm.heap;
 
 import java.sql.SQLOutput;
 import java.util.Arrays;
+import java.util.concurrent.CyclicBarrier;
 
 /**
  * @author chenwh
@@ -42,6 +43,7 @@ public class MaxHeap {
 
     /**
      * 若i节点不合理 , 并且左右儿子都是大顶堆 , 则可以使用该函数调整
+     * 自顶向下
      */
     public static void adjustHead(int fa, int[] arr, int len) {
         for (int son = 2 * fa + 1; son < len; ) {
@@ -59,11 +61,6 @@ public class MaxHeap {
         }
     }
 
-    public static void main(String[] args) {
-        int[] arr = {3, 4, 6, 2, 3, 4, 1, 4};
-        sort(arr);
-        System.out.println(Arrays.toString(arr));
-    }
 
 
 }

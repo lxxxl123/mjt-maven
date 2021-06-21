@@ -21,21 +21,22 @@ import javax.xml.ws.Response;
 public class Test {
 
 //    private void connect(Request request){
-//        //获取网元名
-//        String neName = request.getNeName();
-//        //获取网管名
-//        String managerName = request.getManagerName();
+//
+//        //获取网管名(OMC)
+//        String managerName = request.getManagerName() == null ? "direct" : request.getManagerName();
+//        //获取应用名
+//        String app = request.getApp() == null ? "other" : request.getApp();
 //        //创建父线程事务
-//        Transaction t = Cat.newTransaction("LOGIN-ROOT", "ROOT");
+//        Transaction t = Cat.newTransaction("LOGIN_MML_FROM", app);
 //        //为MDC设置traceid
 //        CatServiceLogUtils.initTraceId();
 //        try {
 //            //创建子线程事务,name为网元名
-//            ForkedTransaction forkedTransaction = Cat.newForkedTransaction("LOGIN", neName);
-//            //统计网元登录次数
-//            Cat.logMetricForCount(String.format("login-ne:%s", neName));
+//            ForkedTransaction forkedTransaction = Cat.newForkedTransaction("LOGIN_MML_TO", managerName );
 //            //统计网管登录次数(OMC)
 //            Cat.logMetricForCount(String.format("login-manager:%s", managerName));
+//            //统计应用登录次数(app)
+//            Cat.logMetricForCount(String.format("login-app:%s", app));
 //            // 执行登录
 //            log.info("开始登录");
 //            Promise<Response> promise = connect(request);
@@ -48,6 +49,10 @@ public class Test {
 //                if (res.getCode() == SUCCESS) {
 //                    forkedTransaction.setStatus(Transaction.SUCCESS);
 //                } else {
+//                    //统计网管登录失败次数(OMC)
+//                    Cat.logMetricForCount(String.format("login-failed-manager:%s", managerName));
+//                    //统计应用登录失败次数
+//                    Cat.logMetricForCount(String.format("login-failed-app:%s", app));
 //                    //记录登录网元错误信息
 //                    Cat.logError(String.format("login_error:neName=%s", neName), new DispatchException(res.getMsg()));
 //                    forkedTransaction.setStatus("LOGIN_ERROR");
