@@ -11,7 +11,6 @@ import org.slf4j.MDC;
  * @date 2021/5/19
  */
 
-@Slf4j
 public class Test2 {
 
    public static void log(String s){
