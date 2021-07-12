@@ -1,11 +1,5 @@
 package com.chen;
 
-import com.dianping.cat.Cat;
-import com.dianping.cat.message.Transaction;
-import com.mchange.v2.log.LogUtils;
-import jdk.nashorn.api.scripting.ScriptUtils;
-
-import javax.script.ScriptContext;
 import java.util.Arrays;
 
 class CatUtils {

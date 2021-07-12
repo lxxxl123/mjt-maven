@@ -53,6 +53,13 @@
         </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>unidal.releases</id>
+            <url>http://unidal.org/nexus/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
