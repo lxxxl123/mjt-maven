@@ -1,4 +1,4 @@
-package chen.sort;
+package chen.algorithm.sort;
 
 
 import java.util.ArrayList;
