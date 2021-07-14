@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.concurrent.CyclicBarrier;
 
 /**
+ * 堆排序 (降序), 利用大顶堆不断poll
+ * 特点: 把数组映射成一棵完全二叉树--所有间隔填满
  * @author chenwh
  * @date 2021/5/12
  */
