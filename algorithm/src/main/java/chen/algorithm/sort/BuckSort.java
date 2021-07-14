@@ -11,7 +11,8 @@ import java.util.stream.Stream;
 
 /**
  * 桶排序
- * 计数排序升级版
+ * 应用场景: 需要获取计算某个区间值的关系
+ * 计数排序,基数排序,升级版
  * 时间复杂读接近O(n)
  */
 public class BuckSort {

@@ -14,7 +14,7 @@ public class InsertSort {
      *
      * @param arr
      */
-    public static void InsertSort(int[] arr) {
+    public static void insertSort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int j = i - 1;
             int temp = arr[i];
@@ -28,7 +28,7 @@ public class InsertSort {
 
     public static void main(String[] args) {
         int [] arr = new int[]{4, 5, 7, 1, 29, 4, 4, 4, 4};
-        InsertSort(arr);
+        insertSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 }
