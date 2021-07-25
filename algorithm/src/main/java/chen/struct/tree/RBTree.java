@@ -1,4 +1,4 @@
-package chen.struct;
+package chen.struct.tree;
 
 import lombok.Data;
 
