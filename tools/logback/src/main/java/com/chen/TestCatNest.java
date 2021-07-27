@@ -1,24 +1,21 @@
 package com.chen;
 
 import com.dianping.cat.Cat;
-import com.dianping.cat.message.*;
-import com.sun.xml.internal.ws.wsdl.DispatchException;
-import io.netty.channel.ChannelHandlerContext;
+import com.dianping.cat.message.ForkedTransaction;
+import com.dianping.cat.message.Message;
+import com.dianping.cat.message.Transaction;
 import io.netty.util.concurrent.ImmediateEventExecutor;
 import io.netty.util.concurrent.Promise;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.xml.ws.Response;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * @author chenwh
  * @date 2021/4/14
  */
 @Slf4j
-public class Test {
+public class TestCatNest {
 
 //    private void connect(Request request){
 //
@@ -67,39 +64,12 @@ public class Test {
 //    }
 
     public static void main(String[] args) throws Exception {
-        String neName = "device-25";
-        Transaction t = Cat.newTransaction("LOGIN-ROOT", "ROOT");
-        ForkedTransaction forkedTransaction = Cat.newForkedTransaction("LOGIN",
-                neName);
+        Transaction t = Cat.newTransaction("Nest", "1");
 
-        // 执行登录
-        Promise<String> promise = connect(neName);
-        promise.addListener(future -> {
-            forkedTransaction.fork();
-            if (future.get() == "SUCCESS") {
-                forkedTransaction.setStatus(Transaction.SUCCESS);
-            } else {
-                Cat.logError(String.format("login_error:neName=%s", neName), new RuntimeException("login error"));
-                forkedTransaction.setStatus("LOGIN_ERROR");
-            }
-            forkedTransaction.complete();
-        });
-
-        CompletableFuture.runAsync(() -> {
-            try {
-                System.out.println("休眠3s");
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            // promise.setFailure(new IllegalStateException("Connect error"));
-            promise.setSuccess(null);
-        });
+        System.out.println("简单校验");
 
         t.setStatus(Message.SUCCESS);
-        t.complete();
-        Thread.currentThread().join();
-        Thread.sleep(100000000); // 此处 sleep 一会, 就能保证 CAT 异步消息发送
+
     }
 
     // 模拟网元登录
