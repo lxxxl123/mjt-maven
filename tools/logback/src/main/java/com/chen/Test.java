@@ -1,10 +1,7 @@
 package com.chen;
 
 import com.dianping.cat.Cat;
-import com.dianping.cat.message.Event;
-import com.dianping.cat.message.ForkedTransaction;
-import com.dianping.cat.message.Message;
-import com.dianping.cat.message.Transaction;
+import com.dianping.cat.message.*;
 import com.sun.xml.internal.ws.wsdl.DispatchException;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.concurrent.ImmediateEventExecutor;
@@ -12,6 +9,9 @@ import io.netty.util.concurrent.Promise;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.xml.ws.Response;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author chenwh
@@ -72,33 +72,29 @@ public class Test {
         ForkedTransaction forkedTransaction = Cat.newForkedTransaction("LOGIN",
                 neName);
 
-        Cat.logMetricForCount(String.format("login:%s", neName));
-        Cat.logMetricForCount(String.format("login:%s", neName));
-        Cat.logMetricForCount("device-25");
         // 执行登录
         Promise<String> promise = connect(neName);
         promise.addListener(future -> {
             forkedTransaction.fork();
             if (future.get() == "SUCCESS") {
                 forkedTransaction.setStatus(Transaction.SUCCESS);
-            }else{
-                Cat.logError(String.format("login_error:neName=%s",neName), new RuntimeException("login error"));
+            } else {
+                Cat.logError(String.format("login_error:neName=%s", neName), new RuntimeException("login error"));
                 forkedTransaction.setStatus("LOGIN_ERROR");
             }
             forkedTransaction.complete();
         });
 
-        new Thread(() -> {
+        CompletableFuture.runAsync(() -> {
             try {
                 System.out.println("休眠3s");
                 Thread.sleep(2000);
-            }
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             // promise.setFailure(new IllegalStateException("Connect error"));
             promise.setSuccess(null);
-        }).start();
+        });
 
         t.setStatus(Message.SUCCESS);
         t.complete();
@@ -112,8 +108,6 @@ public class Test {
                 "Thread:" + Thread.currentThread().getName() + " 执行登录:" + neName);
         return ImmediateEventExecutor.INSTANCE.newPromise();
     }
-
-
 
 
 }
