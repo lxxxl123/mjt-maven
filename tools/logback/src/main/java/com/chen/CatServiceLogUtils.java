@@ -11,7 +11,7 @@ import java.util.UUID;
 @Slf4j
 public class CatServiceLogUtils {
 
-  private static final MessageIdFactory CAT_MESSAGEID_FACTORY = new MessageIdFactory();
+  private static final MessageIdFactory CAT_MESSAGEID_FACTORY = MessageIdFactory.getInstance();
   static {
     try {
       Cat.enableMultiInstances();

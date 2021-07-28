@@ -96,12 +96,6 @@ public class CommonServer {
     }
 
     public static void main(String[] args) {
-        CompletableFuture.runAsync(() -> new CommonServer(
-                new IdleHandler(0,0,5, TimeUnit.SECONDS), new TimerHandler()
-        ).run()).join();
-
-        ConcurrentLinkedDeque concurrentLinkedDeque = new ConcurrentLinkedDeque();
-        concurrentLinkedDeque.add()
 
     }
 }

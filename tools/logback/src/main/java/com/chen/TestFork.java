@@ -1,17 +1,14 @@
 package com.chen;
 
 import com.dianping.cat.Cat;
-import com.dianping.cat.message.*;
-import com.sun.xml.internal.ws.wsdl.DispatchException;
-import io.netty.channel.ChannelHandlerContext;
+import com.dianping.cat.message.ForkedTransaction;
+import com.dianping.cat.message.Message;
+import com.dianping.cat.message.Transaction;
 import io.netty.util.concurrent.ImmediateEventExecutor;
 import io.netty.util.concurrent.Promise;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.xml.ws.Response;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * @author chenwh
@@ -69,21 +66,21 @@ public class TestFork {
     public static void main(String[] args) throws Exception {
         String neName = "device-25";
         Transaction t = Cat.newTransaction("LOGIN-ROOT", "ROOT");
-        ForkedTransaction f = Cat.newForkedTransaction("LOGIN",
-                neName);
+//        ForkedTransaction f = Cat.newForkedTransaction("LOGIN",
+//                neName);
         // 执行登录
         Promise<String> promise = connect(neName);
         promise.addListener(future -> {
-            f.fork();
-            if (future.get() == "SUCCESS") {
-                f.setStatus(Transaction.SUCCESS);
-            } else {
-                Cat.logError(String.format("login_error:neName=%s", neName), new RuntimeException("login error"));
-                f.setStatus("LOGIN_ERROR");
-            }
-            f.complete();
-            t.setStatus(Message.SUCCESS);
-            t.complete();
+//            f.fork();
+//            if (future.get() == "SUCCESS") {
+//                f.setStatus(Transaction.SUCCESS);
+//            } else {
+//                Cat.logError(String.format("login_error:neName=%s", neName), new RuntimeException("login error"));
+//                f.setStatus("LOGIN_ERROR");
+//            }
+//            f.complete();
+//            t.setStatus(Message.SUCCESS);
+//            t.complete();
         });
 
         CompletableFuture.runAsync(() -> {
