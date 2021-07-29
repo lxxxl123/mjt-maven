@@ -2,20 +2,11 @@ package com.chen;
 
 import com.dianping.cat.Cat;
 import com.dianping.cat.message.ForkedTransaction;
-import com.dianping.cat.message.Message;
 import com.dianping.cat.message.Transaction;
-import io.netty.util.concurrent.ImmediateEventExecutor;
 import io.netty.util.concurrent.Promise;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CompletableFuture;
-
-/**
- * @author chenwh
- * @date 2021/4/14
- */
-@Slf4j
-public class TestFork {
 
 //    private void connect(Request request){
 //
@@ -62,47 +53,50 @@ public class TestFork {
 //            t.complete();
 //        }
 //    }
+/**
+ * @author chenwh
+ * @date 2021/4/14
+ */
+@Slf4j
+public class TestFork {
 
     public static void main(String[] args) throws Exception {
         String neName = "device-25";
-        Transaction t = Cat.newTransaction("LOGIN-ROOT", "ROOT");
-//        ForkedTransaction f = Cat.newForkedTransaction("LOGIN",
-//                neName);
+        // 1.新建事务并start(forked=true)当前事务并没有压入m_stack  ,
+        // 2.初始化事务的messageId, 保存到ForkedTransaction对象中
+        ForkedTransaction forkedTransaction = Cat.newForkedTransaction("LOGIN", neName);
+
         // 执行登录
-        Promise<String> promise = connect(neName);
-        promise.addListener(future -> {
-//            f.fork();
-//            if (future.get() == "SUCCESS") {
-//                f.setStatus(Transaction.SUCCESS);
-//            } else {
-//                Cat.logError(String.format("login_error:neName=%s", neName), new RuntimeException("login error"));
-//                f.setStatus("LOGIN_ERROR");
-//            }
-//            f.complete();
-//            t.setStatus(Message.SUCCESS);
-//            t.complete();
+        CompletableFuture<Void> future = connect(neName);
+        //异步回调代码
+        future.whenCompleteAsync((viid, ex) -> {
+            // 1.start(forked=false) 并把事务压入当前线程的m_stack中  ,
+            // 2.把forkedTransaction中的messageId 保存到当前线程的messageTree中
+            forkedTransaction.fork();
+            if (ex != null) {
+                forkedTransaction.setStatus("LOGIN_ERROR");
+                Cat.logError(ex);
+            }else{
+                forkedTransaction.setStatus(Transaction.SUCCESS);
+            }
+            forkedTransaction.complete();
         });
 
-        CompletableFuture.runAsync(() -> {
+        Thread.sleep(100000000); // 此处 sleep 一会, 就能保证 CAT 异步消息发送
+    }
+
+    // 模拟网元登录
+    private static CompletableFuture<Void> connect(final String neName) {
+        return CompletableFuture.runAsync(() -> {
+            System.out.println(String.format("try login %s", neName));
             try {
                 System.out.println("休眠3s");
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            // promise.setFailure(new IllegalStateException("Connect error"));
-            promise.setSuccess(null);
+            System.out.println("login success");
         });
-
-        Thread.currentThread().join();
-        Thread.sleep(100000000); // 此处 sleep 一会, 就能保证 CAT 异步消息发送
-    }
-
-    // 模拟网元登录
-    private static Promise<String> connect(final String neName) {
-        System.out.println(
-                "Thread:" + Thread.currentThread().getName() + " 执行登录:" + neName);
-        return ImmediateEventExecutor.INSTANCE.newPromise();
     }
 
 
