@@ -12,12 +12,17 @@
         <module>tools</module>
         <module>test</module>
         <module>algorithm</module>
+        <module>other</module>
+        <module>front-end</module>
+        <module>spring-mvc</module>
+        <module>spring-gateway</module>
     </modules>
 
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <spring-cloud.version>Greenwich.M3</spring-cloud.version>
     </properties>
 
     <parent>
@@ -53,12 +58,7 @@
         </dependency>
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>unidal.releases</id>
-            <url>http://unidal.org/nexus/content/repositories/releases/</url>
-        </repository>
-    </repositories>
+
 
     <dependencyManagement>
         <dependencies>
@@ -66,6 +66,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>2.3.4.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR12</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

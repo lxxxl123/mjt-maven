@@ -10,6 +10,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <repositories>
+        <repository>
+            <id>unidal.releases</id>
+            <url>http://unidal.org/nexus/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+
+
     <artifactId>logback</artifactId>
     <dependencies>
         <dependency>
