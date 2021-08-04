@@ -34,7 +34,7 @@ public class MyFilter implements GlobalFilter, Ordered {
 //                return chain.filter(exchange);
 //            }
         }
-        String redirectUrl = "http://172.16.100.73:9999/dispatcher/#/dispatcher/systemAccountManagement";
+        String redirectUrl = "http://localhost:9999/dispatcher/#/dispatcher/systemAccountManagement";
         log.info("bmg 重定向到URL: {}", redirectUrl);
         response.getHeaders().set(HttpHeaders.LOCATION, redirectUrl);
         response.getHeaders().set("Authorization", "Bearer 123456");
