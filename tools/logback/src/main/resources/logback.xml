@@ -4,7 +4,7 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
 <!--            <pattern>[%d{yyyy-MM-dd HH:mm:ss}] %-4relative [%thread] %-5level-%logger{35}[%line] - %msg %n</pattern>-->
-            <pattern>[%d{yyyy-MM-dd HH:mm:ss}] [%le] [T:%t] [C:%c{1} %L]%X{sessionId}%X{traceId}%X{user}%X{ne} %m %n</pattern>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%le] [T:%t] [C:%c{1} %L]%X{sessionId}%X{traceId}%X{user}%X{ne} %m %n</pattern>
         </encoder>
     </appender>
 
