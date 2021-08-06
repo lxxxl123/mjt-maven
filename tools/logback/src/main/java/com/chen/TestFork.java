@@ -68,6 +68,8 @@ public class TestFork {
 
         // 执行登录
         CompletableFuture<Void> future = connect(neName);
+
+        Cat.logMetricForCount("LOGIN-NE123",5);
         //异步回调代码
         future.whenCompleteAsync((viid, ex) -> {
             // 1.start(forked=false) 并把事务压入当前线程的m_stack中  ,

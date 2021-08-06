@@ -25,15 +25,10 @@ public class TestCatNest {
 
         Transaction t1 = Cat.newTransaction("Nest", "2");
 
-        CompletableFuture.runAsync(() -> {
-            Transaction t3 = Cat.newTransaction("Nest-sync", "3");
-            t3.setStatus(Message.SUCCESS);
-            t3.complete();
-        });
-
 
         System.out.println("简单校验");
         TimeUnit.SECONDS.sleep(1);
+        Cat.logMetricForCount("temp-metric", 1);
 
         t1.setStatus(Message.SUCCESS);
 
@@ -41,6 +36,7 @@ public class TestCatNest {
 
         t1.complete();
         t.complete();
+        TimeUnit.SECONDS.sleep(1000);
 
     }
 
