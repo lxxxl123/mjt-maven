@@ -1,5 +1,6 @@
 package com.chen.spring.mvc.controller;
 
+import com.chen.spring.mvc.model.Result;
 import com.chen.spring.mvc.model.User;
 import lombok.Data;
 import org.springframework.web.bind.annotation.*;
@@ -24,5 +25,10 @@ public class RestController {
     public String hello(@RequestBody User user) {
         System.out.println(user);
         return user.getToken();
+    }
+
+    @GetMapping("/testEx")
+    public Result<String> throwEx() {
+        throw new RuntimeException("123456");
     }
 }
