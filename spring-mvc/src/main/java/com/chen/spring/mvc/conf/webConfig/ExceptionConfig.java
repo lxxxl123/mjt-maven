@@ -1,4 +1,4 @@
-package com.chen.spring.mvc.conf;
+package com.chen.spring.mvc.conf.webConfig;
 
 import com.chen.spring.mvc.model.Result;
 import org.springframework.web.bind.annotation.ControllerAdvice;
