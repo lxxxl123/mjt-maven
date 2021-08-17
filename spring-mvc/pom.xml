@@ -51,7 +51,7 @@
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
 
-        <!--oauth2核心依赖-->
+        <!--oauth2核心依赖 , 一旦依赖所有接口都会被接管起来-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-security</artifactId>
