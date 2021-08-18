@@ -31,7 +31,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Order(1)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Bean
+    @Bean("authenticationManagerBean")
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();

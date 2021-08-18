@@ -47,7 +47,7 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
     //指定哪些资源是需要授权验证的
     private static final String RESOURCE_ID = "resource_id";
 
-    @Resource("authenticationManagerBean")
+    @Resource(name = "authenticationManagerBean")
     private AuthenticationManager authenticationManager;
 
     @Override
