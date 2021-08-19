@@ -2,6 +2,7 @@ package com.chen.spring.mvc.service;
 
 import com.chen.spring.mvc.model.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,12 +28,10 @@ public class UserDetailServiceImpl implements UserDetailsService  {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = new User();
         user.setUsername(username);
+        if (username.equals("admin")) {
+            throw new LockedException("user is lock ");
+        }
         user.setPassword(bCryptPasswordEncoder.encode("1234"));
-        user.setAuthorities(AuthorityUtils.createAuthorityList("admin"));
-        user.setAccountNonLocked(true);
-        user.setEnabled(true);
-        user.setAccountNonExpired(true);
-        user.setCredentialsNonExpired(true);
         return user;
     }
 }

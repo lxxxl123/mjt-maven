@@ -21,11 +21,11 @@ public class User implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    private boolean isAccountNonExpired;
+    private boolean isAccountNonExpired = true;
 
-    private boolean isAccountNonLocked;
+    private boolean isAccountNonLocked = true ;
 
-    private boolean isCredentialsNonExpired;
+    private boolean isCredentialsNonExpired = true;
 
-    private boolean isEnabled;
+    private boolean isEnabled = true;
 }
