@@ -26,7 +26,8 @@ public class TestCatNest {
         Transaction t1 = Cat.newTransaction("Nest", "2");
 
 
-        System.out.println("简单校验");
+
+        System.out.println(Cat.getCurrentMessageId());
         TimeUnit.SECONDS.sleep(1);
         Cat.logMetricForCount("temp-metric", 1);
 

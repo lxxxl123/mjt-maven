@@ -61,7 +61,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //.and().httpBasic()
                 // 配置登出页面
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
-                .and().authorizeRequests().antMatchers("/oauth/**", "/login/**", "/logout/**").permitAll()
+                .and()
+                    .authorizeRequests()
+                    .antMatchers("/oauth/**", "/login/**", "/logout/**")
+                    .permitAll()
                 // 其余所有请求全部需要鉴权认证
                 .anyRequest().authenticated()
                 // 关闭跨域保护;
