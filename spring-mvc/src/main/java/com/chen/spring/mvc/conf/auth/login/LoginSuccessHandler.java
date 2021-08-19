@@ -21,16 +21,8 @@ import java.io.IOException;
 @Slf4j
 public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    @Resource
-    private RequestRateLimiter requestRateLimiter;
-
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        try {
-            requestRateLimiter.resetLimit(((User) authentication.getPrincipal()).getUsername());
-        } catch (Exception e) {
-            log.error("",e);
-        }
         super.onAuthenticationSuccess(request, response, authentication);
     }
 }

@@ -1,6 +1,8 @@
 package com.chen.spring.mvc.service;
 
 import com.chen.spring.mvc.model.User;
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import com.google.common.util.concurrent.RateLimiter;
 import es.moki.ratelimitj.core.limiter.request.RequestLimitRule;
 import es.moki.ratelimitj.core.limiter.request.RequestRateLimiter;
@@ -36,10 +38,8 @@ public class UserDetailServiceImpl implements UserDetailsService  {
     @Resource
     private UserService userService;
 
-
-    @Resource
-    private RequestRateLimiter requestRateLimiter;
-
+    @Resource(name = "lockedUser")
+    private Cache<String, Byte> lockedUsers;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -48,7 +48,7 @@ public class UserDetailServiceImpl implements UserDetailsService  {
             throw new UsernameNotFoundException("账号不存在");
         }
 
-        if (requestRateLimiter.overLimitWhenIncremented(username)) {
+        if (lockedUsers.getIfPresent(username) != null) {
             throw new LockedException("失败次数过多,账号被锁");
         }
 

@@ -7,6 +7,8 @@ package com.chen.spring.mvc.conf.auth;
 
 import com.chen.spring.mvc.conf.auth.login.LoginFailHandler;
 import com.chen.spring.mvc.conf.auth.login.LoginSuccessHandler;
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import es.moki.ratelimitj.core.limiter.request.RequestLimitRule;
 import es.moki.ratelimitj.core.limiter.request.RequestRateLimiter;
 import es.moki.ratelimitj.inmemory.request.InMemorySlidingWindowRequestRateLimiter;
@@ -56,6 +58,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public RequestRateLimiter requestLimitRule() {
         return new InMemorySlidingWindowRequestRateLimiter(
                 Collections.singleton(RequestLimitRule.of(Duration.ofMinutes(5), 5)));
+    }
+
+    @Bean("lockedUser")
+    public Cache<String,Byte> lockedUser(){
+        return (Cache<String, Byte>) (Object)
+                (Caffeine.newBuilder()
+                .maximumSize(1000)
+                .expireAfterWrite(Duration.ofMinutes(5))
+                .build());
     }
 
     @Bean("authenticationManagerBean")
