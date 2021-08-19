@@ -27,9 +27,9 @@ public class MyMessageConverter extends MappingJackson2HttpMessageConverter {
     @Override
     public Object read(Type type, Class<?> contextClass, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
         User u = ((User) super.read(type, contextClass, inputMessage));
-        List<String> tokens = inputMessage.getHeaders().get("token");
+        List<String> tokens = inputMessage.getHeaders().get("username");
         if (tokens != null && tokens.size() > 0) {
-            u.setToken(tokens.get(0));
+            u.setUsername(tokens.get(0));
         }
         return u;
     }

@@ -5,6 +5,8 @@ package com.chen.spring.mvc.conf.auth;
  * @date 2021/8/17
  */
 
+import com.chen.spring.mvc.conf.auth.login.LoginFailHandler;
+import com.chen.spring.mvc.conf.auth.login.LoginSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -14,6 +16,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+import javax.annotation.Resource;
 
 /**
  * <pre>
@@ -31,19 +38,35 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Order(1)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Resource
+    private LoginFailHandler loginFailHandler;
+
+    @Resource
+    private LoginSuccessHandler loginSuccessHandler;
+
+    @Resource
+    private UserDetailsService userDetailsService;
+
+
     @Bean("authenticationManagerBean")
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {    //auth.inMemoryAuthentication()
-        auth.inMemoryAuthentication()
-                .withUser("nicky")
-                .password("{noop}123")
-                .roles("admin");
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//        auth.inMemoryAuthentication()
+//                .withUser("nicky")
+//                .password("{noop}123")
+//                .roles("admin");
     }
 
     @Override
@@ -56,11 +79,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http   // 配置登录页并允许访问
-                .formLogin().permitAll()
+                .formLogin()
+//                    .failureHandler(loginFailHandler)
+//                    .successHandler(loginSuccessHandler)
+                .permitAll()
                 // 配置Basic登录
                 //.and().httpBasic()
                 // 配置登出页面
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
+                .and()
+                    .logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/")
                 .and()
                     .authorizeRequests()
                     .antMatchers("/oauth/**", "/login/**", "/logout/**")

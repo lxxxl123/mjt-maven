@@ -24,7 +24,7 @@ public class RestController {
     @PostMapping("/hello")
     public String hello(@RequestBody User user) {
         System.out.println(user);
-        return user.getToken();
+        return user.getUsername();
     }
 
     @GetMapping("/testEx")
