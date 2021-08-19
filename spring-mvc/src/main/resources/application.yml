@@ -7,3 +7,6 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+userlist:
+  users: "{admin: '123456',dxcj: '123456'}"

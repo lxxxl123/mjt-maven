@@ -7,6 +7,9 @@ package com.chen.spring.mvc.conf.auth;
 
 import com.chen.spring.mvc.conf.auth.login.LoginFailHandler;
 import com.chen.spring.mvc.conf.auth.login.LoginSuccessHandler;
+import es.moki.ratelimitj.core.limiter.request.RequestLimitRule;
+import es.moki.ratelimitj.core.limiter.request.RequestRateLimiter;
+import es.moki.ratelimitj.inmemory.request.InMemorySlidingWindowRequestRateLimiter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -21,6 +24,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import javax.annotation.Resource;
+import java.time.Duration;
+import java.util.Collections;
 
 /**
  * <pre>
@@ -47,6 +52,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Resource
     private UserDetailsService userDetailsService;
 
+    @Bean
+    public RequestRateLimiter requestLimitRule() {
+        return new InMemorySlidingWindowRequestRateLimiter(
+                Collections.singleton(RequestLimitRule.of(Duration.ofMinutes(5), 5)));
+    }
 
     @Bean("authenticationManagerBean")
     @Override
@@ -81,7 +91,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http   // 配置登录页并允许访问
                 .formLogin()
 //                    .failureHandler(loginFailHandler)
-//                    .successHandler(loginSuccessHandler)
+                    .successHandler(loginSuccessHandler)
                 .permitAll()
                 // 配置Basic登录
                 //.and().httpBasic()
