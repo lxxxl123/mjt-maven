@@ -101,7 +101,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http   // 配置登录页并允许访问
                 .formLogin()
-                    .failureHandler(loginFailHandler)
+//                    .failureHandler(loginFailHandler)
 //                    .successHandler(loginSuccessHandler)
                 // 配置Basic登录
                 //.and().httpBasic()
@@ -112,7 +112,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/")
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/oauth/**", "/login**", "/logout/**")
+                    .antMatchers("v1/**","/oauth/**", "/login**", "/logout/**")
                     .permitAll()
                 // 其余所有请求全部需要鉴权认证
                 .anyRequest().authenticated()

@@ -1,4 +1,4 @@
-package com.chen.spring.mvc.controller;
+package com.chen.spring.mvc.controller.ui;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
