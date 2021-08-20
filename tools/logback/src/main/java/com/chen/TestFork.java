@@ -68,6 +68,7 @@ public class TestFork {
 
         // 执行登录
         CompletableFuture<Void> future = connect(neName);
+        log.info(Cat.getCurrentMessageId());
 
         Cat.logMetricForCount("LOGIN-NE123",5);
         //异步回调代码
@@ -75,6 +76,7 @@ public class TestFork {
             // 1.start(forked=false) 并把事务压入当前线程的m_stack中  ,
             // 2.把forkedTransaction中的messageId 保存到当前线程的messageTree中
             forkedTransaction.fork();
+            log.info(Cat.getCurrentMessageId());
             if (ex != null) {
                 forkedTransaction.setStatus("LOGIN_ERROR");
                 Cat.logError(ex);
@@ -97,8 +99,10 @@ public class TestFork {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("login success");
+            throw new RuntimeException("123");
+//            System.out.println("login success");
         });
+
     }
 
 
