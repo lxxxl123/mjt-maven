@@ -112,7 +112,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/")
                 .and()
                     .authorizeRequests()
-                    .antMatchers("v1/**","/oauth/**", "/login**", "/logout/**")
+                    .antMatchers("/v1/**","/oauth/**", "/login**", "/logout/**")
                     .permitAll()
                 // 其余所有请求全部需要鉴权认证
                 .anyRequest().authenticated()
