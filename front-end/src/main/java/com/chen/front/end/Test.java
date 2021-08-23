@@ -6,12 +6,15 @@ package com.chen.front.end;
  */
 
 import com.chen.front.end.model.Product;
-import freemarker.template.*;
-import org.springframework.core.io.ClassPathResource;
-import sun.security.util.Resources;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateExceptionHandler;
 
-import java.util.*;
-import java.io.*;
+import java.io.File;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Test {
 
@@ -40,6 +43,7 @@ public class Test {
         latest.setUrl("products/greenmouse.html");
         latest.setName("green mouse");
         root.put("latestProduct", latest);
+//        root.put("error", "error123123123123");
 
         /* Get the template (uses cache internally) */
         Template temp = cfg.getTemplate("test.ftl");

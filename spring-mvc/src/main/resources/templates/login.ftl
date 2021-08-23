@@ -13,7 +13,10 @@
 <div class="container">
     <form class="form-signin" method="post" action="/login">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <div class="alert alert-danger" role="alert">Bad credentials</div>        <p>
+        <#if error??>
+            <div class="alert alert-danger" role="alert">${error}</div>
+        </#if>
+        <p>
             <label for="username" class="sr-only">Username</label>
             <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
         </p>
