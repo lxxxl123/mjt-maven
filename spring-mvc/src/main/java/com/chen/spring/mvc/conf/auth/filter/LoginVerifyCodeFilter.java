@@ -34,7 +34,7 @@ public class LoginVerifyCodeFilter implements Filter {
         }
         String code = request.getParameter(codeParameter);
         code = code == null ? "" : code;
-        log.info("receive code + " + code);
+        log.info("receive sessionId = " + request.getRequestedSessionId());
 
         chain.doFilter(request, response);
     }

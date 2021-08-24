@@ -20,6 +20,7 @@ public class LoginPageController {
         var mav = new ModelAndView();
         mav.setViewName("login");
         mav.addObject("error", error);
+        mav.addObject("verifyCodeImgPath", "/v1/getCode");
         return mav;
     }
 }

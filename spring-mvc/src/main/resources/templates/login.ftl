@@ -24,8 +24,19 @@
             <label for="password" class="sr-only">Password</label>
             <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
         </p>
+        <p>
+            <label for="verify_code" class="sr-only">verifyCode</label>
+            <input type="text" id="verify_code" name="verify_code" class="form-control" placeholder="verifyCode" required autofocus>
+            <img id="img_code" src="/v1/getCode" onclick="identifyload()"/>
+        </p>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    function identifyload() {
+       document.getElementById('img_code').src = '${verifyCodeImgPath}?d='+ new Date().getTime();
+    }
+</script>
