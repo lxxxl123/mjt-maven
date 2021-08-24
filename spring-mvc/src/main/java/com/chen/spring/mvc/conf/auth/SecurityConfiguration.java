@@ -5,6 +5,7 @@ package com.chen.spring.mvc.conf.auth;
  * @date 2021/8/17
  */
 
+import com.chen.spring.mvc.conf.auth.filter.LoginVerifyCodeFilter;
 import com.chen.spring.mvc.conf.auth.login.LoginFailHandler;
 import com.chen.spring.mvc.conf.auth.login.LoginSuccessHandler;
 import com.github.benmanes.caffeine.cache.Cache;
@@ -23,7 +24,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
 import java.time.Duration;
@@ -99,7 +100,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http   // 配置登录页并允许访问
+        http.addFilterBefore(new LoginVerifyCodeFilter(), UsernamePasswordAuthenticationFilter.class)
+                // 配置登录页并允许访问 , 实质上是引入UsernamePasswordAuthenticationFilter , 成功则调用successHandler ,失败则 failureHandler
                 .formLogin()
 //                    .failureHandler(loginFailHandler)
 //                    .successHandler(loginSuccessHandler)

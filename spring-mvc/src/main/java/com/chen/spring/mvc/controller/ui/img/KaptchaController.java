@@ -22,6 +22,9 @@ public class KaptchaController {
     @Autowired
     private Producer captchaProducer;
 
+    /**
+     * 获取验证码
+     */
     @RequestMapping("/getCode")
     public ModelAndView getKaptchaImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setDateHeader("Expires", 0);
