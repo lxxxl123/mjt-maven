@@ -9,6 +9,7 @@ import com.chen.front.end.model.Product;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import java.io.File;
 import java.io.OutputStreamWriter;
@@ -27,18 +28,19 @@ public class Test {
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_29);
         cfg.setDirectoryForTemplateLoading(new File("D:\\workspace\\idea-example\\mjt-maven\\front-end\\src\\main\\resources\\WEB-INF\\views\\ftl"));
         // Recommended settings for new projects:
-        cfg.setDefaultEncoding("UTF-8");
+//        cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        cfg.setLogTemplateExceptions(false);
-        cfg.setWrapUncheckedExceptions(true);
-        cfg.setFallbackOnNullLoopVariable(false);
+//        cfg.setLogTemplateExceptions(false);
+//        cfg.setWrapUncheckedExceptions(true);
+//        cfg.setFallbackOnNullLoopVariable(false);
+
 
         /* ------------------------------------------------------------------------ */
         /* You usually do these for MULTIPLE TIMES in the application life-cycle:   */
 
         /* Create a data-model */
         Map root = new HashMap();
-        root.put("user", "Big Joe");
+        root.put("user", "Big 一二三Joe");
         Product latest = new Product();
         latest.setUrl("products/greenmouse.html");
         latest.setName("green mouse");

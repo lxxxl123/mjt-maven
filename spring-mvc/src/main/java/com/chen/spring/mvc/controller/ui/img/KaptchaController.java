@@ -6,11 +6,13 @@ import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -26,16 +28,15 @@ public class KaptchaController {
     @Autowired
     private Producer captchaProducer;
 
-    private Cache<String, String> cache = Caffeine.newBuilder()
-            .expireAfterWrite(5, TimeUnit.MINUTES)
-            .maximumSize(100)
-            .build();
+    @Resource(name = "verifyCodeCache")
+    private Cache<String, String> cache;
 
     /**
      * 获取验证码
      */
     @RequestMapping("/getCode")
     public ModelAndView getKaptchaImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
         response.setDateHeader("Expires", 0);
         // Set standard HTTP/1.1 no-cache headers.
         response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
@@ -48,7 +49,7 @@ public class KaptchaController {
         String capText = captchaProducer.createText();
 
         if (!StringUtils.isEmpty(request.getRequestedSessionId())) {
-            cache.put(request.getRequestURI(), capText);
+            cache.put(request.getRequestedSessionId(), capText);
         }
 
         log.info("******************验证码是: " + capText + "******************");

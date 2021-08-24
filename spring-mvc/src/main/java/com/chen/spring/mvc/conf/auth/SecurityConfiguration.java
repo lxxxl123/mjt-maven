@@ -25,10 +25,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 import javax.annotation.Resource;
 import java.time.Duration;
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <pre>
@@ -55,19 +57,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Resource
     private UserDetailsService userDetailsService;
 
+    @Resource(name = "verifyCodeCache")
+    private Cache<String, String> cache;
+
     @Bean
     public RequestRateLimiter requestLimitRule() {
+
         return new InMemorySlidingWindowRequestRateLimiter(
                 Collections.singleton(RequestLimitRule.of(Duration.ofMinutes(5), 5)));
-    }
-
-    @Bean("lockedUser")
-    public Cache<String,Byte> lockedUser(){
-        return (Cache<String, Byte>) (Object)
-                (Caffeine.newBuilder()
-                .maximumSize(1000)
-                .expireAfterWrite(Duration.ofMinutes(5))
-                .build());
     }
 
     @Bean("authenticationManagerBean")
@@ -91,6 +88,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .roles("admin");
     }
 
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         //解决静态资源被拦截的问题
@@ -100,7 +98,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new LoginVerifyCodeFilter(), UsernamePasswordAuthenticationFilter.class)
+        http.addFilterBefore(new LoginVerifyCodeFilter(cache), UsernamePasswordAuthenticationFilter.class)
                 // 配置登录页并允许访问 , 实质上是引入UsernamePasswordAuthenticationFilter , 成功则调用successHandler ,失败则 failureHandler
                 .formLogin()
 //                    .failureHandler(loginFailHandler)
