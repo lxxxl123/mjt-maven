@@ -46,6 +46,7 @@ public class LoginVerifyCodeFilter implements Filter {
             return;
         }
         String code = request.getParameter(codeParameter);
+        code = code == null ? "" : code;
         String sessionId = request.getRequestedSessionId();
         if (code.equals(cache.getIfPresent(sessionId))) {
             chain.doFilter(request, response);
