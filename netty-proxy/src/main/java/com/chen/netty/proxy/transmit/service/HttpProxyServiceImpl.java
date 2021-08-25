@@ -1,5 +1,7 @@
 package com.chen.netty.proxy.transmit.service;
 
+import com.chen.netty.proxy.HttpProxyRequest;
+import com.chen.netty.proxy.HttpProxyResponse;
 import com.google.protobuf.ByteString;
 import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
