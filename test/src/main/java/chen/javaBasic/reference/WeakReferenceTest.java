@@ -1,6 +1,5 @@
 package chen.javaBasic.reference;
 
-import sun.misc.GC;
 
 import java.io.PipedReader;
 import java.lang.ref.WeakReference;

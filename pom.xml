@@ -16,6 +16,7 @@
         <module>front-end</module>
         <module>spring-mvc</module>
         <module>spring-gateway</module>
+        <module>netty-proxy</module>
     </modules>
 
 
@@ -60,6 +61,15 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>io.rsocket</groupId>
+                <artifactId>rsocket-bom</artifactId>
+                <version>1.1.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
@@ -72,6 +82,15 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>4.1.60.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
 
             <!--限流器大全-->
             <dependency>

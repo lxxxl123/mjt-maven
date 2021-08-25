@@ -1,0 +1,17 @@
+syntax = "proto3";
+package orders;
+
+option java_package = "com.chen.netty.proxy";
+option java_multiple_files = true;
+option java_outer_classname = "HttpProto";
+
+message HttpProxyRequest {
+  string host = 1;
+  int32 port = 2;
+  string method = 3;
+  bytes payload = 4;
+}
+
+message HttpProxyResponse {
+  bytes payload = 1;
+}

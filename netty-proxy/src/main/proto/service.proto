@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+option java_package = "com.chen.netty.proxy.client";
+option java_multiple_files = true;
+option java_outer_classname = "ServiceProto";
+
+package client;
+
+
+message ConnectRequest {
+  string sessionId = 1;
+  string name = 2;
+  Protocol protocol = 3;
+  map<string, string> params = 4;
+}
+
+message DisconnectRequest {
+  string sessionId = 1;
+}
+
+message ConnectResponse {
+  string sessionId = 1;
+  Code code = 2;
+  string result = 3;
+}
+
+message ServerAuth {
+  string username = 1;
+  string password = 2;
+}
+
+enum Protocol {
+  TELNET_OR_SSH = 0;
+  HTTP = 1;
+  SFTP = 2;
+  FTP = 3;
+}
+
+message Request {
+  string sessionId = 1;
+  string command = 2;
+  bytes data = 3;
+}
+
+message Response {
+  string sessionId = 1;
+  string msg = 2;
+  bytes data = 3;
+  Code code = 4;
+}
+
+message Route {
+  string service = 1;
+  string method = 2;
+}
+
+enum Code {
+  SUCCESS = 0;
+  FAILURE = 1;
+}

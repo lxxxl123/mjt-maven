@@ -1,0 +1,37 @@
+syntax = "proto3";
+package orders;
+
+import "remote_exception.proto";
+
+option java_package = "com.chen.netty.proxy";
+option java_multiple_files = true;
+option java_outer_classname = "MessageProto";
+
+enum Type {
+    CONNECT = 0;
+    COMMAND = 1;
+    DISCONNECT = 2;
+    HEARTBEAT = 3;
+    HEARTBEAT_ACK = 4;
+}
+
+enum ResultCode {
+    SUCCESS = 0;
+    FAILURE = 1;
+}
+
+message Request {
+    string sessionId = 1;
+    Type type = 2;
+    string cmd = 3;
+    map<string, string> param = 4;
+}
+
+message Response {
+    string sessionId = 1;
+    Type type = 2;
+    bytes result = 3;
+    map<string, string> param = 4;
+    ResultCode resultCode = 5;
+    RemoteException exception = 6;
+}
