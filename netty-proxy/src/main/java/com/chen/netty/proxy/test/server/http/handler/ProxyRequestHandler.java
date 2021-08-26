@@ -59,7 +59,8 @@ public class ProxyRequestHandler extends ChannelInboundHandlerAdapter {
         ByteBuf byteBuf = ch.readOutbound();
         ctx.pipeline().remove("httpCodec");
 
-        TcpClient.create()
+        TcpClient
+                .newConnection()
                 .host(ip).port(port)
                 .connect()
                 .flatMap(connection ->
