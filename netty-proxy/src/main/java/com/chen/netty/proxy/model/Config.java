@@ -1,5 +1,10 @@
 package com.chen.netty.proxy.model;
 
+import com.chen.netty.proxy.client.ConnectRequest;
+import com.chen.netty.proxy.client.DisconnectRequest;
+import com.chen.netty.proxy.client.Protocol;
+import com.chen.netty.proxy.client.Request;
+
 import java.util.Map;
 
 public class Config {

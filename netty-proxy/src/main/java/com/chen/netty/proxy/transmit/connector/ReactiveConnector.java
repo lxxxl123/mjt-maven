@@ -1,5 +1,7 @@
 package com.chen.netty.proxy.transmit.connector;
 
+import com.chen.netty.proxy.client.Request;
+import com.chen.netty.proxy.client.Response;
 import com.chen.netty.proxy.model.Config;
 import io.netty.buffer.ByteBuf;
 import reactor.core.publisher.Flux;

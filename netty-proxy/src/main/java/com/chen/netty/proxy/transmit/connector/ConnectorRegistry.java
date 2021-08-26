@@ -1,5 +1,6 @@
 package com.chen.netty.proxy.transmit.connector;
 
+import com.chen.netty.proxy.client.Protocol;
 import com.chen.netty.proxy.model.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

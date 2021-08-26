@@ -15,8 +15,9 @@ import reactor.netty.tcp.TcpClient;
 import java.time.Duration;
 import java.util.Objects;
 
-public class HttpProxyServiceImpl{
+public class HttpProxyServiceImpl implements HttpProxyService{
 
+	@Override
 	public Flux<HttpProxyResponse> execute(Flux<HttpProxyRequest> requestFlux) {
 		return requestFlux.switchOnFirst((signal, source) -> {
 			final HttpProxyRequest firstRequest = signal.get();

@@ -1,5 +1,7 @@
 package com.chen.netty.proxy.handler;
 
+import com.chen.netty.proxy.HttpProxyRequest;
+import com.chen.netty.proxy.transmit.service.HttpProxyService;
 import com.google.protobuf.ByteString;
 
 import io.netty.buffer.ByteBuf;
@@ -41,7 +43,7 @@ public class HttpProxyHandler extends ChannelInboundHandlerAdapter {
 
     private static final AttributeKey<Boolean> TUNNELING = AttributeKey.valueOf("TUNNELING");
 
-    private static final AttributeKey<Sinks.Many<Object>> HTTP_SINKS = AttributeKey.valueOf("HTTP_SINKS");
+    private static final AttributeKey<Sinks.Many<HttpProxyRequest>> HTTP_SINKS = AttributeKey.valueOf("HTTP_SINKS");
 
     private static final Logger LOG = LoggerFactory.getLogger(HttpProxyHandler.class);
 
