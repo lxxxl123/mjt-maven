@@ -7,6 +7,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.nio.charset.StandardCharsets;
 
@@ -22,7 +23,7 @@ public class SimHttpResponseHandler extends SimpleChannelInboundHandler<FullHttp
         log.info("receive =[{}] , type=[{}]", msg, msg.getClass());
         log.info("receive body = {}", msg.content().copy().toString(StandardCharsets.UTF_8));
         FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
-        ByteBuf byteBuf = Unpooled.copiedBuffer("123", StandardCharsets.UTF_8);
+        ByteBuf byteBuf = Unpooled.copiedBuffer(StringUtils.repeat("123",100000), StandardCharsets.UTF_8);
         response.headers().set(HttpHeaderNames.CONTENT_LENGTH, byteBuf.readableBytes());
         response.content().writeBytes(byteBuf);
         ctx.writeAndFlush(response);

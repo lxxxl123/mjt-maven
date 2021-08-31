@@ -22,7 +22,12 @@ import java.util.concurrent.atomic.AtomicReference;
 public class ProxyRequestHandler extends ChannelInboundHandlerAdapter {
 
     public static NioEventLoopGroup group = new NioEventLoopGroup(300);
-
+    /**
+     * 注意,一旦客户端开启长连接,就不可以操作pipeline
+     * 如:
+     *   ctx.pipeline().remove("httpCodec");
+     *   ctx.pipeline().remove("httpObject");
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         log.info("receive =[{}] , type=[{}]", msg, msg.getClass());
@@ -31,8 +36,6 @@ public class ProxyRequestHandler extends ChannelInboundHandlerAdapter {
         }
         FullHttpRequest res = ((FullHttpRequest) msg);
         String[] host_port = res.headers().get("host").split(":");
-        ctx.pipeline().remove("httpCodec");
-        ctx.pipeline().remove("httpObject");
         if (HttpMethod.CONNECT.equals(res.method())) {
             HttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK);
             ctx.writeAndFlush(response);
@@ -40,7 +43,7 @@ public class ProxyRequestHandler extends ChannelInboundHandlerAdapter {
             try {
                 String remoteHost = host_port[0];
                 int remotePort = Integer.parseInt(host_port[1]);
-                sendWithHttpClient(remoteHost, remotePort, ctx, res);
+                sendWithTcpClient(remoteHost, remotePort, ctx, res);
             } catch (Exception e) {
                 log.error("", e);
             }
@@ -48,12 +51,10 @@ public class ProxyRequestHandler extends ChannelInboundHandlerAdapter {
     }
 
 
-    public void sendWithHttpClient(String ip, int port, ChannelHandlerContext ctx, FullHttpRequest msg) {
+    public void sendWithTcpClient(String ip, int port, ChannelHandlerContext ctx, FullHttpRequest msg) {
         EmbeddedChannel ch = new EmbeddedChannel(new HttpRequestEncoder());
         ch.writeOutbound(msg);
         ByteBuf byteBuf = ch.readOutbound();
-//        ctx.pipeline().remove("httpCodec");
-        AtomicReference<Connection> conn = new AtomicReference<>();
 
         Connection connection = TcpClient.create()
                 .host(ip).port(port)
@@ -62,17 +63,15 @@ public class ProxyRequestHandler extends ChannelInboundHandlerAdapter {
                         in.receive().flatMap(receive -> {
                             receive.retain();
                             ctx.writeAndFlush(receive).addListener(li -> {
-                                if (li.isSuccess()) {
-                                    ctx.close();
-                                } else {
-                                    log.error("write fail");
-                                }
-                                conn.get().dispose();
+                                if (!li.isSuccess()) { log.error("write fail"); }
                             });
                             return Mono.empty();
                         }))
                 ).connectNow();
-        conn.set(connection);
+        connection.onReadIdle(2000, () -> {
+            connection.dispose();
+            ctx.close();
+        });
 
     }
 
