@@ -20,7 +20,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
         new SimHttpServer().create();
         new HttpProxyServer().create();
-        TimeUnit.DAYS.sleep(1);
+        TimeUnit.DAYS.sleep(2);
 
     }
 }
