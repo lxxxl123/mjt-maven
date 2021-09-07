@@ -63,6 +63,22 @@
         <dependencies>
 
             <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>4.1.60.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.projectreactor</groupId>
+                <artifactId>reactor-bom</artifactId>
+                <version>2020.0.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>io.rsocket</groupId>
                 <artifactId>rsocket-bom</artifactId>
                 <version>1.1.0</version>
@@ -83,13 +99,7 @@
                 <scope>import</scope>
             </dependency>
 
-            <dependency>
-                <groupId>io.netty</groupId>
-                <artifactId>netty-bom</artifactId>
-                <version>4.1.60.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+
 
 
             <!--限流器大全-->
