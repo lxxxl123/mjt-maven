@@ -2,20 +2,23 @@ package com.chen.netty.proxy.test.ssl.test;
 
 import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.Streams;
 import org.junit.Test;
 
 import javax.net.ssl.*;
 import java.io.*;
+import java.net.Socket;
 import java.security.KeyStore;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Signature;
 import java.security.cert.Certificate;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.Enumeration;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * @author chenwh
@@ -26,6 +29,22 @@ public class Server {
     public static String SERVER_KEY_STORE_PASSWORD = "123456";
     public static String SERVER_TRUST_KEY_STORE_PASSWORD = "123456";
     public static Integer DEFAULT_PORT = 8088;
+
+    public static List<String> getAliase(String path,String pass) throws Exception {
+        KeyStore jks = KeyStore.getInstance("JKS");
+        jks.load(getStream(path), pass.toCharArray());
+        Enumeration<String> aliases = jks.aliases();
+        List<String> res = StreamSupport.stream(
+                Spliterators.spliteratorUnknownSize(aliases.asIterator(), Spliterator.ORDERED),
+                false).collect(Collectors.toList());
+        return res;
+    }
+
+    @Test
+    public void check1() throws Exception {
+        List<String> aliase = getAliase("/kserver.keystore", "123456");
+        System.out.println(aliase);
+    }
 
     @Test
     public void check() throws Exception {
@@ -136,8 +155,10 @@ public class Server {
 
         ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
 
-        return (SSLSocket) ctx.getSocketFactory().createSocket(DEFAULT_HOST, DEFAULT_PORT);
-
+        SSLSocket sslSocket =(SSLSocket) ctx.getSocketFactory().createSocket(DEFAULT_HOST, DEFAULT_PORT);
+        String[] supported = sslSocket.getSupportedCipherSuites();
+        sslSocket.setEnabledCipherSuites(supported);
+        return sslSocket;
     }
 
     public static void main(String[] args) throws Exception {
