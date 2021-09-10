@@ -43,7 +43,11 @@ public class Server {
         //私钥
         PrivateKey privateKey = ((KeyStore.PrivateKeyEntry) jks.getEntry(aliase, new KeyStore.PasswordProtection("123456".toCharArray()))).getPrivateKey();
         System.out.println(Base64.getEncoder().encodeToString(privateKey.getEncoded()));
-        String sign = Base64.getEncoder().encodeToString(sign("测试msg".getBytes(),privateKey,"SHA1withRSA",null));
+        String sign = Base64.getEncoder().encodeToString(
+                sign("测试msg".getBytes(),
+                        privateKey,
+                        "SHA1withRSA",
+                        null));
         boolean verfi = verify("测试msg".getBytes(),Base64.getDecoder().decode(sign), publicKey,"SHA1withRSA",null);
         System.out.println(verfi);
     }
@@ -80,9 +84,11 @@ public class Server {
         return signature.verify(signMessage);
     }
 
+    public static String SSL_INSTANCE = "TLSv1.2";
+
 
     public static SSLServerSocket startServer() throws Exception{
-        SSLContext ctx = SSLContext.getInstance("TLS");
+        SSLContext ctx = SSLContext.getInstance(SSL_INSTANCE);
 
         KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
         TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
@@ -116,18 +122,16 @@ public class Server {
 
 
     public static SSLSocket startClient() throws Exception {
-        SSLContext ctx = SSLContext.getInstance("TLS");
+        SSLContext ctx = SSLContext.getInstance(SSL_INSTANCE);
         KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
-        TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
-
         KeyStore ks = KeyStore.getInstance("JKS");
-        KeyStore tks = KeyStore.getInstance("JKS");
-
         ks.load(getStream("/kclient.keystore"), CLIENT_KEY_STORE_PASSWORD.toCharArray());
-        //信任管理器
-        tks.load(getStream("/tclient.keystore"), CLIENT_TRUST_KEY_STORE_PASSWORD.toCharArray());
-
         kmf.init(ks, CLIENT_KEY_STORE_PASSWORD.toCharArray());
+
+        //信任管理器
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
+        KeyStore tks = KeyStore.getInstance("JKS");
+        tks.load(getStream("/tclient.keystore"), CLIENT_TRUST_KEY_STORE_PASSWORD.toCharArray());
         tmf.init(tks);
 
         ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
