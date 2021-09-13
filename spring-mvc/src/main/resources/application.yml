@@ -13,8 +13,14 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-
-
+  profiles:
+    active: ${ORDER_ENV:test}
 
 userlist:
   users: "{admin: '123456',dxcj: '123456'}"
+
+---
+spring:
+  profiles: test
+userlist:
+  users: "{admin: 'xxxxx',dxcj: 'xxxxxx'}"

@@ -1,6 +1,8 @@
 package com.chen.spring.mvc.service;
 
 import com.chen.spring.mvc.model.User;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
@@ -16,6 +18,7 @@ import java.util.Map;
  * @date 2021/8/19
  */
 @Service
+@Slf4j
 public class UserService {
 
     @Resource
@@ -24,6 +27,17 @@ public class UserService {
 
     @Value("#{${userlist.users}}")
     private Map<String, String> users;
+
+
+    /**
+     * 测试环境变量
+     */
+    @Autowired
+    public void test(){
+        users.forEach((k,v)->{
+            log.info("key = {},v = {}", k, v);
+        });
+    }
 
     public User getUserByName(String userName){
         if (!users.containsKey(userName)) {

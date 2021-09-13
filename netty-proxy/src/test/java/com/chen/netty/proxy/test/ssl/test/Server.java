@@ -168,11 +168,12 @@ public class Server {
                 SSLServerSocket sslServerSocket = startServer();
                 @Cleanup
                 InputStream inputStream = sslServerSocket.accept().getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                String line = null;
-                while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
-                    log.info("server read {}", line);
+                DataInputStream input = new DataInputStream(inputStream);
+                while (true) {
+                    int len = input.read();
+                    byte[] bytes = new byte[len];
+                    input.read(bytes);
+                    System.out.println(new String(bytes));
                 }
             } catch (Exception e) {
                 log.error("",e);
@@ -180,13 +181,14 @@ public class Server {
         });
         TimeUnit.SECONDS.sleep(1);
         @Cleanup
-        PrintWriter writer = new PrintWriter(startClient().getOutputStream());
+        DataOutputStream output = new DataOutputStream(startClient().getOutputStream());
+
+
         int i = 0;
         while (true) {
             TimeUnit.SECONDS.sleep(1);
-            writer.write(("client write " + i++));
-            writer.flush();
-
+            output.write(("client + " + i++).getBytes());
+            output.flush();
         }
 
     }
