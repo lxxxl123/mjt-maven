@@ -42,7 +42,7 @@ public class Server {
 
     @Test
     public void check1() throws Exception {
-        List<String> aliase = getAliase("/kserver.keystore", "123456");
+        List<String> aliase = getAliase("/keystore.jks", "123456");
         System.out.println(aliase);
     }
 
@@ -115,7 +115,7 @@ public class Server {
         KeyStore ks = KeyStore.getInstance("JKS");
         KeyStore tks = KeyStore.getInstance("JKS");
 
-        ks.load(getStream("/kserver.keystore"), SERVER_KEY_STORE_PASSWORD.toCharArray());
+        ks.load(getStream("/keystore.jks"), SERVER_KEY_STORE_PASSWORD.toCharArray());
         //信任管理器
         tks.load(getStream("/tserver.keystore"), SERVER_TRUST_KEY_STORE_PASSWORD.toCharArray());
 
@@ -124,7 +124,10 @@ public class Server {
 
         ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
 
-        return (SSLServerSocket) ctx.getServerSocketFactory().createServerSocket(DEFAULT_PORT);
+        SSLServerSocket sslServerSocket = (SSLServerSocket) ctx.getServerSocketFactory().createServerSocket(DEFAULT_PORT);
+        sslServerSocket.setNeedClientAuth(false);
+        sslServerSocket.setUseClientMode(false);
+        return sslServerSocket;
     }
 
     public static String CLIENT_KEY_STORE_PASSWORD = "123456";
@@ -154,7 +157,6 @@ public class Server {
         tmf.init(tks);
 
         ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
-
         SSLSocket sslSocket =(SSLSocket) ctx.getSocketFactory().createSocket(DEFAULT_HOST, DEFAULT_PORT);
         String[] supported = sslSocket.getSupportedCipherSuites();
         sslSocket.setEnabledCipherSuites(supported);
