@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2021/8/26
  */
 
-public class Application {
+public class HttpApplication {
 
 
     public static void main(String[] args) throws Exception {

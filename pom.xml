@@ -17,6 +17,7 @@
         <module>spring-mvc</module>
         <module>spring-gateway</module>
         <module>netty-proxy</module>
+        <module>design-model</module>
     </modules>
 
 
