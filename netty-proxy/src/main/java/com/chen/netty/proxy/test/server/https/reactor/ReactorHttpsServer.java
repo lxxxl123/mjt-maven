@@ -49,7 +49,9 @@ public class ReactorHttpsServer implements Server {
         InputStream pem1 = ClassLoader.getSystemResourceAsStream("./temp.pem");
         InputStream pem2 = ClassLoader.getSystemResourceAsStream("./temp.pem");
 
-        //随机生成证书
+        /**
+         * 指定证书和私钥
+         */
         server = server.secure(spec -> spec.sslContext(
                 SslContextBuilder.forServer(pem1, pem2))
         );
