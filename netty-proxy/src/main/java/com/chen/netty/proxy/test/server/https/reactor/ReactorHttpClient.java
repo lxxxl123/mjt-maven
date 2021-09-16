@@ -10,6 +10,7 @@ import reactor.netty.transport.ProxyProvider;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author chenwh
@@ -32,20 +33,26 @@ public class ReactorHttpClient implements Server {
 //                        .password(s -> "1234"));
 
         if (true) {
-            perfectCtx(httpClient);
+            httpClient = perfectCtx(httpClient);
+//            httpClient = noJks(httpClient);
         }
         // Netty enforce HTTP proxy to support HTTP CONNECT method
         // https://github.com/netty/netty/issues/10475
+        while (true) {
+            TimeUnit.SECONDS.sleep(1);
+            String result = httpClient
+                    .remoteAddress(() -> new InetSocketAddress("127.0.0.1", 8998)).get()
+                    .uri("/hello").responseContent().aggregate().asString().block();
+            System.out.println(result);
+        }
 
-        String result = httpClient
-                .remoteAddress(() -> new InetSocketAddress("127.0.0.1", 8998)).get()
-                .uri("/hello").responseContent().aggregate().asString().block();
-        System.out.println(result);
     }
 
     public static HttpClient perfectCtx(HttpClient httpClient) {
-        InputStream pem = ClassLoader.getSystemResourceAsStream("/temp.pem");
-        httpClient.secure(spec -> spec.sslContext(SslContextBuilder.forClient().trustManager(pem)));
+        InputStream pem = ClassLoader.getSystemResourceAsStream("./temp.pem");
+        httpClient = httpClient.secure(spec -> spec.sslContext(SslContextBuilder
+                .forClient()
+                .trustManager(pem)));
         return httpClient;
     }
 

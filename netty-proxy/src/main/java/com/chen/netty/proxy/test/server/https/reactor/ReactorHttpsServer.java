@@ -38,7 +38,7 @@ public class ReactorHttpsServer implements Server {
 
         if (true) {
 //            noJks(server);
-            perfJks(server);
+            server = perfJks(server);
         }
 
         server.bindNow().onDispose().block();

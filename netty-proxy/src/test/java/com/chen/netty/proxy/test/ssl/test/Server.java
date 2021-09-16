@@ -145,6 +145,7 @@ public class Server {
 
     public static SSLSocket startClient() throws Exception {
         SSLContext ctx = SSLContext.getInstance(SSL_INSTANCE);
+
         KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
         KeyStore ks = KeyStore.getInstance("JKS");
         ks.load(getStream("/kclient.keystore"), CLIENT_KEY_STORE_PASSWORD.toCharArray());
