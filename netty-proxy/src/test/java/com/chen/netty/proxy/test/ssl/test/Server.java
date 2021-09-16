@@ -34,9 +34,10 @@ public class Server {
         KeyStore jks = KeyStore.getInstance("JKS");
         jks.load(getStream(path), pass.toCharArray());
         Enumeration<String> aliases = jks.aliases();
-        List<String> res = StreamSupport.stream(
-                Spliterators.spliteratorUnknownSize(aliases.asIterator(), Spliterator.ORDERED),
-                false).collect(Collectors.toList());
+        List<String> res = new ArrayList<>();
+        while (aliases.hasMoreElements()) {
+            res.add(aliases.nextElement());
+        }
         return res;
     }
 
