@@ -18,6 +18,7 @@
         <module>spring-gateway</module>
         <module>netty-proxy</module>
         <module>design-model</module>
+        <module>rsocket-test</module>
     </modules>
 
 
