@@ -1,4 +1,4 @@
-package com.chen.design.model.factory;
+package com.chen.design.model.creational.factory;
 
 /**
  * 工厂模式

@@ -1,4 +1,4 @@
-package com.chen.design.model.action.iterator;
+package com.chen.design.model.structural.flyweight;
 
 /**
  * @author chenwh
@@ -8,7 +8,8 @@ package com.chen.design.model.action.iterator;
 public class Client {
 
     /**
-     * Name: 迭代器模式
+     * Name: 享元模式
+     * 目的: 减少内存的使用
      */
     public static void main(String[] args) {
 

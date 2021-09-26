@@ -1,4 +1,4 @@
-package com.chen.design.model.prototype.model;
+package com.chen.design.model.creational.prototype.model;
 
 import lombok.Data;
 

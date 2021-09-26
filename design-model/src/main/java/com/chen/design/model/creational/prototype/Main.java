@@ -1,4 +1,4 @@
-package com.chen.design.model.prototype;
+package com.chen.design.model.creational.prototype;
 
 /**
  * @author chenwh
