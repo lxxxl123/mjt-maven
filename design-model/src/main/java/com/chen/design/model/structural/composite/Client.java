@@ -9,6 +9,7 @@ public class Client {
 
     /**
      * Name: 组合模式
+     * Example: 广泛存在于UI组件中
      * @param args
      */
     public static void main(String[] args) {
