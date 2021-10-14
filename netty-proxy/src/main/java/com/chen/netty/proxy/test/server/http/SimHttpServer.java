@@ -12,6 +12,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author chenwh
  * @date 2021/8/26
@@ -44,6 +46,13 @@ public class SimHttpServer implements Server {
                 .childOption(ChannelOption.SO_KEEPALIVE, true);
 
         channelFuture = server.bind(port);
+
+    }
+
+    public static void main(String[] args) throws Exception{
+        SimHttpServer simHttpServer = new SimHttpServer();
+        simHttpServer.create();
+        TimeUnit.SECONDS.sleep(1000);
 
     }
 
