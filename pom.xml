@@ -19,6 +19,8 @@
         <module>netty-proxy</module>
         <module>design-model</module>
         <module>rsocket-test</module>
+        <module>store-mongodb</module>
+        <module>fast-jar</module>
     </modules>
 
 
