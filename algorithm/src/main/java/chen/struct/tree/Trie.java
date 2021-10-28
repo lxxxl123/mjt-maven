@@ -62,11 +62,7 @@ public class Trie {
 
 
     public static void main(String[] args) {
-        Trie trie = new Trie();
-        trie.insert("abcd");
-        System.out.println(trie.search("abcd"));
-        System.out.println(trie.searchPrefix("abc"));
-
+        System.out.println(~(10-1));
     }
 
 }
