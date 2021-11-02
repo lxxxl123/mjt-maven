@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetSocketAddress;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.TimeUnit;
@@ -38,7 +39,6 @@ public class CommonServer {
                 .channel(NioServerSocketChannel.class)
                 .option(ChannelOption.SO_BACKLOG, 1024)
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
-                .childHandler(new LineBasedFrameDecoder(2048,true,false))
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
@@ -47,6 +47,7 @@ public class CommonServer {
                                 ch.pipeline().addLast(handler);
                             }
                         } else {
+                            ch.pipeline().addFirst(new LineBasedFrameDecoder(2000, true, false));
                             ch.pipeline().addLast(new TimerHandler());
                         }
                     }
@@ -96,6 +97,6 @@ public class CommonServer {
     }
 
     public static void main(String[] args) {
-
+        new CommonServer().run();
     }
 }
