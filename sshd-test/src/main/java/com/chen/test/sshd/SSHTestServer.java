@@ -26,43 +26,10 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SSHTestServer {
-    public int getSSHPort(){
-        return sshd.getPort();
-    }
-
-    public String getVirtualFileSystemPath() {
-        return virtualFileSystemPath;
-    }
-
-    public void setVirtualFileSystemPath(String virtualFileSystemPath) {
-        this.virtualFileSystemPath = virtualFileSystemPath;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     private static SshServer sshd;
-    private String virtualFileSystemPath = "target/ssh_vfs/";
 
-    private String username = "nifiuser";
-    private String password = "nifipassword";
 
-    public void SSHTestServer(){
-
-    }
 
     public void startServer() throws IOException {
         sshd = SshServer.setUpDefaultServer();
