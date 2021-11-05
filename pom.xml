@@ -21,6 +21,7 @@
         <module>rsocket-test</module>
         <module>store-mongodb</module>
         <module>fast-jar</module>
+        <module>jsch-test</module>
     </modules>
 
 
