@@ -7,9 +7,13 @@ import org.apache.sshd.server.Environment;
 import org.apache.sshd.server.ExitCallback;
 import org.apache.sshd.server.channel.ChannelSession;
 import org.apache.sshd.server.command.Command;
+import sun.applet.AppletClassLoader;
 
 import java.io.*;
+import java.net.URLClassLoader;
 import java.nio.charset.StandardCharsets;
+import java.sql.Driver;
+import java.util.ServiceLoader;
 
 /**
  * @author chenwh
@@ -63,5 +67,16 @@ public class MyCommand implements Command {
         System.out.println("receive cmd = " + cmd);
         out.write(cmd.getBytes(StandardCharsets.UTF_8));
         out.flush();
+    }
+
+    public final void print(){
+        System.out.println(123);
+
+    }
+
+
+
+    public static void main(String[] args) {
+        System.out.println(Thread.currentThread().getContextClassLoader());
     }
 }
