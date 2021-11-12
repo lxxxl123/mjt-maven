@@ -1,28 +1,17 @@
-package com.chen.test.sshd;
+package com.chen.test.sshd.server;
 
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.sshd.common.NamedFactory;
-import org.apache.sshd.common.file.virtualfs.VirtualFileSystemFactory;
 import org.apache.sshd.server.SshServer;
 import org.apache.sshd.server.channel.ChannelSession;
 import org.apache.sshd.server.command.AbstractCommandSupport;
 import org.apache.sshd.server.command.Command;
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
-import org.apache.sshd.server.shell.ProcessShellFactory;
 import org.apache.sshd.server.shell.ShellFactory;
-import org.apache.sshd.server.subsystem.SubsystemFactory;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SSHTestServer {

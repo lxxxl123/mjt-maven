@@ -3,6 +3,7 @@ package com.chen.test.sshd.support;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.apache.sshd.common.io.IoHandler;
+import org.apache.sshd.common.session.helpers.AbstractSession;
 import org.apache.sshd.netty.NettyIoService;
 import org.apache.sshd.netty.NettyIoSession;
 

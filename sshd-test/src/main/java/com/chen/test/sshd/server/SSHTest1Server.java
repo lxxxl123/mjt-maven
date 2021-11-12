@@ -1,26 +1,11 @@
-package com.chen.test.sshd;
+package com.chen.test.sshd.server;
 
-import io.netty.channel.nio.NioEventLoopGroup;
-import lombok.Setter;
+import com.chen.test.sshd.MyCommand;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.sshd.common.FactoryManager;
-import org.apache.sshd.common.io.AbstractIoServiceFactoryFactory;
-import org.apache.sshd.common.io.IoServiceFactory;
-import org.apache.sshd.common.util.threads.CloseableExecutorService;
-import org.apache.sshd.common.util.threads.ThreadUtils;
-import org.apache.sshd.netty.NettyIoServiceFactory;
-import org.apache.sshd.server.Environment;
-import org.apache.sshd.server.ExitCallback;
 import org.apache.sshd.server.SshServer;
-import org.apache.sshd.server.channel.ChannelSession;
-import org.apache.sshd.server.command.Command;
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
-import org.apache.sshd.server.shell.ShellFactory;
 
 import java.io.*;
-import java.nio.channels.UnresolvedAddressException;
-import java.nio.charset.StandardCharsets;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j

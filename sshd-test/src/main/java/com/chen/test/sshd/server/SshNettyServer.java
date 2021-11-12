@@ -1,24 +1,16 @@
-package com.chen.test.sshd;
+package com.chen.test.sshd.server;
 
+import com.chen.test.sshd.NettyCommand;
 import com.chen.test.sshd.support.NettyFactory;
 import io.netty.channel.nio.NioEventLoopGroup;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sshd.common.FactoryManager;
 import org.apache.sshd.common.io.AbstractIoServiceFactoryFactory;
 import org.apache.sshd.common.io.IoServiceFactory;
-import org.apache.sshd.netty.NettyIoServiceFactory;
 import org.apache.sshd.server.SshServer;
-import org.apache.sshd.server.channel.ChannelSession;
-import org.apache.sshd.server.command.AbstractCommandSupport;
-import org.apache.sshd.server.command.Command;
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
-import org.apache.sshd.server.shell.ShellFactory;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
