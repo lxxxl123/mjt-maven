@@ -1,32 +1,30 @@
 package com.chen.test.sshd;
 
 import io.netty.channel.nio.NioEventLoopGroup;
-import lombok.Setter;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sshd.common.FactoryManager;
 import org.apache.sshd.common.io.AbstractIoServiceFactoryFactory;
 import org.apache.sshd.common.io.IoServiceFactory;
-import org.apache.sshd.common.util.threads.CloseableExecutorService;
-import org.apache.sshd.common.util.threads.ThreadUtils;
 import org.apache.sshd.netty.NettyIoServiceFactory;
-import org.apache.sshd.server.Environment;
-import org.apache.sshd.server.ExitCallback;
 import org.apache.sshd.server.SshServer;
 import org.apache.sshd.server.channel.ChannelSession;
+import org.apache.sshd.server.command.AbstractCommandSupport;
 import org.apache.sshd.server.command.Command;
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
 import org.apache.sshd.server.shell.ShellFactory;
 
-import java.io.*;
-import java.nio.channels.UnresolvedAddressException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class SSHTest1Server {
+public class SshNettyServer {
 
     private static SshServer sshd;
+
 
 
     public void startServer() throws IOException {
@@ -40,17 +38,25 @@ public class SSHTest1Server {
         sshd.setPublickeyAuthenticator((s, publicKey, serverSession) -> true);
 
         //Allow username/password authentication using pre-defined credentials
-        sshd.setPasswordAuthenticator((username, password, serverSession) -> true);
+        sshd.setIoServiceFactoryFactory(new AbstractIoServiceFactoryFactory(null) {
+            @Override
+            public IoServiceFactory create(FactoryManager manager) {
+                return new NettyIoServiceFactory(new NioEventLoopGroup());
+            }
+        });
+        //Allow username/password authentication using pre-defined credentials
+        sshd.setPasswordAuthenticator((username, password, serverSession) -> {
+            log.info("input username = {} , pwd = {}", username, password);
+            return true;
+        });
 
-        sshd.setShellFactory(channel -> new MyCommand());
-
+        sshd.setShellFactory(channel ->new NettyCommand());
 
         sshd.start();
     }
 
-
     public static void main(String[] args) throws Exception {
-        new SSHTest1Server().startServer();
+        new SshNettyServer().startServer();
         System.out.println("server started");
         TimeUnit.SECONDS.sleep(10000);
     }

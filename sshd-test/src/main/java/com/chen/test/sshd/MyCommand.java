@@ -7,13 +7,9 @@ import org.apache.sshd.server.Environment;
 import org.apache.sshd.server.ExitCallback;
 import org.apache.sshd.server.channel.ChannelSession;
 import org.apache.sshd.server.command.Command;
-import sun.applet.AppletClassLoader;
 
 import java.io.*;
-import java.net.URLClassLoader;
 import java.nio.charset.StandardCharsets;
-import java.sql.Driver;
-import java.util.ServiceLoader;
 
 /**
  * @author chenwh
