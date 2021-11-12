@@ -1,5 +1,6 @@
 package com.chen.test.sshd;
 
+import com.chen.test.sshd.support.NettyFactory;
 import io.netty.channel.nio.NioEventLoopGroup;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +42,7 @@ public class SshNettyServer {
         sshd.setIoServiceFactoryFactory(new AbstractIoServiceFactoryFactory(null) {
             @Override
             public IoServiceFactory create(FactoryManager manager) {
-                return new NettyIoServiceFactory(new NioEventLoopGroup());
+                return new NettyFactory(new NioEventLoopGroup());
             }
         });
         //Allow username/password authentication using pre-defined credentials

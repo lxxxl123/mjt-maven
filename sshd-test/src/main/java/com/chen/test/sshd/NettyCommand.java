@@ -1,7 +1,9 @@
 package com.chen.test.sshd;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.sshd.common.io.IoInputStream;
 import org.apache.sshd.common.io.IoOutputStream;
+import org.apache.sshd.common.util.buffer.ByteArrayBuffer;
 import org.apache.sshd.server.Environment;
 import org.apache.sshd.server.ExitCallback;
 import org.apache.sshd.server.channel.ChannelDataReceiver;
@@ -17,19 +19,24 @@ import java.io.OutputStream;
  * @date 2021/11/8
  */
 
+@Slf4j
 public class NettyCommand implements AsyncCommand, ChannelDataReceiver {
 
-    private OutputStream out;
+    private IoOutputStream out;
 
     @Override
     public void start(ChannelSession channel, Environment env) throws IOException {
-
+        channel.setDataReceiver(this);
     }
 
 
     @Override
     public int data(ChannelSession channel, byte[] buf, int start, int len) throws IOException {
-        return 0;
+        byte[] bytes = new byte[len];
+        System.arraycopy(buf, start, bytes, 0, len);
+        log.info("receive = {}", new String(bytes));
+        out.writeBuffer(new ByteArrayBuffer(bytes));
+        return len;
     }
 
 
@@ -50,7 +57,7 @@ public class NettyCommand implements AsyncCommand, ChannelDataReceiver {
 
     @Override
     public void setIoOutputStream(IoOutputStream out) {
-
+        this.out = out;
     }
 
     @Override
@@ -70,7 +77,6 @@ public class NettyCommand implements AsyncCommand, ChannelDataReceiver {
 
     @Override
     public void setOutputStream(OutputStream out) {
-        this.out = out;
     }
 
 
