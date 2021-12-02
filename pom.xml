@@ -22,6 +22,8 @@
         <module>store-mongodb</module>
         <module>fast-jar</module>
         <module>sshd-test</module>
+        <module>telemetry-test</module>
+        <module>grpc-test</module>
     </modules>
 
 
