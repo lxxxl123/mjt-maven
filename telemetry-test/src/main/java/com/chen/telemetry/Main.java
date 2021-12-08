@@ -1,9 +1,12 @@
 package com.chen.telemetry;
 
 
+import com.google.protobuf.RepeatedFieldBuilder;
 import grpc_service.GrpcServiceGrpc;
 import grpc_service.GrpcServiceOuterClass;
 import grpc_service.GrpcServiceOuterClass.*;
+import io.grpc.Channel;
+import io.grpc.ClientInterceptors;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import lombok.extern.slf4j.Slf4j;
@@ -32,22 +35,25 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        ManagedChannel channel = ManagedChannelBuilder.forTarget("192.168.99.254:50051")
+        Channel channel = ManagedChannelBuilder.forTarget("192.168.99.254:50051")
                 .usePlaintext()
                 .build();
         GrpcServiceGrpc.GrpcServiceBlockingStub client = GrpcServiceGrpc.newBlockingStub(channel);
+
         LoginReply reply = login(client, "ipnet", "admin");
-        GetReportRequest request = GetReportRequest.newBuilder().setTokenId(reply.getTokenId()).build();
+        String tokenId = reply.getTokenId();
+        log.info("get tokenId = {}", tokenId);
+        HeaderClientInterceptor metadata = new HeaderClientInterceptor();
+        metadata.setHeader("token_id", tokenId);
+        channel = ClientInterceptors.intercept(channel, metadata);
+        client = GrpcServiceGrpc.newBlockingStub(channel);
 
+//        Iterator<CliConfigReply> sys = client.cliConfig(CliConfigArgs.newBuilder().setReqId(12345678).setCli("sys").build());
+//        while (sys.hasNext()) {
+//            System.out.println(sys.next());
+//        }
 
-        Iterator<ReportEvent> eventReport = client.getEventReport(request);
-        while (eventReport.hasNext()) {
-            System.out.println(eventReport.next());
-
-        }
-
-        log.info("tokenId = {}", reply.getTokenId());
-        subscirbe(client);
+        SubscribeReply sub1 = client.subscribeByStreamName(SubscribeRequest.newBuilder().setStreamName("sub1").build());
 
     }
 }
