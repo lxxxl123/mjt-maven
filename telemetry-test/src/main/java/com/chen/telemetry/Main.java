@@ -29,7 +29,8 @@ public class Main {
     }
 
     public static void subscirbe(GrpcServiceGrpc.GrpcServiceBlockingStub client){
-        SubscribeReply subscribeReply = client.subscribeByStreamName(SubscribeRequest.newBuilder().setStreamName("??").build());
+        SubscribeReply subscribeReply = client.subscribeByStreamName(SubscribeRequest.newBuilder()
+                .setStreamName("??").build());
         System.out.println(subscribeReply.getResult());
 
     }
@@ -44,14 +45,11 @@ public class Main {
         String tokenId = reply.getTokenId();
         log.info("get tokenId = {}", tokenId);
         HeaderClientInterceptor metadata = new HeaderClientInterceptor();
-        metadata.setHeader("token_id", tokenId);
+        metadata.setHeader("token_id", tokenId+1234);
         channel = ClientInterceptors.intercept(channel, metadata);
         client = GrpcServiceGrpc.newBlockingStub(channel);
 
-//        Iterator<CliConfigReply> sys = client.cliConfig(CliConfigArgs.newBuilder().setReqId(12345678).setCli("sys").build());
-//        while (sys.hasNext()) {
-//            System.out.println(sys.next());
-//        }
+
 
         SubscribeReply sub1 = client.subscribeByStreamName(SubscribeRequest.newBuilder().setStreamName("sub1").build());
 
