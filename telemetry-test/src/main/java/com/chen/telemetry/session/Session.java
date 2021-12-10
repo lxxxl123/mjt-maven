@@ -142,10 +142,8 @@ public class Session {
                 .build();
 
         session.connect();
-        System.out.println(session.subscribe("123"));
-
+        session.cli("display tcp");
         session.close();
-
     }
 
 
