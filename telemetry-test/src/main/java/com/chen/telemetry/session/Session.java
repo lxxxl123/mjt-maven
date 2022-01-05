@@ -142,7 +142,7 @@ public class Session {
                 .build();
 
         session.connect();
-        session.cli("display tcp");
+        session.display("tcp");
         session.close();
     }
 
