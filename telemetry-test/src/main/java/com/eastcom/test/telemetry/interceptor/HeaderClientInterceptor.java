@@ -1,4 +1,4 @@
-package com.chen.telemetry;
+package com.eastcom.test.telemetry.interceptor;
 
 import io.grpc.*;
 import io.grpc.ForwardingClientCall.SimpleForwardingClientCall;

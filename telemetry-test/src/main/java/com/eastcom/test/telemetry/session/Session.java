@@ -1,15 +1,14 @@
-package com.chen.telemetry.session;
+package com.eastcom.test.telemetry.session;
 
-import com.chen.telemetry.HeaderClientInterceptor;
+import com.eastcom.test.telemetry.interceptor.HeaderClientInterceptor;
 import grpc_service.GrpcServiceGrpc;
 import grpc_service.GrpcServiceOuterClass.*;
 import io.grpc.Channel;
 import io.grpc.ClientInterceptors;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.stub.MetadataUtils;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.Iterator;
 import java.util.function.Function;
@@ -32,6 +31,7 @@ public class Session {
 
     private int port;
 
+    @Getter
     private GrpcServiceGrpc.GrpcServiceBlockingStub client;
 
     @Builder
@@ -48,11 +48,14 @@ public class Session {
         Channel channel = ManagedChannelBuilder.forTarget(ip + ":" + port)
                 .usePlaintext()
                 .build();
+        //connect ne
         GrpcServiceGrpc.GrpcServiceBlockingStub client = GrpcServiceGrpc.newBlockingStub(channel);
 
+        //login and getToken
         token = login(client, username, passowrd).getTokenId();
         log.info("login success , tokenId = {}", token);
 
+        //set token to header
         this.client = addHeader(channel, token);
     }
 
@@ -86,7 +89,7 @@ public class Session {
     }
 
 
-    private String display(String cmd) {
+    public String display(String cmd) {
         Iterator<DisplayCmdReply> clis = client.displayCmdTextOutput(DisplayCmdArgs.newBuilder()
                 .setReqId(1)
                 .setCli(cmd).build());
@@ -127,24 +130,12 @@ public class Session {
         log.info("logout res = {}", logout.getResult());
     }
 
-    private void close(){
+    public void close(){
         logout();
     }
 
 
 
-    public static void main(String[] args) {
-        Session session = Session.builder()
-                .ip("192.168.99.254")
-                .port(50051)
-                .username("ipnet")
-                .passowrd("admin")
-                .build();
-
-        session.connect();
-        session.display("tcp");
-        session.close();
-    }
 
 
 
