@@ -26,6 +26,7 @@
         <module>grpc-test</module>
         <module>mysql-driver</module>
         <module>spring-stomp</module>
+        <module>tls-test</module>
     </modules>
 
 

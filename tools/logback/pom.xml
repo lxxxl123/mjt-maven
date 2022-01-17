@@ -21,22 +21,22 @@
     <artifactId>logback</artifactId>
     <dependencies>
 
-        <dependency>
-            <groupId>com.dianping.cat</groupId>
-            <artifactId>cat-core</artifactId>
-            <version>3.0.0</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>cat-client</artifactId>
-                    <groupId>com.dianping.cat</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.dianping.cat</groupId>
-            <artifactId>cat-client</artifactId>
-            <version>3.0.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.dianping.cat</groupId>-->
+<!--            <artifactId>cat-core</artifactId>-->
+<!--            <version>3.0.0</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <artifactId>cat-client</artifactId>-->
+<!--                    <groupId>com.dianping.cat</groupId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.dianping.cat</groupId>-->
+<!--            <artifactId>cat-client</artifactId>-->
+<!--            <version>3.0.0</version>-->
+<!--        </dependency>-->
     </dependencies>
 
 
