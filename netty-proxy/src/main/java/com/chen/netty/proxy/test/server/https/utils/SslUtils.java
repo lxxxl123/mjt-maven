@@ -1,0 +1,28 @@
+package com.chen.netty.proxy.test.server.https.utils;
+
+import io.netty.buffer.ByteBufAllocator;
+import io.netty.handler.ssl.SslContextBuilder;
+
+import javax.net.ssl.SSLEngine;
+import java.io.File;
+import java.io.InputStream;
+
+/**
+ * @author chenwh
+ * @date 2022/1/18
+ */
+
+public class SslUtils {
+
+    public static File loadClassFile(String path) throws Exception {
+        return new File(ClassLoader.getSystemResource(path).toURI());
+    }
+
+    public static SSLEngine sslEngine(String cert, String key, ByteBufAllocator byteBufAllocator) throws Exception {
+        return SslContextBuilder
+                .forServer(loadClassFile(cert), loadClassFile(key))
+                .build()
+                .newEngine(byteBufAllocator);
+    }
+
+}

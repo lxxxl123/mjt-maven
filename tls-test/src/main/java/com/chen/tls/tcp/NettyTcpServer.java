@@ -1,9 +1,9 @@
-package com.chen.netty.proxy.test.server.https;
+package com.chen.tls.tcp;
 
-import com.chen.netty.proxy.test.server.Server;
-import com.chen.netty.proxy.test.server.https.handler.HttpsServerHandler;
-import com.chen.netty.proxy.test.server.https.handler.SSLContextFactory;
-import com.chen.netty.proxy.test.server.https.utils.SslUtils;
+import com.chen.tls.handler.EchoHandler;
+import com.chen.tls.handler.HttpsServerHandler;
+import com.chen.tls.https.Server;
+import com.chen.tls.utils.SslUtils;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -13,7 +13,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpServerCodec;
-import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.SslHandler;
 
 import javax.net.ssl.SSLEngine;
@@ -23,9 +22,9 @@ import javax.net.ssl.SSLEngine;
  * @date 2021/8/31
  */
 
-public class HttpsServer implements Server {
+public class NettyTcpServer implements Server {
 
-    public int port = 8998;
+    public int port = 8997;
 
 
     @Override
@@ -40,11 +39,10 @@ public class HttpsServer implements Server {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            SSLEngine sslEngine = SslUtils.sslEngine("./temp.pem", "./temp.pem", ch.alloc());
-                            sslEngine.setUseClientMode(false);
-                            ch.pipeline().addLast(new SslHandler(sslEngine));
-                            ch.pipeline().addLast("http-decoder", new HttpServerCodec());
-                            ch.pipeline().addLast(new HttpsServerHandler());
+//                            SSLEngine sslEngine = SslUtils.sslEngine("./temp.pem", "./temp.pem", ch.alloc());
+//                            sslEngine.setUseClientMode(false);
+//                            ch.pipeline().addLast(new SslHandler(sslEngine));
+                            ch.pipeline().addLast(new EchoHandler());
                         }
                     });
             ChannelFuture future = serverBootstrap.bind(port).sync();
@@ -57,7 +55,7 @@ public class HttpsServer implements Server {
     }
 
     public static void main(String[] args) throws Exception {
-        new HttpsServer().create();
+        new NettyTcpServer().create();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.chen.netty.proxy.test.server.https.handler;
+package com.chen.tls.utils;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
