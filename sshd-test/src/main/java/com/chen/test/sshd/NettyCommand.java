@@ -32,6 +32,9 @@ public class NettyCommand implements AsyncCommand, ChannelDataReceiver {
 
     @Override
     public int data(ChannelSession channel, byte[] buf, int start, int len) throws IOException {
+        if (buf[0] == 4) {
+            channel.close();
+        }
         byte[] bytes = new byte[len];
         System.arraycopy(buf, start, bytes, 0, len);
         log.info("receive = {}", new String(bytes));

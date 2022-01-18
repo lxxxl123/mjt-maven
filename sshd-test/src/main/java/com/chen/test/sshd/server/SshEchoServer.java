@@ -1,10 +1,13 @@
 package com.chen.test.sshd.server;
 
+import com.chen.test.sshd.NettyCommand;
 import lombok.SneakyThrows;
+import org.apache.sshd.common.keyprovider.ClassLoadableResourceKeyPairProvider;
 import org.apache.sshd.server.SshServer;
 import org.apache.sshd.server.channel.ChannelSession;
 import org.apache.sshd.server.command.AbstractCommandSupport;
 import org.apache.sshd.server.command.Command;
+import org.apache.sshd.server.command.CommandFactory;
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
 import org.apache.sshd.server.shell.ShellFactory;
 
@@ -14,7 +17,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
-public class SSHTestServer {
+public class SshEchoServer {
 
     private static SshServer sshd;
 
@@ -22,16 +25,24 @@ public class SSHTestServer {
 
     public void startServer() throws IOException {
         sshd = SshServer.setUpDefaultServer();
-        sshd.setHost("localhost");
         sshd.setPort(22);
 
-        sshd.setKeyPairProvider(new SimpleGeneratorHostKeyProvider());
+        ClassLoadableResourceKeyPairProvider keyProvider
+                = new ClassLoadableResourceKeyPairProvider("META-INF/ssh-server.pem");
+        sshd.setKeyPairProvider(keyProvider);
 
         //Accept all keys for authentication
         sshd.setPublickeyAuthenticator((s, publicKey, serverSession) -> true);
 
         //Allow username/password authentication using pre-defined credentials
         sshd.setPasswordAuthenticator((username, password, serverSession) ->  true);
+
+        sshd.setCommandFactory(new CommandFactory() {
+            @Override
+            public Command createCommand(ChannelSession channel, String command) throws IOException {
+                return new NettyCommand();
+            }
+        });
 
         sshd.setShellFactory(new ShellFactory() {
             @Override
@@ -64,7 +75,7 @@ public class SSHTestServer {
     }
 
     public static void main(String[] args) throws Exception {
-        new SSHTestServer().startServer();
+        new SshEchoServer().startServer();
         System.out.println("server started");
         TimeUnit.SECONDS.sleep(10000);
     }

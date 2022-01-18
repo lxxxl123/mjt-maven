@@ -1,0 +1,43 @@
+#spring:
+#  application:
+#    name: apollo-admin-svc
+#  main:
+#    allow-bean-definition-overriding: true
+#  cloud:
+#    config:
+#      uri: ${CONFIG_URL:http://172.16.100.72:9948/v1/config}
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: com-chen-feign
+  boot:
+    admin:
+      client:
+        url: http://localhost:8081/
+        instance:
+          prefer-ip: true
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://172.16.100.72:8101/eureka
+#    enabled: true
+#    instance-info-replication-interval-seconds: 5
+#  instance:
+#    hostname: ${spring.application.name}
+#    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+    auditevents:
+      enabled:
+

@@ -1,4 +1,4 @@
-package com.chen.tls.tcp;
+package com.chen.tls.tcp.server;
 
 import com.chen.tls.handler.EchoHandler;
 import com.chen.tls.https.Server;
@@ -37,7 +37,7 @@ public class NettyTcpSslServer implements Server {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            SSLEngine sslEngine = SslUtils.sslEngine("./temp.pem", "./temp.pem", ch.alloc());
+                            SSLEngine sslEngine = SslUtils.serverSslEngine("./temp.pem", "./temp.pem", ch.alloc());
                             sslEngine.setUseClientMode(false);
                             ch.pipeline().addLast(new SslHandler(sslEngine));
                             ch.pipeline().addLast(new EchoHandler());

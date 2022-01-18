@@ -1,9 +1,7 @@
-package com.chen.tls.tcp;
+package com.chen.tls.tcp.server;
 
 import com.chen.tls.handler.EchoHandler;
-import com.chen.tls.handler.HttpsServerHandler;
 import com.chen.tls.https.Server;
-import com.chen.tls.utils.SslUtils;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -12,10 +10,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.http.HttpServerCodec;
-import io.netty.handler.ssl.SslHandler;
-
-import javax.net.ssl.SSLEngine;
 
 /**
  * @author chenwh

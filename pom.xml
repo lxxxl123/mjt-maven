@@ -27,6 +27,7 @@
         <module>mysql-driver</module>
         <module>spring-stomp</module>
         <module>tls-test</module>
+        <module>spring-feign-test</module>
     </modules>
 
 
@@ -122,8 +123,13 @@
                 <scope>import</scope>
             </dependency>
 
-
-
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-dependencies</artifactId>
+                <version>2.3.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <!--限流器大全-->
             <dependency>
