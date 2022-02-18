@@ -35,9 +35,10 @@ management:
     web:
       exposure:
         include: "*"
+        exclude:
+          - shutdown
+          - startup
   endpoint:
     health:
       show-details: ALWAYS
-    auditevents:
-      enabled:
 
