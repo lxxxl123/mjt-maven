@@ -3,6 +3,7 @@ package com.chen.netty.proxy.test.server.https;
 import com.chen.netty.proxy.test.server.Server;
 import com.chen.netty.proxy.test.server.https.handler.HttpsServerHandler;
 import com.chen.netty.proxy.test.server.https.handler.SSLContextFactory;
+import com.chen.netty.proxy.test.server.https.utils.SslUtils;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -12,6 +13,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpServerCodec;
+import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.SslHandler;
 
 import javax.net.ssl.SSLEngine;
@@ -38,7 +40,7 @@ public class HttpsServer implements Server {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            SSLEngine sslEngine = SSLContextFactory.getSslContext().createSSLEngine();
+                            SSLEngine sslEngine = SslUtils.sslEngine("./temp.pem", "./temp.pem", ch.alloc());
                             sslEngine.setUseClientMode(false);
                             ch.pipeline().addLast(new SslHandler(sslEngine));
                             ch.pipeline().addLast("http-decoder", new HttpServerCodec());
@@ -55,6 +57,7 @@ public class HttpsServer implements Server {
     }
 
     public static void main(String[] args) throws Exception {
+        new HttpsServer().create();
     }
 
 }

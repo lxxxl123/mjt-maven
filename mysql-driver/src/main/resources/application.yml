@@ -1,0 +1,24 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    druid:
+      filters: stat,wall,log4j2
+      stat-view-servlet:
+        allow: 127.0.0.1
+        deny: ''
+        enabled: true
+        login-password: 123
+        login-username: admin
+        reset-enable: false
+        url-pattern: /druid/*
+      web-stat-filter:
+        enabled: true
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+        session-stat-enable: true
+        session-stat-max-count: 1000
+        url-pattern: /*
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://10.20.1.10:30053/dcpp_test?characterEncoding=utf-8&rewriteBatchedStatements=true&useSSL=false
+    username: dcpp_cloud
+    password: Dcpp_cloud1234

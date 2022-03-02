@@ -1,0 +1,49 @@
+syntax = "proto2";
+
+import "grpc_service.proto";
+
+package  device;
+
+message DeviceBase { //获取设备基本信息结构定义
+
+  optional string HostName = 1; //设备的名称
+
+  optional string HostOid = 2; //sysoid
+
+  optional uint32 MaxChassisNum = 3; //最大框数
+
+  optional uint32 MaxSlotNum = 4; //最大slot数
+
+  optional string HostDescription = 5; //设备描述信息
+
+}
+
+message DevicePhysicalEntities { //设备物理实体信息
+
+  message Entity {
+
+    optional uint32 PhysicalIndex = 1; //实体索引
+
+    optional string VendorType = 2; //vendor类型
+
+    optional uint32 EntityClass = 3;//实体类型
+
+    optional string SoftwareRev = 4; //软件版本
+
+    optional string SerialNumber = 5; //序列号
+
+    optional string Model = 6; //模式
+
+  }
+
+  repeated Entity entity = 1;
+
+}
+
+service DeviceService { //定义的RPC方法
+
+  rpc GetJsonDeviceBase(DeviceBase) returns (grpc_service.GetJsonReply) {} //获取设备基本信息
+
+  rpc GetJsonDevicePhysicalEntities(DevicePhysicalEntities) returns (grpc_service.GetJsonReply) {} //获取设备实体信息
+
+}

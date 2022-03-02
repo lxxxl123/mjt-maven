@@ -12,7 +12,10 @@ import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 /**
  * @author chenwh
@@ -20,6 +23,8 @@ import java.util.concurrent.CompletableFuture;
  */
 @Slf4j
 public class CommonClient implements Runnable {
+
+    private static ChannelFuture channelFuture = null;
 
     private ChannelHandler[] handlers = null;
 
@@ -48,7 +53,7 @@ public class CommonClient implements Runnable {
                                 public void channelActive(ChannelHandlerContext ctx) throws Exception {
                                     String msg = "成功与服务器建立连接";
                                     log.info("{}", msg);
-                                    ctx.writeAndFlush(Unpooled.copiedBuffer("abcd\r\n".getBytes()));
+                                    ctx.writeAndFlush(Unpooled.copiedBuffer("abcd\r\ncdef\r\n".getBytes()));
 //                                    ctx.writeAndFlush(Unpooled.copiedBuffer("\r".getBytes()));c
 //                                    ctx.writeAndFlush(Unpooled.copiedBuffer("\n".getBytes()));
                                 }
@@ -70,12 +75,10 @@ public class CommonClient implements Runnable {
                 });
 
         try {
-            ChannelFuture future = b.connect(new InetSocketAddress("localhost", 8877)).sync();
-            future.channel().closeFuture().sync();
-        } catch (InterruptedException e) {
-            log.error("",e);
-        }finally {
-            group.shutdownGracefully();
+            ChannelFuture future = b.connect(new InetSocketAddress("localhost", 8877));
+            channelFuture = future;
+        } finally {
+
         }
 
 
@@ -85,7 +88,19 @@ public class CommonClient implements Runnable {
      * 与服务器连接并发送abcd
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         CompletableFuture.runAsync(new CommonClient()).join();
+//        CompletableFuture.runAsync(() -> {
+//            Channel channel = channelFuture.channel();
+//            for (int i = 0; i < 10000; i++) {
+//                channel.writeAndFlush(Unpooled.wrappedBuffer(("row:" + i + "\r\n").getBytes(StandardCharsets.UTF_8)));
+//                try {
+//                    TimeUnit.SECONDS.sleep(5);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).join();
+        channelFuture.channel().closeFuture().sync();
     }
 }

@@ -28,7 +28,8 @@ public class ReactorHttpsServer implements Server {
                 .port(8998)
                 .route(r -> {
                     r.get("/hello", (req, res) -> {
-                        return res.header(CONTENT_TYPE, TEXT_PLAIN).sendString(Mono.just(
+                        return res.header(CONTENT_TYPE, TEXT_PLAIN)
+                                .sendString(Mono.just(
                                 "======================= \n Hello World! \n========================\n"));
                     });
                     r.post("/hello", (req, res) -> {
