@@ -1,5 +1,7 @@
 package chen.algorithm.heap;
 
+import chen.algorithm.sort.QuickSort;
+
 import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.concurrent.CyclicBarrier;
@@ -31,6 +33,9 @@ public class MaxHeap {
             adjustHead(i, arr, l);
         }
 
+        /**
+         * 逐步把最大的元素移到数组末 ， 移出堆
+         */
         for (int i = 0; i < l-1; i++) {
             swag(arr, 0, l - i - 1);
             adjustHead(0, arr, l - i - 1);
@@ -44,8 +49,9 @@ public class MaxHeap {
     }
 
     /**
-     * 若i节点不合理 , 并且左右儿子都是大顶堆 , 则可以使用该函数调整
+     * 若fa节点不合理 , 并且左右儿子都是大顶堆 , 则可以使用该函数调整
      * 自顶向下
+     * @param len 堆长度
      */
     public static void adjustHead(int fa, int[] arr, int len) {
         for (int son = 2 * fa + 1; son < len; ) {
@@ -63,6 +69,11 @@ public class MaxHeap {
         }
     }
 
+    public static void main(String[] args) {
+        int[] arr = new int[]{2, 4, 1, 3, 7, 4, 8, 0};
+        sort(arr);
+        System.out.println(Arrays.toString(arr));
+    }
 
 
 }
