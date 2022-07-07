@@ -13,7 +13,7 @@
         <module>test</module>
         <module>algorithm</module>
         <module>other</module>
-        <module>front-end</module>
+        <module>spring-freemarker</module>
         <module>spring-mvc</module>
         <module>spring-gateway</module>
         <module>netty-proxy</module>
@@ -29,6 +29,8 @@
         <module>tls-test</module>
         <module>spring-feign-test</module>
         <module>sch2-test</module>
+        <module>dubbo-test</module>
+        <module>easypoi</module>
     </modules>
 
 
