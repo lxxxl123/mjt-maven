@@ -9,18 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>algorithm</artifactId>
+    <artifactId>dubbo-test</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId></groupId>
-            <artifactId>lockba</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>

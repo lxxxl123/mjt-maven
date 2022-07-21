@@ -19,20 +19,20 @@ public class MergeSort {
 
     //自顶向下
     public static void sort(int[] arr, int left, int right, int[] temp) {
-        if (right - left <= 1) {
-            return;
+        if (right - left > 1) {
+            int mid = (right + left) >> 1;
+            sort(arr, left, mid, temp);
+            sort(arr, mid, right, temp);
+            merge(arr, left, mid, right, temp);
         }
-        int mid = (right + left) >> 1;
-        sort(arr, left, mid, temp);
-        sort(arr, mid, right, temp);
-        merge(arr, left, mid, right, temp);
     }
 
     //升序
     public static void merge(int[] arr, int left, int mid, int right, int[] temp) {
         int l = left;
         int r = mid;
-        for (int i = left; i != right; i++) {
+        for (int i = left; i < right; i++) {
+            //双指针找较少值并复制到temp[]中
             if (r == right || (l != mid && arr[l] < arr[r])) {
                 temp[i] = arr[l];
                 l++;
@@ -42,9 +42,7 @@ public class MergeSort {
             }
         }
 
-        for (int j = left; j < right; j++) {
-            arr[j] = temp[j];
-        }
+        if (right - left >= 0) System.arraycopy(temp, left, arr, left, right - left);
     }
 
     public static void main(String[] args) {
