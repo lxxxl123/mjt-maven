@@ -1,9 +1,6 @@
 package chen.javaBasic.reference;
 
-import com.sun.jndi.ldap.pool.PooledConnectionFactory;
 
-import javax.sql.PooledConnection;
-import java.lang.ref.PhantomReference;
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
 import java.sql.Connection;
