@@ -3,13 +3,14 @@ package com.chen.netty.proxy.test.server.http.handler;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * @author chenwh
@@ -28,4 +29,14 @@ public class SimHttpResponseHandler extends SimpleChannelInboundHandler<FullHttp
         response.content().writeBytes(byteBuf);
         ctx.writeAndFlush(response);
     }
+
+    public static void main(String[] args) {
+        System.out.println(123);
+        try {
+            TimeUnit.SECONDS.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

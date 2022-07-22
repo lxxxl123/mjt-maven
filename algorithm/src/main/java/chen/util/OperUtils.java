@@ -20,6 +20,7 @@ public class OperUtils {
 
     private static final String _AND_ = " and ";
 
+
     private static final String _OR_ = " or ";
 
     private static final String X_AND = " ^&^ ";

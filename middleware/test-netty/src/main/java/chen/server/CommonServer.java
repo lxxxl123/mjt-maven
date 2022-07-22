@@ -7,7 +7,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
-import io.netty.handler.codec.string.LineEncoder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetSocketAddress;
@@ -27,7 +26,16 @@ public class CommonServer {
 
     private ChannelHandler[] handlers ;
 
+    private int a = 10;
+
+    private  class abc {
+        abc(){
+            System.out.println(a);
+        }
+    }
+
     public CommonServer(ChannelHandler... handlers) {
+
         this.handlers = handlers;
     }
 

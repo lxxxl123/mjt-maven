@@ -1,5 +1,9 @@
 package chen.algorithm;
 
+
+import java.util.PriorityQueue;
+
+
 /**
  * 经典算法:二分法
  * @author chenwh
@@ -51,7 +55,7 @@ public class BiSection {
 
     public static void main(String[] args) {
         System.out.println(rBisect(new int[]{1, 2, 3, 3, 3, 3, 4}, 2));
-
+        PriorityQueue<Object> objects = new PriorityQueue<>();
     }
 
 
