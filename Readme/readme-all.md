@@ -12,6 +12,13 @@ echo "export http_proxy=http://[ip]:[port]" >> /etc/profile
 - url : https://www.bing.com/search?q=SecureCRTPortable+%E7%A0%B4%E8%A7%A3%E7%89%88&PC=U316&FORM=CHROMN
 ## 安装docker 
 - url : https://www.runoob.com/docker/docker-tutorial.html
+```shell
+docker images
+docker ps [-a]
+docker start [containerId]
+# 自启动
+docker update --restart=always [i=containerId] 
+```
 ## 安装mysql
 - url : https://www.runoob.com/docker/docker-install-mysql.html
 ## 安装redis
