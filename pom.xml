@@ -30,6 +30,7 @@
         <module>spring-feign-test</module>
         <module>sch2-test</module>
         <module>easypoi</module>
+        <module>jenkins-rest-test</module>
     </modules>
 
 
