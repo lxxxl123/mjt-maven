@@ -22,6 +22,11 @@ public class Table {
         rows = new ArrayList<>();
     }
 
+    public Table (Map<String, Integer> cols){
+        cols = cols;
+        rows = new ArrayList<>();
+    }
+
     public Table(){}
 
     public static Table of(List<Map<String, Object>> list) {
@@ -46,6 +51,17 @@ public class Table {
     }
 
 
+    public List<String> getColsList(){
+        return Arrays.asList(getColsArr());
+    }
+
+    public String[] getColsArr(){
+        String[] arr = new String[cols.size()];
+        for (Map.Entry<String, Integer> entry : cols.entrySet()) {
+            arr[entry.getValue()] = entry.getKey();
+        }
+        return arr;
+    }
 
 
 
@@ -61,18 +77,18 @@ public class Table {
     /**
      * 合并行 , 并且并把某列值转列 , 列值需要唯一
      */
-    public Table mergeRow(String mergeRow, List<String> newCols, String defaultVal, Function<Object, String> valueToColName, Function<List<Object>, Object> getValue, String... groupBy) {
+    public Table colToCols(String oriCol, List<String> newCols, String defaultVal, Function<Object, String> valueToColName, Function<List<Object>, Object> newValue, String... groupByCols) {
         HashMap<List<String>, Integer> rowMap = new HashMap<>();
-        List<String> cols = Arrays.asList(groupBy);
+        List<String> cols = Arrays.asList(groupByCols);
 
         cols.addAll(newCols);
         Table table = new Table(cols);
 
         for (int i = 0; i < rows.size(); i++) {
-            List<String> keys = buildKey(i, Arrays.asList(groupBy));
+            List<String> keys = buildKey(i, Arrays.asList(groupByCols));
             if (!rowMap.containsKey(keys)) {
                 List<Object> row = new ArrayList<>();
-                for (String s : groupBy) {
+                for (String s : groupByCols) {
                     row.add(get(i, s));
                 }
                 for (String ignored : newCols) {
@@ -82,10 +98,10 @@ public class Table {
                 table.addRow(row);
             }
             Integer newRowIndex = rowMap.get(keys);
-            Object val = get(i, mergeRow);
+            Object val = get(i, oriCol);
             String newCol = valueToColName.apply(val);
 
-            Object newVal = getValue.apply(rows.get(i));
+            Object newVal = newValue.apply(rows.get(i));
             table.set(newRowIndex, newCol, newVal);
         }
         return table;
@@ -156,11 +172,19 @@ public class Table {
     }
 
     public void set(int rowI, String col, Object val) {
-        rows.get(rowI).set(cols.get(col), val);
+        Integer ci = cols.get(col);
+        if (ci == null) {
+            return;
+        }
+        rows.get(rowI).set(ci, val);
     }
 
     public void setRow(List<Object> list, String key, Object val) {
-        list.set(cols.get(key), val);
+        Integer ci = cols.get(key);
+        if (ci == null) {
+            return;
+        }
+        list.set(ci, val);
     }
 
     public Object get(List<Object> list, String key) {
@@ -170,6 +194,10 @@ public class Table {
 
     public void addRow(List<Object> row) {
         rows.add(row);
+    }
+
+    public void addAllRow(List<List<Object>> rows) {
+        this.rows.addAll(rows);
     }
 
 
@@ -204,6 +232,54 @@ public class Table {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+
+    public Table[] split(int length) {
+        List<List<List<Object>>> split = StreamUtils.split(rows, length);
+        return split(split);
+    }
+
+    private Table[] split(List<List<List<Object>>> split) {
+        Table[] tables = new Table[split.size()];
+        for (int i = 0; i < split.size(); i++) {
+            Table table = new Table(cols);
+            table.addAllRow(split.get(i));
+            tables[i] = table;
+        }
+        return tables;
+    }
+
+    public Table[] split(int length,int maxSize) {
+        List<List<List<Object>>> split = StreamUtils.split(rows, length, maxSize);
+        return split(split);
+    }
+
+    /**
+     * 纵向合并表格 , 列需要一致
+     */
+    public static Table merge(Table... tables) {
+        if (tables.length == 0) {
+            return null;
+        }
+        if (tables.length == 1) {
+            return tables[0];
+        }
+        Set<String> keys = tables[0].cols.keySet();
+        Table table = new Table(tables[0].cols);
+        table.addAllRow(tables[0].rows);
+
+        for (int i = 1; i < tables.length; i++) {
+            if (!tables[i].cols.keySet().equals(keys)) {
+                throw new IllegalArgumentException("无法合并");
+            }
+            table.addAllRow(tables[i].rows);
+        }
+        return table;
+    }
+
+    public void sort(){
+
     }
 
 

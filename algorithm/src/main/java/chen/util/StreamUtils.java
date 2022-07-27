@@ -33,12 +33,36 @@ public class StreamUtils {
                 .collect(Collectors.toList());
     }
 
+    public static <T> List<List<T>> split(List<T> list , int splitSize, int maxSize) {
+        if (list == null || list.size() == 0) {
+            return null;
+        }
+        if (maxSize <= 0) {
+            throw new IllegalArgumentException("maxSize must > 0");
+        }
+        List<List<T>> res = new ArrayList<>();
+        int time = 1;
+        int cur = 0;
+        while (cur < list.size() && time < maxSize) {
+            int toIndex = Math.min(cur + splitSize, list.size());
+            res.add(list.subList(cur,toIndex));
+            cur = toIndex;
+            time++;
+        }
+        if (cur < list.size()) {
+            res.add(list.subList(cur,list.size()));
+        }
+        return res;
+    }
+
+
+
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 11; i++) {
             list.add(i + "");
         }
-        List<List<String>> split = split(list, 3);
+        List<List<String>> split = split(list, 3, 1);
         for (int i = 0; i < split.size(); i++) {
             System.out.println(split.get(i));
         }
