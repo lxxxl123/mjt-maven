@@ -33,11 +33,12 @@ public class GitTool {
         try {
             in = process.getInputStream();
 
-            String res = IoUtil.read(process.getInputStream(), charset);
-            if (StringUtils.isBlank(res)) {
-                res = IoUtil.read(process.getErrorStream(), charset);
+            String r1 = IoUtil.read(process.getErrorStream(), charset);
+            String r2 = IoUtil.read(process.getInputStream(), charset);
+            if (StringUtils.isBlank(r1)) {
+                return r2;
             }
-            return res;
+            return r1 + "\n" + r2;
         } finally {
             IoUtil.close(in);
             RuntimeUtil.destroy(process);
@@ -45,7 +46,6 @@ public class GitTool {
     }
 
     public String exeGit(String cmd){
-//        cmd = cmd.replace("git", "C:\\Program Files\\Git\\bin\\git.exe");
         Process exec = RuntimeUtil.exec(null, file, cmd);
         String result = getResult(exec);
         log.info("cmd = {} , res = \n{}", cmd, result);
@@ -61,16 +61,8 @@ public class GitTool {
     }
 
 
-    public  String gitTest(){
-        String cmd = "C:\\Program Files\\Git\\bin\\git.exe branch";
-        String result = RuntimeUtil.getResult(RuntimeUtil.exec(null, file, cmd));
-        log.info("cmd = {} , res = {}", cmd, result);
-        return result;
-    }
-
-
     private Pattern BRANCH_PATTERN = Pattern.compile("\\*\\s([a-zA-Z.\\-/0-9]+)");
-    private Pattern CHECKOUT_PATTERN = Pattern.compile("(Switched to branch)|(Already on) '([a-zA-Z.-/]+)'");
+    private Pattern CHECKOUT_PATTERN = Pattern.compile("(Switched to branch)|(Already on)|(Your branch is behind)");
 
 
 
@@ -95,31 +87,20 @@ public class GitTool {
         return curBranch;
     }
 
-    /**
-     * git commit -am "temp"
-     * git branch 	feature/market-complainV1.0.0-front-end
-     * git checkout feature/market-complainV1.0.0-front-end
-     * git reset --hard feature/market-complainV1.0.0-front-end
-     * git add "qms-service/src/main/resources/static/*"
-     * git commit -am "temp"
-     * git push --force
-     * git checkout feature/market-complainV1.0.0
-     */
     public static void main(String[] args) {
         GitTool git = new GitTool();
         String brandName = "feature/market-complainV1.0.0";
         String frontEndName = brandName + "-front-end";
         git.checkout(frontEndName);
-//        git.exeGit("git commit -am \"temp\"");
-//        git.exeGit("git branch " + brandName);
-//        git.exeGit("git checkout " + frontEndName);
-//        git.exeGit("git reset --hard " + brandName);
-//        moveFile();
-//        git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
-//        git.exeGit("git commit -am \"temp\"");
-//        git.exeGit("git push --force");
-//        git.exeGit("git checkout " + brandName);
-
-
+        git.exeGit("git commit -am \"temp\"");
+        git.exeGit("git branch " + brandName);
+        git.exeGit("git checkout " + frontEndName);
+        git.exeGit("git reset --hard " + brandName);
+        moveFile();
+        git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
+        git.exeGit("git commit -am \"temp\"");
+        git.exeGit("git push --force");
+        git.exeGit("git checkout " + brandName);
+        git.exeGit("git stash apply stash@{0}");
     }
 }
