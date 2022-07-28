@@ -1,6 +1,7 @@
 package com.chen;
 
 import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.util.ByteUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.RuntimeUtil;
 import lombok.Data;
@@ -8,8 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,13 +20,22 @@ import java.util.regex.Pattern;
 @Data
 public class GitTool {
 
-    public String path = "C:\\Users\\chenwh3\\IdeaProjects\\qms-platform\\";
-    public File file = new File(path);
+    private File file ;
 
-    public String branch;
+    private static final Pattern BRANCH_PATTERN = Pattern.compile("\\*\\s([a-zA-Z.\\-/0-9]+)");
+
+    private static final  Pattern CHECKOUT_PATTERN = Pattern.compile("(Switched to branch)|(Already on)|(Your branch is behind)");
+
+    private String branch;
+
+    public String mvn;
 
     public GitTool(){
-        checkBranch();
+//        checkBranch();
+    }
+
+    public void setPath(String path){
+        this.file = new File(path);
     }
 
 
@@ -31,14 +43,24 @@ public class GitTool {
         Charset charset = Charset.forName("utf-8");
         InputStream in = null;
         try {
-            in = process.getInputStream();
-
+            InputStream inputStream = process.getInputStream();
+            byte[] bytes = new byte[1024];
+            int read ;
+            StringBuffer sb = new StringBuffer();
+            while ((read = inputStream.read(bytes)) > -1) {
+                String s = new String(bytes, 0, read, "gbk");
+                System.out.print(s);
+                sb.append(s);
+            }
             String r1 = IoUtil.read(process.getErrorStream(), charset);
-            String r2 = IoUtil.read(process.getInputStream(), charset);
+            String r2 = sb.toString();
+
             if (StringUtils.isBlank(r1)) {
                 return r2;
             }
             return r1 + "\n" + r2;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         } finally {
             IoUtil.close(in);
             RuntimeUtil.destroy(process);
@@ -52,6 +74,14 @@ public class GitTool {
         return result;
     }
 
+    public String exeMvn(String cmd){
+        cmd = cmd.replaceFirst("mvn", mvn);
+        Process exec = RuntimeUtil.exec(null, file, cmd);
+        String result = getResult(exec);
+        log.info("cmd = {} , res = \n{}", cmd, result);
+        return result;
+    }
+
     public static String moveFile(){
         File file = new File(GitTool.class.getResource("/").getFile());
         String cmd = "C:\\Program Files\\Git\\bin\\sh.exe update-front.sh";
@@ -59,11 +89,6 @@ public class GitTool {
         log.info("cmd = {} , res = {}", cmd, result);
         return result;
     }
-
-
-    private Pattern BRANCH_PATTERN = Pattern.compile("\\*\\s([a-zA-Z.\\-/0-9]+)");
-    private Pattern CHECKOUT_PATTERN = Pattern.compile("(Switched to branch)|(Already on)|(Your branch is behind)");
-
 
 
     public String checkout(String branch){
@@ -87,8 +112,15 @@ public class GitTool {
         return curBranch;
     }
 
+
     public static void main(String[] args) {
         GitTool git = new GitTool();
+        git.setMvn("D:\\program\\apache-maven-3.8.5\\bin\\mvn.cmd");
+
+        git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-front");
+        git.exeMvn("mvn clean install -f pom.xml");
+
+        git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-platform\\");
         String brandName = "feature/market-complainV1.0.0";
         String frontEndName = brandName + "-front-end";
         git.checkout(frontEndName);
