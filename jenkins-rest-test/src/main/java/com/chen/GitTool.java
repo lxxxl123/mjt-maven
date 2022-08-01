@@ -83,9 +83,9 @@ public class GitTool {
         return result;
     }
 
-    public String exeSh(String cmd,String path){
+    public String exeSh(String cmd,File path){
         cmd = cmd.replaceFirst("sh", sh);
-        Process exec = RuntimeUtil.exec(null, file, cmd);
+        Process exec = RuntimeUtil.exec(null, path, cmd);
         String result = getResult(exec);
         log.info("cmd = {} , res = \n{}", cmd, result);
         return result;
@@ -93,9 +93,9 @@ public class GitTool {
 
 
     public String moveFile(){
-        File file = new File(Objects.requireNonNull(GitTool.class.getResource("/")).getFile());
+        File file = new File((GitTool.class.getResource("/").getFile()));
         String cmd = "sh update-front.sh";
-        return exeSh(cmd, file.getAbsolutePath());
+        return exeSh(cmd, file);
     }
 
 
