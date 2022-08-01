@@ -127,22 +127,23 @@ public class GitTool {
         String frontEndName = brandName + "-front-end";
         git.setMvn("D:\\\\program\\\\apache-maven-3.8.5\\\\bin\\\\mvn.cmd");
         git.setSh("C:\\\\Program Files\\\\Git\\\\bin\\\\sh.exe");
-//
-//        git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-front");
+        git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-front\\");
+        //build
 //        git.exeMvn("mvn clean install -f pom.xml");
-//
-//        git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-platform\\");
-//        git.exeGit("git commit -am \"temp\"");
-//        git.checkout(brandName);
-//        git.exeGit("git commit -am \"temp\"");
-//        git.exeGit("git branch " + frontEndName);
-//        git.checkout(frontEndName);
-//        git.exeGit("git reset --hard " + brandName);
+
+        git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-platform\\");
+
+        git.exeGit("git commit -am \"temp\"");
+        git.checkout(brandName);
+        git.exeGit("git commit -am \"temp\"");
+        git.exeGit("git branch " + frontEndName);
+        git.checkout(frontEndName);
+        git.exeGit("git reset --hard " + brandName);
+        git.exeGit("git reset --hard head~1");
         git.moveFile();
         git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
         git.exeGit("git commit -am \"temp\"");
         git.exeGit("git push --force");
-
 
 
 //        git.exeGit("git checkout " + brandName);

@@ -1,8 +1,12 @@
 package com.chen;
 
+import cn.hutool.Hutool;
+import cn.hutool.core.util.ReUtil;
+import cn.hutool.http.HtmlUtil;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HeaderElement;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -73,6 +77,8 @@ public class Session {
 
     @Setter
     private String host = "http://192.168.26.2:8080";
+
+    private String jobSeq;
 
 
     public void login(String url, String username, String password) throws IOException {
@@ -156,8 +162,19 @@ public class Session {
         HttpEntity entity = httpClient.execute(get, context).getEntity();
         String res = EntityUtils.toString(entity);
         check(res);
-        return res.contains("预计剩余时间：") || res.contains("pending—Waiting for next available executor");
+        if (res.contains("预计剩余时间：") || res.contains("pending—Waiting for next available executor")) {
+            if (jobName.endsWith("build")) {
+                jobSeq = ReUtil.extractMulti(String.format("%s/(\\d+)/console", jobName), res, "$1");
+            }
+            return true;
+        }
+        return false;
     }
+
+    public static String formatHtml(String s) {
+        return HtmlUtil.cleanHtmlTag(s.replaceAll("\n]", "]"));
+    }
+
 
     public void deploy() throws IOException {
         CloseableHttpClient httpClient = HttpClients.custom().build();
@@ -167,6 +184,26 @@ public class Session {
         String res = EntityUtils.toString(entity);
         check(res);
     }
+
+
+    public String getConsole(String jobName) throws IOException {
+        CloseableHttpClient httpClient = HttpClients.custom().build();
+        HttpGet http = new HttpGet(host + "/job/QMS/job/" + jobName + "/" + jobSeq + "/console");
+        HttpEntity entity = httpClient.execute(http, context).getEntity();
+        String res = EntityUtils.toString(entity);
+        check(res);
+        res = formatHtml(StringUtils.substringAfter(res, "Started by user "));
+        checkConsole(res);
+        return res;
+    }
+
+    private void checkConsole(String res) {
+        if (res.contains("Finished: FAILURE")) {
+            log.error("build or deploy fail ; msg: \n{}", res);
+            throw new RuntimeException("build or deploy fail");
+        }
+    }
+
 
     /**
      * 用法: session.checkStatus("QMS » qms-platform-deploy")
@@ -182,6 +219,7 @@ public class Session {
     }
 
     public void buildAndDeploy(String branchName,String host) throws IOException, InterruptedException {
+        log.info("开始部署分支: {}", branchName);
         int wait = 3;
         setHost(host);
         log.info("开始登录");
@@ -189,10 +227,12 @@ public class Session {
         log.info("开始构建");
         build(branchName);
         TimeUnit.SECONDS.sleep(wait);
-        while (getProcess("qms-platform-build")) {
+        String build = "qms-platform-build";
+        while (getProcess(build)) {
             log.info("构建中");
             TimeUnit.SECONDS.sleep(wait);
         }
+        System.out.println(getConsole(build));
         log.info("开始部署");
         deploy();
         TimeUnit.SECONDS.sleep(wait);
@@ -207,7 +247,6 @@ public class Session {
     public static void main(String[] args) throws IOException, InterruptedException {
         Session session = new Session();
         String branchName = "feature/market-complainV1.0.0-front-end";
-//        String branchName = "feature/QT07-v1.0.0";
         session.buildAndDeploy(branchName,"http://192.168.26.2:8080");
     }
 }
