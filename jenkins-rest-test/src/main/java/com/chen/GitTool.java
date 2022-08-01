@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -92,8 +93,8 @@ public class GitTool {
 
 
     public String moveFile(){
-        File file = new File(GitTool.class.getResource("/").getFile());
-        String cmd = "sh.exe update-front.sh";
+        File file = new File(Objects.requireNonNull(GitTool.class.getResource("/")).getFile());
+        String cmd = "sh update-front.sh";
         return exeSh(cmd, file.getAbsolutePath());
     }
 
@@ -123,20 +124,20 @@ public class GitTool {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         GitTool git = new GitTool();
+        String frontEndName = brandName + "-front-end";
         git.setMvn("D:\\\\program\\\\apache-maven-3.8.5\\\\bin\\\\mvn.cmd");
         git.setSh("C:\\\\Program Files\\\\Git\\\\bin\\\\sh.exe");
-
-        git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-front");
-        git.exeMvn("mvn clean install -f pom.xml");
-
-        git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-platform\\");
-        String frontEndName = brandName + "-front-end";
-        git.exeGit("git commit -am \"temp\"");
-        git.checkout(brandName);
-        git.exeGit("git commit -am \"temp\"");
-        git.exeGit("git branch " + frontEndName);
-        git.checkout(frontEndName);
-        git.exeGit("git reset --hard " + brandName);
+//
+//        git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-front");
+//        git.exeMvn("mvn clean install -f pom.xml");
+//
+//        git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-platform\\");
+//        git.exeGit("git commit -am \"temp\"");
+//        git.checkout(brandName);
+//        git.exeGit("git commit -am \"temp\"");
+//        git.exeGit("git branch " + frontEndName);
+//        git.checkout(frontEndName);
+//        git.exeGit("git reset --hard " + brandName);
         git.moveFile();
         git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
         git.exeGit("git commit -am \"temp\"");
