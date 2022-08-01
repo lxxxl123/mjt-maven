@@ -1,7 +1,6 @@
 package com.chen;
 
 import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.util.ByteUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.RuntimeUtil;
 import lombok.Data;
@@ -12,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,13 +20,15 @@ public class GitTool {
 
     private File file ;
 
-    private static final Pattern BRANCH_PATTERN = Pattern.compile("\\*\\s([a-zA-Z.\\-/0-9]+)");
+    private static final Pattern BRANCH_PATTERN = Pattern.compile("\\*\\s([a-zA-Z.\\-/\\d]+)");
 
     private static final  Pattern CHECKOUT_PATTERN = Pattern.compile("(Switched to branch)|(Already on)|(Your branch is behind)");
 
     private String branch;
 
     public String mvn;
+
+    public String sh = "";
 
     public GitTool(){
 //        checkBranch();
@@ -82,12 +82,19 @@ public class GitTool {
         return result;
     }
 
-    public static String moveFile(){
-        File file = new File(GitTool.class.getResource("/").getFile());
-        String cmd = "C:\\Program Files\\Git\\bin\\sh.exe update-front.sh";
-        String result = RuntimeUtil.getResult(RuntimeUtil.exec(null, file, cmd));
-        log.info("cmd = {} , res = {}", cmd, result);
+    public String exeSh(String cmd,String path){
+        cmd = cmd.replaceFirst("sh", sh);
+        Process exec = RuntimeUtil.exec(null, file, cmd);
+        String result = getResult(exec);
+        log.info("cmd = {} , res = \n{}", cmd, result);
         return result;
+    }
+
+
+    public String moveFile(){
+        File file = new File(GitTool.class.getResource("/").getFile());
+        String cmd = "sh.exe update-front.sh";
+        return exeSh(cmd, file.getAbsolutePath());
     }
 
 
@@ -112,27 +119,36 @@ public class GitTool {
         return curBranch;
     }
 
+    public static String brandName = "feature/market-complainV1.0.0";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
         GitTool git = new GitTool();
-        git.setMvn("D:\\program\\apache-maven-3.8.5\\bin\\mvn.cmd");
+        git.setMvn("D:\\\\program\\\\apache-maven-3.8.5\\\\bin\\\\mvn.cmd");
+        git.setSh("C:\\\\Program Files\\\\Git\\\\bin\\\\sh.exe");
 
         git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-front");
         git.exeMvn("mvn clean install -f pom.xml");
 
         git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-platform\\");
-        String brandName = "feature/market-complainV1.0.0";
         String frontEndName = brandName + "-front-end";
-        git.checkout(frontEndName);
         git.exeGit("git commit -am \"temp\"");
-        git.exeGit("git branch " + brandName);
-        git.exeGit("git checkout " + frontEndName);
+        git.checkout(brandName);
+        git.exeGit("git commit -am \"temp\"");
+        git.exeGit("git branch " + frontEndName);
+        git.checkout(frontEndName);
         git.exeGit("git reset --hard " + brandName);
-        moveFile();
+        git.moveFile();
         git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
         git.exeGit("git commit -am \"temp\"");
         git.exeGit("git push --force");
-        git.exeGit("git checkout " + brandName);
-        git.exeGit("git stash apply stash@{0}");
+
+
+
+//        git.exeGit("git checkout " + brandName);
+//        git.exeGit("git stash apply stash@{0}");
+
+        Session session = new Session();
+        session.buildAndDeploy(frontEndName,"http://192.168.26.2:8080");
+
     }
 }

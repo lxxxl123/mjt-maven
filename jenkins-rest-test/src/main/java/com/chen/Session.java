@@ -1,6 +1,7 @@
 package com.chen;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HeaderElement;
 import org.apache.http.HttpEntity;
@@ -69,6 +70,9 @@ public class Session {
 
     @Getter
     public String node;
+
+    @Setter
+    private String host = "http://192.168.26.2:8080";
 
 
     public void login(String url, String username, String password) throws IOException {
@@ -152,7 +156,7 @@ public class Session {
         HttpEntity entity = httpClient.execute(get, context).getEntity();
         String res = EntityUtils.toString(entity);
         check(res);
-        return res.contains("预计剩余时间：");
+        return res.contains("预计剩余时间：") || res.contains("pending—Waiting for next available executor");
     }
 
     public void deploy() throws IOException {
@@ -177,28 +181,33 @@ public class Session {
         return res.contains(queueName);
     }
 
-    private String host = "http://192.168.26.2:8080";
-
-    public static void main(String[] args) throws IOException, InterruptedException {
-        String branchName = "feature/market-complainV1.0.0-front-end";
+    public void buildAndDeploy(String branchName,String host) throws IOException, InterruptedException {
         int wait = 3;
-        Session session = new Session();
+        setHost(host);
         log.info("开始登录");
-        session.login(session.host + "/j_spring_security_check", "dev", "dev0407@");
+        login(host + "/j_spring_security_check", "dev", "dev0407@");
         log.info("开始构建");
-        session.build(branchName);
+        build(branchName);
         TimeUnit.SECONDS.sleep(wait);
-        while (session.getProcess("qms-platform-build")) {
+        while (getProcess("qms-platform-build")) {
             log.info("构建中");
             TimeUnit.SECONDS.sleep(wait);
         }
         log.info("开始部署");
-        session.deploy();
+        deploy();
         TimeUnit.SECONDS.sleep(wait);
-        while (session.getProcess("qms-platform-deploy")) {
+        while (getProcess("qms-platform-deploy")) {
             log.info("部署中");
             TimeUnit.SECONDS.sleep(wait);
         }
         log.info("部署完成");
+    }
+
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+        Session session = new Session();
+        String branchName = "feature/market-complainV1.0.0-front-end";
+//        String branchName = "feature/QT07-v1.0.0";
+        session.buildAndDeploy(branchName,"http://192.168.26.2:8080");
     }
 }
