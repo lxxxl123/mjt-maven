@@ -1,6 +1,5 @@
 package com.chen;
 
-import cn.hutool.Hutool;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.http.HtmlUtil;
 import lombok.Getter;

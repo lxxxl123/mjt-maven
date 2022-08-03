@@ -129,7 +129,7 @@ public class GitTool {
         git.setSh("C:\\\\Program Files\\\\Git\\\\bin\\\\sh.exe");
         git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-front\\");
         //build
-//        git.exeMvn("mvn clean install -f pom.xml");
+        git.exeMvn("mvn clean install -f pom.xml");
 
         git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-platform\\");
 
@@ -146,8 +146,8 @@ public class GitTool {
         git.exeGit("git push --force");
 
 
-//        git.exeGit("git checkout " + brandName);
-//        git.exeGit("git stash apply stash@{0}");
+        git.exeGit("git checkout " + brandName);
+        git.exeGit("git reset --soft head~1");
 
         Session session = new Session();
         session.buildAndDeploy(frontEndName,"http://192.168.26.2:8080");

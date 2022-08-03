@@ -31,6 +31,7 @@
         <module>sch2-test</module>
         <module>easypoi</module>
         <module>jenkins-rest-test</module>
+        <module>sap-test</module>
     </modules>
 
 
