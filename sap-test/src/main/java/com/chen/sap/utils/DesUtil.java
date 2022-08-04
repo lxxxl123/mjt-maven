@@ -260,8 +260,8 @@ public class DesUtil {
 
     public static void main(String[] args) {
         try {
-            encryptLog("ZCALLRFC");
-            encryptLog("haday@123");
+            encryptLog("zcallrfc");
+            encryptLog("123456");
         } catch (Exception e) {
             e.printStackTrace();
         }
