@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -75,6 +76,7 @@ public class Session {
     public String node;
 
     @Setter
+    @Getter
     private String host = "http://192.168.26.2:8080";
 
     private String jobSeq;
@@ -161,11 +163,12 @@ public class Session {
         CloseableHttpClient httpClient = HttpClients.custom().build();
         HttpGet get = new HttpGet(host+"/job/QMS/job/" + jobName + "/buildHistory/ajax");
 
-        HttpEntity entity = httpClient.execute(get, context).getEntity();
+        CloseableHttpResponse execute = httpClient.execute(get, context);
+        HttpEntity entity = execute.getEntity();
         String res = EntityUtils.toString(entity);
         check(res);
         if (res.contains("预计剩余时间：") || res.contains("pending—Waiting for next available executor")) {
-            if (jobName.endsWith("build")) {
+            if (jobSeq == null) {
                 jobSeq = ReUtil.extractMulti(String.format("%s/(\\d+)/console", jobName), res, "$1");
             }
             return true;
@@ -191,6 +194,7 @@ public class Session {
     public String getConsole(String jobName) throws IOException {
         CloseableHttpClient httpClient = HttpClients.custom().build();
         HttpGet http = new HttpGet(host + "/job/QMS/job/" + jobName + "/" + jobSeq + "/console");
+        this.jobSeq = null;
         HttpEntity entity = httpClient.execute(http, context).getEntity();
         String res = EntityUtils.toString(entity);
         check(res);
@@ -220,61 +224,8 @@ public class Session {
         return res.contains(queueName);
     }
 
-    public void buildAndDeployQmsPlatform(String branchName) throws IOException, InterruptedException {
-        log.info("开始部署分支: {}", branchName);
-        int wait = 3;
-        log.info("开始登录");
-        login(host + "/j_spring_security_check", "dev", "dev0407@");
-        log.info("开始构建");
-        String job = "qms-platform-build";
-        build(job,branchName);
-        TimeUnit.SECONDS.sleep(wait);
-        while (getProcess(job)) {
-            log.info("构建中");
-            TimeUnit.SECONDS.sleep(wait);
-        }
-        System.out.println(getConsole(job));
-        log.info("开始部署");
-        job = "qms-platform-deploy";
-        triggerJob(job);
-        TimeUnit.SECONDS.sleep(wait);
-        while (getProcess(job)) {
-            log.info("部署中");
-            TimeUnit.SECONDS.sleep(wait);
-        }
-        log.info("部署完成");
-    }
-
-    public void buildSync() throws IOException, InterruptedException {
-        int wait = 3;
-        setHost(host);
-        log.info("开始登录");
-        login(host + "/j_spring_security_check", "dev", "dev0407@");
-        log.info("开始构建");
-        String job = "QmsApiCenter_build_develop";
-        triggerJob(job);
-        TimeUnit.SECONDS.sleep(wait);
-        while (getProcess(job)) {
-            log.info("构建中");
-            TimeUnit.SECONDS.sleep(wait);
-        }
-        System.out.println(getConsole(job));
-        log.info("开始部署");
-        job = "QmsApiCenter_deploy";
-        triggerJob(job);
-        TimeUnit.SECONDS.sleep(wait);
-        while (getProcess(job)) {
-            log.info("部署中");
-            TimeUnit.SECONDS.sleep(wait);
-        }
-        log.info("部署完成");
-    }
 
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        Session session = new Session();
-//        String branchName = "feature/market-complainV1.0.0-front-end";
-//        session.buildAndDeployQmsPlatform(branchName);
-        session.buildSync();
-    }
+
+
 }

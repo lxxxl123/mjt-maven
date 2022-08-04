@@ -148,8 +148,7 @@ public class GitTool {
         git.exeGit("git checkout " + brandName);
         git.exeGit("git reset --soft head~1");
 
-        Session session = new Session();
-        session.buildAndDeployQmsPlatform(frontEndName);
+        JobManager.buildAndDeployQmsPlatform(frontEndName);
 
     }
 }
