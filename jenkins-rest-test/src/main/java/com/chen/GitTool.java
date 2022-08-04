@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -150,7 +149,7 @@ public class GitTool {
         git.exeGit("git reset --soft head~1");
 
         Session session = new Session();
-        session.buildAndDeploy(frontEndName,"http://192.168.26.2:8080");
+        session.buildAndDeployQmsPlatform(frontEndName);
 
     }
 }

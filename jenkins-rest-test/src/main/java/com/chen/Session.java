@@ -123,25 +123,28 @@ public class Session {
     }
 
 
-    public void build(String branchName) throws IOException {
+    public void build(String job, String branchName) throws IOException {
 
-        branchName = URLEncoder.encode(branchName, "utf-8");
         HttpPost httpPost = new HttpPost(host + "/job/QMS/job/qms-platform-build/build?delay=0sec");
         httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
         httpPost.setHeader("Cookie", "JSESSIONID.0f09aa34=" + node);
-        HttpEntity build = EntityBuilder
+        EntityBuilder entityBuilder = EntityBuilder
                 .create()
-                .setContentType(ContentType.APPLICATION_FORM_URLENCODED)
-                .setText("name=branch&value=" +
-                        branchName +
-                        "&statusCode=303&redirectTo=.&Jenkins-Crumb=" +
-                        crumb +
-                        "&json=%7B%22parameter%22%3A+%7B%22name%22%3A+%22branch%22%2C+%22value%22%3A+%22" +
-                        branchName +
-                        "%22%7D%2C+%22statusCode%22%3A+%22303%22%2C+%22redirectTo%22%3A+%22.%22%2C+%22Jenkins-Crumb%22%3A+%22" +
-                        crumb +
-                        "%22%7D&Submit=%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA").build();
-
+                .setContentType(ContentType.APPLICATION_FORM_URLENCODED);
+        if (StringUtils.isNotBlank(branchName)) {
+            branchName = URLEncoder.encode(branchName, "utf-8");
+            entityBuilder
+                    .setText("name=branch&value=" +
+                            branchName +
+                            "&statusCode=303&redirectTo=.&Jenkins-Crumb=" +
+                            crumb +
+                            "&json=%7B%22parameter%22%3A+%7B%22name%22%3A+%22branch%22%2C+%22value%22%3A+%22" +
+                            branchName +
+                            "%22%7D%2C+%22statusCode%22%3A+%22303%22%2C+%22redirectTo%22%3A+%22.%22%2C+%22Jenkins-Crumb%22%3A+%22" +
+                            crumb +
+                            "%22%7D&Submit=%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA");
+        }
+        HttpEntity build = entityBuilder.build();
         httpPost.setEntity(build);
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpEntity entity = httpClient.execute(httpPost).getEntity();
@@ -175,9 +178,9 @@ public class Session {
     }
 
 
-    public void deploy() throws IOException {
+    public void triggerJob(String job) throws IOException {
         CloseableHttpClient httpClient = HttpClients.custom().build();
-        HttpPost post = new HttpPost(host+"/job/QMS/job/qms-platform-deploy/build?delay=0sec");
+        HttpPost post = new HttpPost(host + "/job/QMS/job/" + job + "/build?delay=0sec");
         post.setHeader("Jenkins-Crumb", crumb);
         HttpEntity entity = httpClient.execute(post, context).getEntity();
         String res = EntityUtils.toString(entity);
@@ -217,25 +220,50 @@ public class Session {
         return res.contains(queueName);
     }
 
-    public void buildAndDeploy(String branchName,String host) throws IOException, InterruptedException {
+    public void buildAndDeployQmsPlatform(String branchName) throws IOException, InterruptedException {
         log.info("开始部署分支: {}", branchName);
+        int wait = 3;
+        log.info("开始登录");
+        login(host + "/j_spring_security_check", "dev", "dev0407@");
+        log.info("开始构建");
+        String job = "qms-platform-build";
+        build(job,branchName);
+        TimeUnit.SECONDS.sleep(wait);
+        while (getProcess(job)) {
+            log.info("构建中");
+            TimeUnit.SECONDS.sleep(wait);
+        }
+        System.out.println(getConsole(job));
+        log.info("开始部署");
+        job = "qms-platform-deploy";
+        triggerJob(job);
+        TimeUnit.SECONDS.sleep(wait);
+        while (getProcess(job)) {
+            log.info("部署中");
+            TimeUnit.SECONDS.sleep(wait);
+        }
+        log.info("部署完成");
+    }
+
+    public void buildSync() throws IOException, InterruptedException {
         int wait = 3;
         setHost(host);
         log.info("开始登录");
         login(host + "/j_spring_security_check", "dev", "dev0407@");
         log.info("开始构建");
-        build(branchName);
+        String job = "QmsApiCenter_build_develop";
+        triggerJob(job);
         TimeUnit.SECONDS.sleep(wait);
-        String build = "qms-platform-build";
-        while (getProcess(build)) {
+        while (getProcess(job)) {
             log.info("构建中");
             TimeUnit.SECONDS.sleep(wait);
         }
-        System.out.println(getConsole(build));
+        System.out.println(getConsole(job));
         log.info("开始部署");
-        deploy();
+        job = "QmsApiCenter_deploy";
+        triggerJob(job);
         TimeUnit.SECONDS.sleep(wait);
-        while (getProcess("qms-platform-deploy")) {
+        while (getProcess(job)) {
             log.info("部署中");
             TimeUnit.SECONDS.sleep(wait);
         }
@@ -245,7 +273,8 @@ public class Session {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         Session session = new Session();
-        String branchName = "feature/market-complainV1.0.0-front-end";
-        session.buildAndDeploy(branchName,"http://192.168.26.2:8080");
+//        String branchName = "feature/market-complainV1.0.0-front-end";
+//        session.buildAndDeployQmsPlatform(branchName);
+        session.buildSync();
     }
 }
