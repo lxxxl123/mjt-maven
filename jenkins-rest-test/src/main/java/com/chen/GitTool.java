@@ -3,6 +3,7 @@ package com.chen;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.RuntimeUtil;
+import lombok.Cleanup;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.sql.SQLOutput;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,11 +20,11 @@ import java.util.regex.Pattern;
 @Data
 public class GitTool {
 
-    private File file ;
+    private File file;
 
     private static final Pattern BRANCH_PATTERN = Pattern.compile("\\*\\s([a-zA-Z.\\-/\\d]+)");
 
-    private static final  Pattern CHECKOUT_PATTERN = Pattern.compile("(Switched to branch)|(Already on)|(Your branch is behind)");
+    private static final Pattern CHECKOUT_PATTERN = Pattern.compile("(Switched to branch)|(Already on)|(Your branch is behind)");
 
     private String branch;
 
@@ -30,85 +32,89 @@ public class GitTool {
 
     public String sh = "";
 
-    public GitTool(){
+    public GitTool() {
 //        checkBranch();
     }
 
-    public void setPath(String path){
+    public void setPath(String path) {
         this.file = new File(path);
     }
 
+    public static String readInputStreamtoConsole(InputStream inputStream, String charset) throws IOException {
+        byte[] bytes = new byte[1024];
+        int read;
+        StringBuffer sb = new StringBuffer();
+        @Cleanup
+        InputStream i = inputStream;
+        while ((read = i.read(bytes)) > -1) {
+            String s = new String(bytes, 0, read, charset);
+            System.out.print(s);
+            sb.append(s);
+        }
+        return sb.toString();
+    }
 
     public static String getResult(Process process) {
-        Charset charset = Charset.forName("utf-8");
-        InputStream in = null;
+        String charset = "gbk";
         try {
-            InputStream inputStream = process.getInputStream();
-            byte[] bytes = new byte[1024];
-            int read ;
-            StringBuffer sb = new StringBuffer();
-            while ((read = inputStream.read(bytes)) > -1) {
-                String s = new String(bytes, 0, read, "gbk");
-                System.out.print(s);
-                sb.append(s);
-            }
-            String r1 = IoUtil.read(process.getErrorStream(), charset);
-            String r2 = sb.toString();
-
-            if (StringUtils.isBlank(r1)) {
-                return r2;
+            String r1 = readInputStreamtoConsole(process.getInputStream(), charset);
+            String r2 = readInputStreamtoConsole(process.getErrorStream(), charset);
+            if (StringUtils.isBlank(r2)) {
+                return r1;
             }
             return r1 + "\n" + r2;
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IoUtil.close(in);
             RuntimeUtil.destroy(process);
         }
     }
 
-    public String exeGit(String cmd){
+    public String exeGit(String cmd) {
+        log.info("cmd = {}", cmd);
         Process exec = RuntimeUtil.exec(null, file, cmd);
         String result = getResult(exec);
-        log.info("cmd = {} , res = \n{}", cmd, result);
+//        log.info("cmd = {} , res = \n{}", cmd, result);
         return result;
     }
 
-    public String exeMvn(String cmd){
+    public String exeMvn(String cmd) {
+        log.info("cmd = {}", cmd);
         cmd = cmd.replaceFirst("mvn", mvn);
         Process exec = RuntimeUtil.exec(null, file, cmd);
         String result = getResult(exec);
-        log.info("cmd = {} , res = \n{}", cmd, result);
+//        log.info("cmd = {} , res = \n{}", cmd, result);
         return result;
     }
 
-    public String exeSh(String cmd,File path){
+    public String exeSh(String cmd, File path) {
+        log.info("cmd = {}", cmd);
         cmd = cmd.replaceFirst("sh", sh);
         Process exec = RuntimeUtil.exec(null, path, cmd);
         String result = getResult(exec);
-        log.info("cmd = {} , res = \n{}", cmd, result);
+//        log.info("cmd = {} , res = \n{}", cmd, result);
         return result;
     }
 
 
-    public String moveFile(){
+    public String moveFile() {
         File file = new File((GitTool.class.getResource("/").getFile()));
         String cmd = "sh update-front.sh";
         return exeSh(cmd, file);
     }
 
 
-    public String checkout(String branch){
+    public String checkout(String branch) {
         String res = exeGit("git checkout " + branch);
         Matcher matcher = CHECKOUT_PATTERN.matcher(res);
-        if(!matcher.find()) {
+        if (!matcher.find()) {
             throw new RuntimeException(String.format("check out branch = %s fail", branch));
         }
         this.branch = branch;
         return branch;
     }
 
-    public String checkBranch(){
+    public String checkBranch() {
         String res = exeGit("git branch");
         String curBranch = ReUtil.extractMulti(BRANCH_PATTERN, res, "$1");
         if (StringUtils.isBlank(curBranch)) {
@@ -148,7 +154,7 @@ public class GitTool {
         git.exeGit("git checkout " + brandName);
         git.exeGit("git reset --soft head~1");
 
-        JobManager.buildAndDeployQmsPlatform(frontEndName);
+//        JobManager.buildAndDeployQmsPlatform(frontEndName);
 
     }
 }

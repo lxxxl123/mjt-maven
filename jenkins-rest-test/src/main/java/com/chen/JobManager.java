@@ -38,8 +38,8 @@ public class JobManager {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-//        String branchName = "feature/market-complainV1.0.0-front-end";
-//        buildAndDeployQmsPlatform(branchName);
-        buildSync();
+        String branchName = "feature/market-complainV1.0.0-front-end";
+        buildAndDeployQmsPlatform(branchName);
+//        buildSync();
     }
 }
