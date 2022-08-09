@@ -28,8 +28,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
-import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

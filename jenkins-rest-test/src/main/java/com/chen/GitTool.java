@@ -1,6 +1,5 @@
 package com.chen;
 
-import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.RuntimeUtil;
 import lombok.Cleanup;
@@ -11,8 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
-import java.sql.SQLOutput;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -154,7 +151,7 @@ public class GitTool {
         git.exeGit("git checkout " + brandName);
         git.exeGit("git reset --soft head~1");
 
-//        JobManager.buildAndDeployQmsPlatform(frontEndName);
+        JobManager.buildAndDeployQmsPlatform(frontEndName);
 
     }
 }

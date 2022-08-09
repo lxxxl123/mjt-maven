@@ -33,13 +33,14 @@ public class JobManager {
             public void deploy(String jobName) throws IOException {
                 session.triggerJob(jobName);
             }
-        }.buildAndDeploy("", "QmsApiCenter_deploy");
+        }.buildAndDeploy("QmsApiCenter_build_develop", "QmsApiCenter_deploy");
 
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
+
         String branchName = "feature/market-complainV1.0.0-front-end";
-        buildAndDeployQmsPlatform(branchName);
-//        buildSync();
+//        buildAndDeployQmsPlatform(branchName);
+        buildSync();
     }
 }
