@@ -1,9 +1,13 @@
 package com.chen;
 
 import cn.hutool.http.HtmlUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 import java.util.Arrays;
 
+@Slf4j
 public class Test {
 
 
@@ -23,6 +27,10 @@ public class Test {
 
         }
         return sb.toString();
+    }
+
+    public static void main(String[] args) {
+
     }
 
 

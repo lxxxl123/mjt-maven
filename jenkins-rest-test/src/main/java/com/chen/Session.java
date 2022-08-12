@@ -1,10 +1,14 @@
 package com.chen;
 
+import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.ReUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HtmlUtil;
+import lombok.Cleanup;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.CharSequenceUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HeaderElement;
 import org.apache.http.HttpEntity;
@@ -18,6 +22,7 @@ import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.protocol.BasicHttpContext;
@@ -37,12 +42,17 @@ import java.util.regex.Pattern;
 @Slf4j
 public class Session {
 
-    public static Pattern CRUMB_PATTERN = Pattern.compile("data-crumb-value=\"(\\w+)\"");
+    public static final String AUTHENTICATION_REQUIRED = "Authentication required";
+    public static final String TIME_REMAIN = "预计剩余时间：";
+    public static final String PENDING_WAITING_FOR_NEXT_AVAILABLE_EXECUTOR = "pending—Waiting for next available executor";
+    public static final String FINISHED_FAILURE = "Finished: FAILURE";
+    public static final String JOB_QMS_JOB = "/job/QMS/job/";
+    public static final Pattern CRUMB_PATTERN = Pattern.compile("data-crumb-value=\"(\\w+)\"");
 
 
     public static class HttpGetWithEntity extends HttpEntityEnclosingRequestBase {
 
-        public final static String METHOD_NAME = "GET";
+        public static final String METHOD_NAME = "GET";
         public HttpGetWithEntity(final String url) {
             super();
             setURI(URI.create(url));
@@ -64,8 +74,8 @@ public class Session {
         return cookieStore;
     }
 
-    public HttpContext context = new BasicHttpContext();
-    public BasicCookieStore cookie;
+    protected HttpContext context = new BasicHttpContext();
+    protected BasicCookieStore cookie;
 
     @Getter
     public String crumb;
@@ -80,6 +90,7 @@ public class Session {
     private String jobSeq;
 
 
+
     public void login(String url, String username, String password) throws IOException {
         URI uri = URI.create(url);
 
@@ -89,7 +100,7 @@ public class Session {
                 .setContentType(ContentType.APPLICATION_FORM_URLENCODED)
                 .setText(raw)
                 .build();
-
+        @Cleanup
         CloseableHttpClient httpClient = HttpClients.custom()
                 .build();
 
@@ -117,15 +128,15 @@ public class Session {
 
 
     public static void check(String res){
-        if (res.contains("Authentication required")) {
-            throw new RuntimeException("Authentication required");
+        if (res.contains(AUTHENTICATION_REQUIRED)) {
+            throw new RuntimeException(AUTHENTICATION_REQUIRED);
         }
     }
 
 
     public void build(String job, String branchName) throws IOException {
 
-        HttpPost httpPost = new HttpPost(host + "/job/QMS/job/qms-platform-build/build?delay=0sec");
+        HttpPost httpPost = new HttpPost(CharSequenceUtil.format("{}/job/QMS/job/{}/build?delay=0sec", host, job));
         httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
         httpPost.setHeader("Cookie", "JSESSIONID.0f09aa34=" + node);
         EntityBuilder entityBuilder = EntityBuilder
@@ -146,9 +157,11 @@ public class Session {
         }
         HttpEntity build = entityBuilder.build();
         httpPost.setEntity(build);
-        CloseableHttpClient httpClient = HttpClients.createDefault();
+        @Cleanup
+        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         HttpEntity entity = httpClient.execute(httpPost).getEntity();
         check(EntityUtils.toString(entity));
+
     }
 
     public static String pickCrumb(String content){
@@ -158,14 +171,15 @@ public class Session {
     }
 
     public boolean getProcess(String jobName) throws IOException {
+        @Cleanup
         CloseableHttpClient httpClient = HttpClients.custom().build();
-        HttpGet get = new HttpGet(host+"/job/QMS/job/" + jobName + "/buildHistory/ajax");
+        HttpGet get = new HttpGet(CharSequenceUtil.format("{}{}{}/buildHistory/ajax", host, JOB_QMS_JOB, jobName));
 
         CloseableHttpResponse execute = httpClient.execute(get, context);
         HttpEntity entity = execute.getEntity();
         String res = EntityUtils.toString(entity);
         check(res);
-        if (res.contains("预计剩余时间：") || res.contains("pending—Waiting for next available executor")) {
+        if (res.contains(TIME_REMAIN) || res.contains(PENDING_WAITING_FOR_NEXT_AVAILABLE_EXECUTOR)) {
             if (jobSeq == null) {
                 jobSeq = ReUtil.extractMulti(String.format("%s/(\\d+)/console", jobName), res, "$1");
             }
@@ -175,13 +189,13 @@ public class Session {
     }
 
     public static String formatHtml(String s) {
-        return HtmlUtil.cleanHtmlTag(s.replaceAll("\n]", "]"));
+        return HtmlUtil.cleanHtmlTag(s.replace("\n]", "]"));
     }
 
 
     public void triggerJob(String job) throws IOException {
         CloseableHttpClient httpClient = HttpClients.custom().build();
-        HttpPost post = new HttpPost(host + "/job/QMS/job/" + job + "/build?delay=0sec");
+        HttpPost post = new HttpPost(host + JOB_QMS_JOB + job + "/build?delay=0sec");
         post.setHeader("Jenkins-Crumb", crumb);
         HttpEntity entity = httpClient.execute(post, context).getEntity();
         String res = EntityUtils.toString(entity);
@@ -190,8 +204,10 @@ public class Session {
 
 
     public String getConsole(String jobName) throws IOException {
+        @Cleanup
         CloseableHttpClient httpClient = HttpClients.custom().build();
-        HttpGet http = new HttpGet(host + "/job/QMS/job/" + jobName + "/" + jobSeq + "/console");
+        httpClient.close();
+        HttpGet http = new HttpGet(host + JOB_QMS_JOB + jobName + "/" + jobSeq + "/console");
         this.jobSeq = null;
         HttpEntity entity = httpClient.execute(http, context).getEntity();
         String res = EntityUtils.toString(entity);
@@ -202,7 +218,7 @@ public class Session {
     }
 
     private void checkConsole(String res) {
-        if (res.contains("Finished: FAILURE")) {
+        if (res.contains(FINISHED_FAILURE)) {
             log.error("build or deploy fail ; msg: \n{}", res);
             throw new RuntimeException("build or deploy fail");
         }
@@ -213,6 +229,7 @@ public class Session {
      * 用法: session.checkStatus("QMS » qms-platform-deploy")
      */
     public boolean checkStatus(String queueName) throws IOException {
+        @Cleanup
         CloseableHttpClient httpClient = HttpClients.custom().build();
         HttpGet method = new HttpGet(host+"/job/QMS/ajaxExecutors");
         method.setHeader("Jenkins-Crumb", crumb);

@@ -13,10 +13,15 @@ import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author chenwh3
+ */
 @Slf4j
 @Data
 public class GitTool {
 
+    public static final String CMD = "cmd = {}";
+    public static final String GIT_COMMIT_AM_TEMP = "git commit -am \"temp\"";
     private File file;
 
     private static final Pattern BRANCH_PATTERN = Pattern.compile("\\*\\s([a-zA-Z.\\-/\\d]+)");
@@ -25,9 +30,9 @@ public class GitTool {
 
     private String branch;
 
-    public String mvn;
+    protected String mvn;
 
-    public String sh = "";
+    protected String sh = "";
 
     public GitTool() {
 //        checkBranch();
@@ -40,12 +45,12 @@ public class GitTool {
     public static String readInputStreamtoConsole(InputStream inputStream, String charset) throws IOException {
         byte[] bytes = new byte[1024];
         int read;
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         @Cleanup
         InputStream i = inputStream;
         while ((read = i.read(bytes)) > -1) {
             String s = new String(bytes, 0, read, charset);
-            System.out.print(s);
+            System.out.println(s);
             sb.append(s);
         }
         return sb.toString();
@@ -68,36 +73,30 @@ public class GitTool {
     }
 
     public String exeGit(String cmd) {
-        log.info("cmd = {}", cmd);
+        log.info(CMD, cmd);
         Process exec = RuntimeUtil.exec(null, file, cmd);
-        String result = getResult(exec);
-//        log.info("cmd = {} , res = \n{}", cmd, result);
-        return result;
+        return getResult(exec);
     }
 
     public String exeMvn(String cmd) {
-        log.info("cmd = {}", cmd);
+        log.info(CMD, cmd);
         cmd = cmd.replaceFirst("mvn", mvn);
         Process exec = RuntimeUtil.exec(null, file, cmd);
-        String result = getResult(exec);
-//        log.info("cmd = {} , res = \n{}", cmd, result);
-        return result;
+        return getResult(exec);
     }
 
     public String exeSh(String cmd, File path) {
-        log.info("cmd = {}", cmd);
+        log.info(CMD, cmd);
         cmd = cmd.replaceFirst("sh", sh);
         Process exec = RuntimeUtil.exec(null, path, cmd);
-        String result = getResult(exec);
-//        log.info("cmd = {} , res = \n{}", cmd, result);
-        return result;
+        return getResult(exec);
     }
 
 
     public String moveFile() {
-        File file = new File((GitTool.class.getResource("/").getFile()));
+        File cFile = new File((GitTool.class.getResource("/").getFile()));
         String cmd = "sh update-front.sh";
-        return exeSh(cmd, file);
+        return exeSh(cmd, cFile);
     }
 
 
@@ -122,11 +121,11 @@ public class GitTool {
         return curBranch;
     }
 
-    public static String brandName = "feature/market-complainV1.0.0";
+    public static final String BRAND_NAME = "feature/market-complainV1.0.0";
 
     public static void main(String[] args) throws IOException, InterruptedException {
         GitTool git = new GitTool();
-        String frontEndName = brandName + "-front-end";
+        String frontEndName = BRAND_NAME + "-front-end";
         git.setMvn("D:\\\\program\\\\apache-maven-3.8.5\\\\bin\\\\mvn.cmd");
         git.setSh("C:\\\\Program Files\\\\Git\\\\bin\\\\sh.exe");
         git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-front\\");
@@ -135,20 +134,20 @@ public class GitTool {
 
         git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-platform\\");
 
-        git.exeGit("git commit -am \"temp\"");
-        git.checkout(brandName);
-        git.exeGit("git commit -am \"temp\"");
+        git.exeGit(GIT_COMMIT_AM_TEMP);
+        git.checkout(BRAND_NAME);
+        git.exeGit(GIT_COMMIT_AM_TEMP);
         git.exeGit("git branch " + frontEndName);
         git.checkout(frontEndName);
-        git.exeGit("git reset --hard " + brandName);
+        git.exeGit("git reset --hard " + BRAND_NAME);
         git.exeGit("git reset --hard head~1");
         git.moveFile();
         git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
-        git.exeGit("git commit -am \"temp\"");
+        git.exeGit(GIT_COMMIT_AM_TEMP);
         git.exeGit("git push --force");
 
 
-        git.exeGit("git checkout " + brandName);
+        git.exeGit("git checkout " + BRAND_NAME);
         git.exeGit("git reset --soft head~1");
 
         JobManager.buildAndDeployQmsPlatform(frontEndName);

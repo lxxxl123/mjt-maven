@@ -255,15 +255,34 @@ public class DesUtil {
     public static void encryptLog(String s) throws Exception {
         System.out.println("加密前的字符 = " + s);
         System.out.println("加密后的字符 = " + encrypt(s));
-
     }
 
-    public static void main(String[] args) {
+
+    public static void decryptLog(String s) throws Exception {
+        System.out.println("加密前的字符 = " + s);
+        System.out.println("加密后的字符 = " + decrypt(s));
+    }
+
+    public static  void entry(){
         try {
             encryptLog("zcallrfc");
             encryptLog("123456");
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public static void decrypt() {
+        try {
+            decryptLog("460a82970d683555");
+            decryptLog("28c33be7af472179ea1acb0b430d5dd5f5f231e7ea3316b6");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        decrypt();
     }
 }

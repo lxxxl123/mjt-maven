@@ -1,47 +1,44 @@
 package com.chen.sap;
 
+import com.alibaba.fastjson.util.TypeUtils;
 import com.chen.sap.sap.SapConnectionPool;
 import com.chen.sap.sap.SapReturnObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.client.utils.DateUtils;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
+/**
+ * @author chenwh3 
+ */
 @Slf4j
 public class SapUtils {
 
-    private static String interfaceId = "1";
+    private static final String INTERFACE_ID = "1";
 
-    public static final String CHAR_X = "X";
-    public static final String KEY_FLAG = "flag";
-    public static final String KEY_MSG = "msg";
-    public static final String KEY_HEAD = "head";
-    public static final String KEY_DETAIl = "detail";
+
     public static final int MAP_DEF_LEN = 16;
-
+    public static final String AUFNR = "AUFNR";
 
 
     private static String[] getDdbtoutTable(){
         return new String[]{"OT_DDBT", "OT_DDZY", "OT_RESB", "OT_AUFM"};
     }
     private static String[][] getDdbtOutputData() {
-        //输出tables
-        String[] outTable = getDdbtoutTable();
         //ddbt表字段 43个
-        String[] ddbtParam = {"MANDT", "AUFNR", "POSNR", "WERKS", "AUART", "GSTRP", "GLTRP", "GLTRS", "GETRI",
+        String[] ddbtParam = {"MANDT", AUFNR, "POSNR", "WERKS", "AUART", "GSTRP", "GLTRP", "GLTRS", "GETRI",
                 "DISPO", "FEVOR", "PLNBEZ", "WEMNG", "WEMNG_TON", "STEXT", "CREATETIME", "PSMNG",
                 "AMEIN", "PRDVERNO", "PRDVERNAME", "PLANBEGDAT", "DCRTDATE", "CCRTER", "ORDGROUPNO",
                 "SYNCFLAG", "TECODATE", "GAMNG", "GMEIN", "PRUEFLOS", "IGMNG", "ERNAM",
                 "AENAM", "AEDAT", "BOMQXGROUP", "GSTRI", "FTRMI", "GSUZI", "GEUZI", "GSTRS", "LGORT",
                 "SUBWEMNG", "GLUZS", "GLUZP"};
         //ddzy表字段 9个
-        String[] ddzyParam = {"AUFNR", "VORNR", "ARBPL", "KOSTL", "KTEXT", "ISM02", "ISERH", "LTXA1", "ISMAX"};
+        String[] ddzyParam = {AUFNR, "VORNR", "ARBPL", "KOSTL", "KTEXT", "ISM02", "ISERH", "LTXA1", "ISMAX"};
         //resb表字段 23个
-        String[] resbParam = {"RSNUM", "RSPOS", "AUFNR", "BDTER", "MATNR", "WERKS", "LGORT", "BDMNG", "MEINS",
+        String[] resbParam = {"RSNUM", "RSPOS", AUFNR, "BDTER", "MATNR", "WERKS", "LGORT", "BDMNG", "MEINS",
                 "ENMNG", "ENWRT", "BWART", "SAKNR", "POSNR", "AUSCH", "GPREIS", "PEINH", "XLOEK",
                 "XWAOK", "KZEAR", "VORNR", "CHARG", "RSNUM2"};
         //aufm表字段 23个
@@ -59,7 +56,7 @@ public class SapUtils {
 
     /**
      * 根据订单号查找订单
-     * @param aufnr
+     * @param aufnr 订单号
      * @return
      */
     private static Map<String, List<HashMap<String, String>>> getDdbtInfoByAufnr(List<String> aufnr) {
@@ -81,7 +78,7 @@ public class SapUtils {
             String[] outTable = getDdbtoutTable();
             String[][] outData = getDdbtOutputData();
 
-            SapReturnObject obj = SapConnectionPool.getResultNew(interfaceId, functionName, null, inTable, inData, outTable, outData, null);
+            SapReturnObject obj = SapConnectionPool.getResultNew(INTERFACE_ID, functionName, null, inTable, inData, outTable, outData, null);
             if (obj != null && obj.getTables() != null) {
                 resultMap = obj.getTables();
             }
@@ -116,7 +113,7 @@ public class SapUtils {
             String[] outTable = getDdbtoutTable();
             String[][] outData = getDdbtOutputData();
 
-            SapReturnObject obj = SapConnectionPool.getResultNew(interfaceId, functionName, null, inTable, inData, outTable, outData, null);
+            SapReturnObject obj = SapConnectionPool.getResultNew(INTERFACE_ID, functionName, null, inTable, inData, outTable, outData, null);
             if (obj != null && obj.getTables() != null) {
                 resultMap = obj.getTables();
             }
@@ -127,17 +124,53 @@ public class SapUtils {
     }
 
     /**
+     * 获取变更的ddbt订单号
+     */
+    public static List<String> getChangedDdbt(Date from, Date to) {
+        Map<String, List<HashMap<String, String>>> resultMap = new HashMap<>(MAP_DEF_LEN);
+        try {
+            String functionName = "Z_QM_DDBT_MODIFY";
+            //输入tables
+            HashMap<String, String> inParam = new HashMap<>(4);
+            inParam.put("F_DATE", DateUtils.formatDate(from, "yyyyMMdd"));
+            inParam.put("T_DATE", DateUtils.formatDate(to, "yyyyMMdd"));
+            inParam.put("F_TIME", DateUtils.formatDate(from, "HHmmss"));
+            inParam.put("T_TIME", DateUtils.formatDate(to, "HHmmss"));
+
+            HashMap<String, String>[][] inData = null;
+
+            String[] outTable = new String[]{"IT_AUFK"};
+            String[][] outData = new String[][]{new String[]{AUFNR}};
+
+            SapReturnObject obj = SapConnectionPool.getResultNew(INTERFACE_ID, functionName, inParam, null, inData, outTable, outData, null);
+            if (obj != null && obj.getTables() != null) {
+                resultMap = obj.getTables();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultMap.get("IT_AUFK").stream().map(e->e.get(AUFNR)).collect(Collectors.toList());
+    }
+
+
+    /**
      * Z_QM_DDBT_INFO
      */
     public static void test1() {
-        System.out.println(getDdbtInfo("20210101", "20220801"));
+        log.info("{}",getDdbtInfo("20210101", "20220801"));
     }
 
     public static void test2() {
-        System.out.println(getDdbtInfoByAufnr(Arrays.asList("000061000001", "000061000002")));
+        log.info("{}",getDdbtInfoByAufnr(Arrays.asList("000061000001", "000061000002")));
+    }
+
+    public static void test3()  {
+        Date from = TypeUtils.castToDate("2022-01-01");
+        Date to = TypeUtils.castToDate("2022-08-01");
+        log.info("{}",getChangedDdbt(from,to));
     }
 
     public static void main(String[] args) {
-        test2();
+        test3();
     }
 }

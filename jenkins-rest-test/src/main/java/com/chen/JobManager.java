@@ -4,6 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+/**
+ * @author chenwh3
+ */
 @Slf4j
 public class JobManager {
 
@@ -22,7 +25,7 @@ public class JobManager {
         }.buildAndDeploy("qms-platform-build", "qms-platform-deploy");
     }
 
-    public static void buildSync() throws IOException, InterruptedException {
+    public static void buildTrigger(String buildName,String jobName) throws IOException, InterruptedException {
         new BuildAndDeployProcess() {
             @Override
             public void build(String jobName) throws IOException {
@@ -33,8 +36,12 @@ public class JobManager {
             public void deploy(String jobName) throws IOException {
                 session.triggerJob(jobName);
             }
-        }.buildAndDeploy("QmsApiCenter_build_develop", "QmsApiCenter_deploy");
+        }.buildAndDeploy(buildName, jobName);
 
+    }
+
+    public static void buildSync() throws IOException, InterruptedException {
+        buildTrigger("QmsApiCenter_build_develop", "QmsApiCenter_deploy");
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -42,5 +49,6 @@ public class JobManager {
         String branchName = "feature/market-complainV1.0.0-front-end";
 //        buildAndDeployQmsPlatform(branchName);
         buildSync();
+//        buildTrigger("1", "1");
     }
 }
