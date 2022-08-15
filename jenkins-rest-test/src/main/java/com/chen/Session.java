@@ -206,7 +206,6 @@ public class Session {
     public String getConsole(String jobName) throws IOException {
         @Cleanup
         CloseableHttpClient httpClient = HttpClients.custom().build();
-        httpClient.close();
         HttpGet http = new HttpGet(host + JOB_QMS_JOB + jobName + "/" + jobSeq + "/console");
         this.jobSeq = null;
         HttpEntity entity = httpClient.execute(http, context).getEntity();

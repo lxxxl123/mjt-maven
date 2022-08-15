@@ -1,5 +1,7 @@
 package com.chen;
 
+import cn.hutool.core.collection.CollStreamUtil;
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.http.HtmlUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Marker;
@@ -29,7 +31,20 @@ public class Test {
         return sb.toString();
     }
 
+
     public static void main(String[] args) {
+
+//        System.out.println(NumberUtil.div("268", "35.5"));
+//        System.out.println(NumberUtil.div("179", "23.67"));
+//
+//        System.out.println(NumberUtil.div("281", "37.7"));
+//        System.out.println(NumberUtil.div("184", "25.16"));
+//        System.out.println(NumberUtil.div("202", "27.67")); //220
+//        System.out.println(NumberUtil.div("231", "31.45"));
+//        System.out.println(NumberUtil.div("219.56", "29.94"));
+//
+//        System.out.println(NumberUtil.div("170", "23.67"));
+//        System.out.println(NumberUtil.div("262", "35.5"));
 
     }
 
