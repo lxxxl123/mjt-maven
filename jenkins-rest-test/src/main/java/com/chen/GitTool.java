@@ -121,7 +121,7 @@ public class GitTool {
         return curBranch;
     }
 
-    public static final String BRAND_NAME = "feature/market-complainV1.0.0";
+    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
 
     public static void main(String[] args) throws IOException, InterruptedException {
         GitTool git = new GitTool();

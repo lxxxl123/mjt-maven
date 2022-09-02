@@ -1,5 +1,7 @@
 package com.chen.sap;
 
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.lang.Console;
 import com.alibaba.fastjson.util.TypeUtils;
 import com.chen.sap.sap.SapConnectionPool;
 import com.chen.sap.sap.SapReturnObject;
@@ -8,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.utils.DateUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -122,34 +125,35 @@ public class SapUtils {
         }
         return resultMap;
     }
-
     /**
      * 获取变更的ddbt订单号
      */
-    public static List<String> getChangedDdbt(Date from, Date to) {
+    public static List<Map> getChangedDdbt(Date from, Date to) {
         Map<String, List<HashMap<String, String>>> resultMap = new HashMap<>(MAP_DEF_LEN);
         try {
             String functionName = "Z_QM_DDBT_MODIFY";
             //输入tables
             HashMap<String, String> inParam = new HashMap<>(4);
-            inParam.put("F_DATE", DateUtils.formatDate(from, "yyyyMMdd"));
-            inParam.put("T_DATE", DateUtils.formatDate(to, "yyyyMMdd"));
-            inParam.put("F_TIME", DateUtils.formatDate(from, "HHmmss"));
-            inParam.put("T_TIME", DateUtils.formatDate(to, "HHmmss"));
+            inParam.put("F_DATE", DateUtil.format(from, "yyyyMMdd"));
+            inParam.put("T_DATE", DateUtil.format(to, "yyyyMMdd"));
+            inParam.put("F_TIME", DateUtil.format(from, "HHmmss"));
+            inParam.put("T_TIME", DateUtil.format(to, "HHmmss"));
 
             HashMap<String, String>[][] inData = null;
 
-            String[] outTable = new String[]{"IT_AUFK"};
-            String[][] outData = new String[][]{new String[]{AUFNR}};
+            String[] outTable = new String[]{"IT_AUFK","OT_AUFM"};
+//            String[] outParam = {"OT_RES"};
+            String[][] outData = new String[][]{new String[]{AUFNR,"AEDAT","AEZEIT","ERDAT","ERFZEIT"},new String[]{"QUANTITY","WEIGHT"}};
 
             SapReturnObject obj = SapConnectionPool.getResultNew(INTERFACE_ID, functionName, inParam, null, inData, outTable, outData, null);
             if (obj != null && obj.getTables() != null) {
                 resultMap = obj.getTables();
+                log.info("{}", (List) resultMap.get("OT_AUFM"));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return resultMap.get("IT_AUFK").stream().map(e->e.get(AUFNR)).collect(Collectors.toList());
+        return (List)resultMap.get("IT_AUFK");
     }
 
 
@@ -165,8 +169,8 @@ public class SapUtils {
     }
 
     public static void test3()  {
-        Date from = TypeUtils.castToDate("2022-01-01");
-        Date to = TypeUtils.castToDate("2022-08-01");
+        Date from = TypeUtils.castToDate("2022-01-25 00:00:00");
+        Date to = TypeUtils.castToDate("2022-01-28 00:00:00");
         log.info("{}",getChangedDdbt(from,to));
     }
 

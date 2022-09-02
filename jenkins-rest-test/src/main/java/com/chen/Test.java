@@ -1,13 +1,20 @@
 package com.chen;
 
 import cn.hutool.core.collection.CollStreamUtil;
+import cn.hutool.core.lang.Snowflake;
+import cn.hutool.core.lang.generator.SnowflakeGenerator;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.http.HtmlUtil;
+import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 public class Test {
@@ -32,19 +39,22 @@ public class Test {
     }
 
 
-    public static void main(String[] args) {
+    public static Map<String,String> test(){
 
-//        System.out.println(NumberUtil.div("268", "35.5"));
-//        System.out.println(NumberUtil.div("179", "23.67"));
-//
-//        System.out.println(NumberUtil.div("281", "37.7"));
-//        System.out.println(NumberUtil.div("184", "25.16"));
-//        System.out.println(NumberUtil.div("202", "27.67")); //220
-//        System.out.println(NumberUtil.div("231", "31.45"));
-//        System.out.println(NumberUtil.div("219.56", "29.94"));
-//
-//        System.out.println(NumberUtil.div("170", "23.67"));
-//        System.out.println(NumberUtil.div("262", "35.5"));
+        HashMap<String, String> map = new HashMap<>();
+        try {
+            map.put("1", "1");
+            return map;
+        } finally {
+            map.put("2", "2");
+        }
+    }
+
+    public static void main(String[] args) throws Exception{
+        Snowflake snow = new Snowflake();
+        for (int i = 0; i < 100; i++) {
+            System.out.println(snow.nextId());
+        }
 
     }
 
