@@ -265,7 +265,7 @@ public class DesUtil {
 
     public static  void entry(){
         try {
-            encryptLog("zcallrfc");
+            encryptLog("9696483debb2a134");
             encryptLog("123456");
         } catch (Exception e) {
             e.printStackTrace();
@@ -275,8 +275,8 @@ public class DesUtil {
 
     public static void decrypt() {
         try {
-            decryptLog("4aa353f0a968a522");
-            decryptLog("c22d2803f5d481ca");
+            decryptLog("460a82970d683555");
+            decryptLog("9696483debb2a134");
         } catch (Exception e) {
             e.printStackTrace();
         }

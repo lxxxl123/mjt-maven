@@ -40,15 +40,15 @@ public class JobManager {
 
     }
 
-    public static void buildSync() throws IOException, InterruptedException {
+    public static void buildApi() throws IOException, InterruptedException {
         buildTrigger("QmsApiCenter_build_develop", "QmsApiCenter_deploy");
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        String branchName = "feature/chargReport-v1.0.0";
-        buildAndDeployQmsPlatform(branchName);
-//        buildSync();
+//        String branchName = "feature/chargReport-v1.0.0";
+//        buildAndDeployQmsPlatform(branchName);
+        buildApi();
 //        buildTrigger("1", "1");
     }
 }

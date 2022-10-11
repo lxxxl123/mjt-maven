@@ -121,36 +121,47 @@ public class GitTool {
         return curBranch;
     }
 
-    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
+//    public static final String BRAND_NAME = "feature/market-complainV1.0.0";
+//    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
+    public static final String BRAND_NAME = "feature/sampleCheckIn-v1.0.0";
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+
+    public static void build() throws Exception {
+
         GitTool git = new GitTool();
         String frontEndName = BRAND_NAME + "-front-end";
         git.setMvn("D:\\\\program\\\\apache-maven-3.8.5\\\\bin\\\\mvn.cmd");
         git.setSh("C:\\\\Program Files\\\\Git\\\\bin\\\\sh.exe");
         git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-front\\");
-        //build
+        //build front end
         git.exeMvn("mvn clean install -f pom.xml");
+//        git.moveFile();
+
 
         git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-platform\\");
 
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.checkout(BRAND_NAME);
         git.exeGit(GIT_COMMIT_AM_TEMP);
+        git.exeGit("git rebase origin/master");
         git.exeGit("git branch " + frontEndName);
         git.checkout(frontEndName);
         git.exeGit("git reset --hard " + BRAND_NAME);
-        git.exeGit("git reset --hard head~1");
+//        git.exeGit("git reset --hard head~1");
         git.moveFile();
         git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.exeGit("git push --force");
 
 
-        git.exeGit("git checkout " + BRAND_NAME);
-        git.exeGit("git reset --soft head~1");
+        git.exeGit("git checkout -f " + BRAND_NAME);
+//        git.exeGit("git reset --soft head~1");
 
         JobManager.buildAndDeployQmsPlatform(frontEndName);
+    }
+
+    public static void main(String[] args) throws Exception{
+        build();
 
     }
 }

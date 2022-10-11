@@ -2,6 +2,7 @@ package chen.util;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * @author chenwh
@@ -51,6 +52,27 @@ public class TreeUtils {
                     ((List) map.get(key)).add(data);
                 } else {
                     map.putIfAbsent(key, new TreeMap(comparators[i+1]==null?Comparator.naturalOrder():comparators[i+1]));
+                    map = (TreeMap<E, Object>) map.get(key);
+                }
+            }
+        }
+        return head;
+
+    }
+
+    public  static <T,E> Map getMapTree(List<T> datas, E nullKey , List<Function<T,E>> getMethods
+            , Supplier<? extends Map<E,Object>> newMap){
+
+        Map<E, Object> head = newMap.get();
+        for (T data : datas) {
+            Map<E, Object> map = head;
+            for (int i = 0; i < getMethods.size(); i++) {
+                E key = Optional.ofNullable(getMethods.get(i).apply(data)).orElse(nullKey);
+                if (i == getMethods.size() - 1) {
+                    map.putIfAbsent(key, new ArrayList<>());
+                    ((List) map.get(key)).add(data);
+                } else {
+                    map.putIfAbsent(key, newMap.get());
                     map = (TreeMap<E, Object>) map.get(key);
                 }
             }
