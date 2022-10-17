@@ -275,8 +275,10 @@ public class DesUtil {
 
     public static void decrypt() {
         try {
-            decryptLog("460a82970d683555");
-            decryptLog("9696483debb2a134");
+//            decryptLog("460a82970d683555"); //sa
+//            decryptLog("9696483debb2a134"); // ht123
+            decryptLog("eb5b9cbe4fbf7185"); //ht
+            decryptLog("00ad2c8e756fac19f5f231e7ea3316b6"); // 7HJIv5kU
         } catch (Exception e) {
             e.printStackTrace();
         }
