@@ -32,6 +32,8 @@ public class GitTool {
 
     protected String mvn;
 
+    private String charset = "gbk";
+
     protected String sh = "";
 
     public GitTool() {
@@ -56,8 +58,8 @@ public class GitTool {
         return sb.toString();
     }
 
-    public static String getResult(Process process) {
-        String charset = "gbk";
+    public String getResult(Process process) {
+        String charset = this.charset;
         try {
             String r1 = readInputStreamtoConsole(process.getInputStream(), charset);
             String r2 = readInputStreamtoConsole(process.getErrorStream(), charset);
@@ -123,22 +125,24 @@ public class GitTool {
 
 //    public static final String BRAND_NAME = "feature/market-complainV1.0.0";
 //    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
-    public static final String BRAND_NAME = "feature/sampleCheckIn-v1.0.0";
+//    public static final String BRAND_NAME = "feature/sampleCheckIn-v1.0.0";
+
+    public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
 
 
     public static void build() throws Exception {
 
         GitTool git = new GitTool();
+        git.setCharset("gbk");
         String frontEndName = BRAND_NAME + "-front-end";
-        git.setMvn("D:\\\\program\\\\apache-maven-3.8.5\\\\bin\\\\mvn.cmd");
+        git.setMvn("D:\\\\code\\\\maven\\\\apache-maven-3.8.6\\\\bin\\\\mvn.cmd");
         git.setSh("C:\\\\Program Files\\\\Git\\\\bin\\\\sh.exe");
-        git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-front\\");
+        git.setPath("D:\\20221014\\qms-front\\");
         //build front end
-        git.exeMvn("mvn clean install -f pom.xml");
-//        git.moveFile();
+//        git.exeMvn("mvn clean install -f pom.xml");
 
 
-        git.setPath("C:\\Users\\chenwh3\\IdeaProjects\\qms-platform\\");
+        git.setPath("D:\\20221014\\qms-platform\\");
 
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.checkout(BRAND_NAME);
