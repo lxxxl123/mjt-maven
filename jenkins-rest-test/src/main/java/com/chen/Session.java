@@ -128,7 +128,6 @@ public class Session {
 
 
     public static void check(String res){
-        System.out.println(res);
         if (res.contains(AUTHENTICATION_REQUIRED)) {
             throw new RuntimeException(AUTHENTICATION_REQUIRED);
         }
