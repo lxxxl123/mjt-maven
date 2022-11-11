@@ -128,6 +128,7 @@ public class Session {
 
 
     public static void check(String res){
+        System.out.println(res);
         if (res.contains(AUTHENTICATION_REQUIRED)) {
             throw new RuntimeException(AUTHENTICATION_REQUIRED);
         }
@@ -138,7 +139,7 @@ public class Session {
 
         HttpPost httpPost = new HttpPost(CharSequenceUtil.format("{}/job/QMS/job/{}/build?delay=0sec", host, job));
         httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
-        httpPost.setHeader("Cookie", "JSESSIONID.0f09aa34=" + node);
+        httpPost.setHeader("Cookie", "JSESSIONID.e761632a=" + node);
         EntityBuilder entityBuilder = EntityBuilder
                 .create()
                 .setContentType(ContentType.APPLICATION_FORM_URLENCODED);

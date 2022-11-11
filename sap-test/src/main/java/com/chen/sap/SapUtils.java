@@ -5,6 +5,7 @@ import cn.hutool.core.lang.Console;
 import com.alibaba.fastjson.util.TypeUtils;
 import com.chen.sap.sap.SapConnectionPool;
 import com.chen.sap.sap.SapReturnObject;
+import com.sap.mw.jco.JCO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -175,6 +176,8 @@ public class SapUtils {
     }
 
     public static void main(String[] args) {
+//        JCO.createClient(new Properties());
+//
         test3();
     }
 }

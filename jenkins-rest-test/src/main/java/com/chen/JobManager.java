@@ -46,6 +46,7 @@ public class JobManager {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
+
 //        String branchName = "feature/chargReport-v1.0.0";
 //        buildAndDeployQmsPlatform(branchName);
         buildApi();
