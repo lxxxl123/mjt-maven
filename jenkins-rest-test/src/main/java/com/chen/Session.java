@@ -133,13 +133,17 @@ public class Session {
         }
     }
 
+    /**
+     * //TODO jenkins 更新时需要手动上页面获取
+     */
+    public static final String sessionId = "e761632a";
 
     public void build(String job, String branchName) throws IOException {
         branchName = "origin/" + branchName;
 
         HttpPost httpPost = new HttpPost(CharSequenceUtil.format("{}/job/QMS/job/{}/build?delay=0sec", host, job));
         httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
-        httpPost.setHeader("Cookie", "JSESSIONID.e761632a=" + node);
+        httpPost.setHeader("Cookie", String.format("JSESSIONID.%s=%s", sessionId, node));
         EntityBuilder entityBuilder = EntityBuilder
                 .create()
                 .setContentType(ContentType.APPLICATION_FORM_URLENCODED);
