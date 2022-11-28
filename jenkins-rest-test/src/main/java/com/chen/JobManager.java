@@ -40,18 +40,7 @@ public class JobManager {
 
     }
 
-    public static void buildApi() throws IOException, InterruptedException {
-        buildTrigger("QmsApiCenter_build_develop", "QmsApiCenter_deploy");
-    }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-
-        GitTool gitTool = new GitTool();
-        gitTool.moveFile("update-front-prod");
-
-//        String branchName = "feature/chargReport-v1.0.0";
-//        buildAndDeployQmsPlatform(branchName);
-        buildApi();
-//        buildTrigger("1", "1");
     }
 }

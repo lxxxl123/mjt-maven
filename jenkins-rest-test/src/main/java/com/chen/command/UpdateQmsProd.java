@@ -1,13 +1,15 @@
 package com.chen.command;
 
-import com.chen.CopyUtils;
 import com.chen.GitTool;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class UpdateFrontEndProd {
+/**
+ * @author chenwh3
+ */
+public class UpdateQmsProd {
 
     public static void main(String[] args) throws IOException {
         GitTool git = new GitTool();

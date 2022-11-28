@@ -18,9 +18,4 @@ public class CopyUtils {
         }
     }
 
-    public static void main(String[] args) {
-        String oriPath = "D:\\20221014\\idea-workspace\\qmsapicenter";
-        String aimPath = "D:\\20221014\\qmsApicenter\\qmsApiCenter";
-        copyFile(oriPath, aimPath, "git diff --name-only head head~1");
-    }
 }
