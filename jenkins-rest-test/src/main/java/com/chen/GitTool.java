@@ -142,9 +142,7 @@ public class GitTool {
          */
 //        git.exeMvn("mvn clean install -f pom.xml");
 
-
         git.setPath("D:\\20221014\\qms-platform\\");
-
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.checkout(BRAND_NAME);
         git.exeGit(GIT_COMMIT_AM_TEMP);
@@ -152,16 +150,11 @@ public class GitTool {
         git.exeGit("git branch " + frontEndName);
         git.checkout(frontEndName);
         git.exeGit("git reset --hard " + BRAND_NAME);
-//        git.exeGit("git reset --hard head~1");
         git.moveFile("sh update-front.sh");
         git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.exeGit("git push --force");
-
-
         git.exeGit("git checkout -f " + BRAND_NAME);
-//        git.exeGit("git reset --soft head~1");
-
         JobManager.buildAndDeployQmsPlatform(frontEndName);
     }
 
