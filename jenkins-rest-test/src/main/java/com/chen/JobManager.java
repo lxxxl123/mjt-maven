@@ -46,6 +46,8 @@ public class JobManager {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
+        GitTool gitTool = new GitTool();
+        gitTool.moveFile("update-front-prod");
 
 //        String branchName = "feature/chargReport-v1.0.0";
 //        buildAndDeployQmsPlatform(branchName);

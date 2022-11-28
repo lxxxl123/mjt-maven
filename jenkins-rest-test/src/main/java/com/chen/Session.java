@@ -135,6 +135,7 @@ public class Session {
 
 
     public void build(String job, String branchName) throws IOException {
+        branchName = "origin/" + branchName;
 
         HttpPost httpPost = new HttpPost(CharSequenceUtil.format("{}/job/QMS/job/{}/build?delay=0sec", host, job));
         httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
