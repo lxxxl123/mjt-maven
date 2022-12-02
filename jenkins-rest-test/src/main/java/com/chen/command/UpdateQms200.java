@@ -35,6 +35,7 @@ public class UpdateQms200 {
             git.exeMvn("mvn clean install -f pom.xml");
         }
 
+        // 处理后端数据
         git.setPath("D:\\20221014\\qms-platform\\");
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.checkout(BRAND_NAME);
