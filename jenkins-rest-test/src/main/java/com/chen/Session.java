@@ -2,13 +2,11 @@ package com.chen;
 
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.ReUtil;
-import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HtmlUtil;
 import lombok.Cleanup;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.CharSequenceUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HeaderElement;
 import org.apache.http.HttpEntity;
@@ -50,19 +48,6 @@ public class Session {
     public static final Pattern CRUMB_PATTERN = Pattern.compile("data-crumb-value=\"(\\w+)\"");
 
 
-    public static class HttpGetWithEntity extends HttpEntityEnclosingRequestBase {
-
-        public static final String METHOD_NAME = "GET";
-        public HttpGetWithEntity(final String url) {
-            super();
-            setURI(URI.create(url));
-        }
-        @Override
-        public String getMethod() {
-            return METHOD_NAME;
-        }
-    }
-
     public  BasicCookieStore buildCookie(String ip , HttpResponse httpResponse){
         HeaderElement element = httpResponse.getHeaders("Set-Cookie")[0].getElements()[0];
         BasicCookieStore cookieStore = new BasicCookieStore();
@@ -89,29 +74,33 @@ public class Session {
 
     private String jobSeq;
 
+    private String sessionIdPrefix;
+
 
 
     public void login(String url, String username, String password) throws IOException {
         URI uri = URI.create(url);
 
+
+        @Cleanup
+        CloseableHttpClient httpClient = HttpClients.custom()
+                .build();
+
+        //get请求随机获取 sessionId
+        HttpGet httpGet = new HttpGet(url);
+        CloseableHttpResponse res = httpClient.execute(httpGet);
+        buildCookie(uri.getHost(), res);
+
+        this.sessionIdPrefix = cookie.getCookies().get(0).getName().replace("JSESSIONID.", "");
+
+        //post请求登录该sessionId
+        HttpPost httpPost = new HttpPost(url);
         String raw = MessageFormat.format("j_username={0}&j_password={1}&from=%2F&Submit=%E7%99%BB%E5%BD%95", username, URLEncoder.encode(password, "utf-8"));
         HttpEntity build = EntityBuilder
                 .create()
                 .setContentType(ContentType.APPLICATION_FORM_URLENCODED)
                 .setText(raw)
                 .build();
-        @Cleanup
-        CloseableHttpClient httpClient = HttpClients.custom()
-                .build();
-
-        //get请求随机获取 sessionId
-        HttpGetWithEntity httpGet = new HttpGetWithEntity(url);
-        httpGet.setEntity(build);
-        CloseableHttpResponse res = httpClient.execute(httpGet);
-        buildCookie(uri.getHost(), res);
-
-        //post请求获取可用 sessionId
-        HttpPost httpPost = new HttpPost(url);
         httpPost.setEntity(build);
         res = httpClient.execute(httpPost, context);
         buildCookie(uri.getHost(), res);
@@ -133,17 +122,13 @@ public class Session {
         }
     }
 
-    /**
-     * //TODO jenkins 更新时需要手动上页面获取
-     */
-    public static final String sessionId = "e761632a";
 
     public void build(String job, String branchName) throws IOException {
         branchName = "origin/" + branchName;
 
         HttpPost httpPost = new HttpPost(CharSequenceUtil.format("{}/job/QMS/job/{}/build?delay=0sec", host, job));
         httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
-        httpPost.setHeader("Cookie", String.format("JSESSIONID.%s=%s", sessionId, node));
+        httpPost.setHeader("Cookie", String.format("JSESSIONID.%s=%s", sessionIdPrefix, node));
         EntityBuilder entityBuilder = EntityBuilder
                 .create()
                 .setContentType(ContentType.APPLICATION_FORM_URLENCODED);
@@ -165,6 +150,7 @@ public class Session {
         @Cleanup
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         HttpEntity entity = httpClient.execute(httpPost).getEntity();
+        System.out.println(EntityUtils.toString(entity));
         check(EntityUtils.toString(entity));
 
     }
