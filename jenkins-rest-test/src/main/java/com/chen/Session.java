@@ -157,8 +157,11 @@ public class Session {
 
     public static String pickCrumb(String content){
         Matcher matcher = CRUMB_PATTERN.matcher(content);
-        matcher.find();
-        return matcher.group(1);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }else{
+            throw new RuntimeException("登录失败 , 无法获取crumb");
+        }
     }
 
     public boolean getProcess(String jobName) throws IOException {
