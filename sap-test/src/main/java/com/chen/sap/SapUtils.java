@@ -1,16 +1,29 @@
 package com.chen.sap;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Console;
+import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.ReflectUtil;
 import com.alibaba.fastjson.util.TypeUtils;
+import com.chen.sap.anno.SapField;
+import com.chen.sap.anno.SapTable;
+import com.chen.sap.entity.InTableInf;
+import com.chen.sap.entity.OutTableInf;
 import com.chen.sap.sap.SapConnectionPool;
 import com.chen.sap.sap.SapReturnObject;
 import com.sap.mw.jco.JCO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.utils.DateUtils;
+import reactor.util.function.Tuple3;
 
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -175,9 +188,85 @@ public class SapUtils {
         log.info("{}",getChangedDdbt(from,to));
     }
 
+
+    public static List<HashMap<String, String>> getAufnr2Sv(String aufnr) {
+        SapReturnObject sapResult = new SapReturnObject();
+        String functionName = "ZQCRFC_AUFNR2SV";
+
+        HashMap<String, String> inParam = new HashMap<>();
+        //单号
+        inParam.put("PAUFNR", aufnr);
+
+        String[] outTable = {"TB_RETURN"};
+        String[] param = {"ARBID", "KTEXT", "MATNR", "MAKTX", "AUFNR", "VORNR", "WERKS"};
+        String[][] outData = new String[2][param.length];
+        outData[0] = param;
+
+        SapReturnObject newResult = SapConnectionPool.getResultNew(INTERFACE_ID, functionName, inParam, null, null, outTable, outData, null);
+        return newResult.getTables().get("TB_RETURN");
+    }
+
+    public static List<List<? extends OutTableInf>> runFunc(String functionName , Map<String,String> paramMap, List<? extends InTableInf> ins
+            , List<Class<? extends OutTableInf>> outs){
+        String[] inTable = null;
+        HashMap<String,String>[][] inTableDatas = null;
+        /**
+         * 创建inTable
+         */
+        if (ins == null) {
+            //todo 根据ins构建入参表
+        }
+
+        /**
+         * 创建outTable
+         */
+        List<String> outTables = new ArrayList<>();
+        String[][] outTableDatas = new String[outs.size()][];
+        for (int i = 0; i < outs.size(); i++) {
+            Class<? extends OutTableInf> out = outs.get(i);
+            SapTable sapTable = out.getAnnotation(SapTable.class);
+            outTables.add(sapTable.name().toUpperCase());
+            Field[] fields = ReflectUtil.getFields(out);
+            List<String> list = Arrays.stream(fields).map(e -> {
+                SapField sapField = e.getAnnotation(SapField.class);
+                if (sapField != null) {
+                    return sapField.name();
+                } else {
+                    return e.getName();
+                }
+            }).collect(Collectors.toList());
+            outTableDatas[i] = list.toArray(new String[]{});
+        }
+        SapReturnObject newResult = SapConnectionPool.getResultNew(INTERFACE_ID, functionName, new HashMap<>(paramMap), inTable, inTableDatas, outTables.toArray(new String[]{}), outTableDatas, null);
+
+        /**
+         * 获取返回值
+         */
+        HashMap<String, List<HashMap<String, String>>> tables = newResult.getTables();
+        CopyOptions copyOptions = new CopyOptions();
+        copyOptions.setIgnoreCase(true);
+        List<List<? extends OutTableInf>>  res = new ArrayList<>();
+        for (int i = 0; i < outTables.size(); i++) {
+            String outTable = outTables.get(i);
+            Class<? extends OutTableInf> clazz = outs.get(i);
+            List<HashMap<String, String>> table = tables.get(outTable);
+            List<OutTableInf> list = table.stream().map(e -> {
+                OutTableInf instance = ReflectUtil.newInstanceIfPossible(clazz);
+                BeanUtil.copyProperties(table, instance, copyOptions);
+                return instance;
+            }).collect(Collectors.toList());
+            res.add(list);
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
 //        JCO.createClient(new Properties());
 //
-        test3();
+//        test3();
+//
+//        System.out.println(getAufnr2Sv("61"));
+
+
     }
 }
