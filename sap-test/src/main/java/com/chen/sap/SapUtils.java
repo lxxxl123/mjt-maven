@@ -2,34 +2,32 @@ package com.chen.sap;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.lang.Console;
-import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.map.MapBuilder;
+import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.ReflectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.util.TypeUtils;
 import com.chen.sap.anno.SapField;
 import com.chen.sap.anno.SapTable;
-import com.chen.sap.entity.InTableInf;
-import com.chen.sap.entity.OutTableInf;
+import com.chen.sap.entity.impl.AufnrPre;
 import com.chen.sap.sap.SapConnectionPool;
 import com.chen.sap.sap.SapReturnObject;
 import com.sap.mw.jco.JCO;
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.client.utils.DateUtils;
-import reactor.util.function.Tuple3;
 
 import java.lang.reflect.Field;
-import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * @author chenwh3 
+ * @author chenwh3
  */
 @Slf4j
 public class SapUtils {
@@ -206,8 +204,28 @@ public class SapUtils {
         return newResult.getTables().get("TB_RETURN");
     }
 
-    public static List<List<? extends OutTableInf>> runFunc(String functionName , Map<String,String> paramMap, List<? extends InTableInf> ins
-            , List<Class<? extends OutTableInf>> outs){
+    /**
+     * 根据注解创建sap的字段映射
+     */
+    private static Map<String, String> buildFieldMap(Class<?> clazz){
+        Field[] fields = ReflectUtil.getFields(clazz);
+        // sap : 内存中的字段名
+        HashMap<String, String> fieldNameMap = new LinkedHashMap<>(fields.length);
+        Arrays.stream(fields).forEach(e -> {
+            SapField sapField = e.getAnnotation(SapField.class);
+            String sapFieldName;
+            if (sapField != null) {
+                sapFieldName = sapField.name();
+            } else {
+                sapFieldName = e.getName().toUpperCase();
+            }
+            fieldNameMap.put(sapFieldName, e.getName());
+        });
+        return fieldNameMap;
+    }
+
+    private static List<List<?>> runFunc(String functionName , Map<?,?> paramMap, List<?> ins
+            , List<Class<?>> outs){
         String[] inTable = null;
         HashMap<String,String>[][] inTableDatas = null;
         /**
@@ -222,22 +240,21 @@ public class SapUtils {
          */
         List<String> outTables = new ArrayList<>();
         String[][] outTableDatas = new String[outs.size()][];
+        List<Map<String, String>> fieldNameMaps = new ArrayList<>();
         for (int i = 0; i < outs.size(); i++) {
-            Class<? extends OutTableInf> out = outs.get(i);
+            Class<?> out = outs.get(i);
             SapTable sapTable = out.getAnnotation(SapTable.class);
             outTables.add(sapTable.name().toUpperCase());
-            Field[] fields = ReflectUtil.getFields(out);
-            List<String> list = Arrays.stream(fields).map(e -> {
-                SapField sapField = e.getAnnotation(SapField.class);
-                if (sapField != null) {
-                    return sapField.name();
-                } else {
-                    return e.getName();
-                }
-            }).collect(Collectors.toList());
-            outTableDatas[i] = list.toArray(new String[]{});
+            Map<String, String> fieldNameMap = buildFieldMap(out);
+            fieldNameMaps.add(fieldNameMap);
+            outTableDatas[i] = fieldNameMap.keySet().toArray(new String[]{});
         }
-        SapReturnObject newResult = SapConnectionPool.getResultNew(INTERFACE_ID, functionName, new HashMap<>(paramMap), inTable, inTableDatas, outTables.toArray(new String[]{}), outTableDatas, null);
+        HashMap<String,String> map = new HashMap<>();
+        for (Map.Entry<?, ?> entry : paramMap.entrySet()) {
+            map.put(StrUtil.toString(entry.getKey()), StrUtil.toString(entry.getValue()));
+        }
+        SapReturnObject newResult = SapConnectionPool.getResultNew(INTERFACE_ID
+                    , functionName, map, inTable, inTableDatas, outTables.toArray(new String[]{}), outTableDatas, null);
 
         /**
          * 获取返回值
@@ -245,25 +262,29 @@ public class SapUtils {
         HashMap<String, List<HashMap<String, String>>> tables = newResult.getTables();
         CopyOptions copyOptions = new CopyOptions();
         copyOptions.setIgnoreCase(true);
-        List<List<? extends OutTableInf>>  res = new ArrayList<>();
+        List<List<?>>  res = new ArrayList<>();
         for (int i = 0; i < outTables.size(); i++) {
+            copyOptions.setFieldMapping(fieldNameMaps.get(i));
             String outTable = outTables.get(i);
-            Class<? extends OutTableInf> clazz = outs.get(i);
+            Class<?> clazz = outs.get(i);
             List<HashMap<String, String>> table = tables.get(outTable);
-            List<OutTableInf> list = table.stream().map(e -> {
-                OutTableInf instance = ReflectUtil.newInstanceIfPossible(clazz);
-                BeanUtil.copyProperties(table, instance, copyOptions);
-                return instance;
-            }).collect(Collectors.toList());
+            List<Object> list = table.stream().map(e -> BeanUtil.mapToBean(e, clazz,true, copyOptions)).collect(Collectors.toList());
             res.add(list);
         }
         return res;
+    }
+
+    private static <T> List<T> runFuncWithParamForOne(String functionName, Map<?, ?> paramMap
+            , Class<T> out){
+        List<List<?>> res = runFunc(functionName, paramMap, null, ListUtil.of(out));
+        return (List<T>)res.get(0);
     }
 
     public static void main(String[] args) {
 //        JCO.createClient(new Properties());
 //
 //        test3();
+        System.out.println(runFuncWithParamForOne("ZQCRFC_AUFNR2SV", MapBuilder.create().put("PAUFNR", "6100000").build(), AufnrPre.class));
 //
 //        System.out.println(getAufnr2Sv("61"));
 
