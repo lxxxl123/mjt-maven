@@ -2,9 +2,11 @@ package com.chen.sap;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.map.MapBuilder;
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -12,6 +14,8 @@ import com.alibaba.fastjson.util.TypeUtils;
 import com.chen.sap.anno.SapField;
 import com.chen.sap.anno.SapTable;
 import com.chen.sap.entity.impl.AufnrPre;
+import com.chen.sap.entity.impl.MatnrExp;
+import com.chen.sap.entity.impl.MatnrExpIn;
 import com.chen.sap.sap.SapConnectionPool;
 import com.chen.sap.sap.SapReturnObject;
 import com.sap.mw.jco.JCO;
@@ -197,17 +201,40 @@ public class SapUtils {
 
         String[] outTable = {"TB_RETURN"};
         String[] param = {"ARBID", "KTEXT", "MATNR", "MAKTX", "AUFNR", "VORNR", "WERKS"};
-        String[][] outData = new String[2][param.length];
+        String[][] outData = new String[1][param.length];
         outData[0] = param;
 
         SapReturnObject newResult = SapConnectionPool.getResultNew(INTERFACE_ID, functionName, inParam, null, null, outTable, outData, null);
         return newResult.getTables().get("TB_RETURN");
     }
 
+
+    public static List<HashMap<String, String>> getMatnr(String matnr) {
+        String functionName = "ZQM_MATNR_EXP";
+
+
+        String[] inTable = {"IT_MATNR"};
+        String[] inParam = {"MATNR"};
+        String[] outTable = {"OT_RETURN"};
+        String[] param = {"MATNR","ZPDAT8"};
+
+        HashMap<String, String>[][] inData = new HashMap[1][inParam.length];
+        HashMap<String, String> map = new HashMap<>();
+        map.put("MATNR", matnr);
+        inData[0] = new HashMap[1];
+        inData[0][0] = map;
+
+        String[][] outData = new String[2][param.length];
+        outData[0] = param;
+
+        SapReturnObject newResult = SapConnectionPool.getResultNew(INTERFACE_ID, functionName, null, inTable, inData, outTable, outData, null);
+        return newResult.getTables().get("OT_RETURN");
+    }
+
     /**
      * 根据注解创建sap的字段映射
      */
-    private static Map<String, String> buildFieldMap(Class<?> clazz){
+    private static Map<String, String> buildFieldNameMap(Class<?> clazz){
         Field[] fields = ReflectUtil.getFields(clazz);
         // sap : 内存中的字段名
         HashMap<String, String> fieldNameMap = new LinkedHashMap<>(fields.length);
@@ -224,15 +251,60 @@ public class SapUtils {
         return fieldNameMap;
     }
 
-    private static List<List<?>> runFunc(String functionName , Map<?,?> paramMap, List<?> ins
+    private static Map<String, SapField> buildFieldMap(Class<?> clazz){
+        Field[] fields = ReflectUtil.getFields(clazz);
+        // sap : 内存中的字段名
+        HashMap<String, SapField> fieldNameMap = new LinkedHashMap<>(fields.length);
+        Arrays.stream(fields).forEach(e -> {
+            SapField sapField = e.getAnnotation(SapField.class);
+            fieldNameMap.put(e.getName(), sapField);
+        });
+        return fieldNameMap;
+    }
+
+    private static String getTableName(Object o){
+        Class<?> clazz ;
+        if (o instanceof Class) {
+            clazz = (Class) o;
+        } else {
+            clazz = o.getClass();
+        }
+        SapTable sapTable =  clazz.getAnnotation(SapTable.class);
+        return sapTable.name().toUpperCase();
+    }
+    private static List<List<?>> runFunc(String functionName , Map<?,?> paramMap, List<List<?>> ins
             , List<Class<?>> outs){
         String[] inTable = null;
         HashMap<String,String>[][] inTableDatas = null;
         /**
          * 创建inTable
          */
-        if (ins == null) {
-            //todo 根据ins构建入参表
+        if (CollUtil.isNotEmpty(ins)) {
+            // 生成表明
+            inTable = new String[ins.size()];
+            inTableDatas = new HashMap[ins.size()][];
+            for (int i = 0; i < ins.size(); i++) {
+                Object o = ins.get(i).get(0);
+                String tableName = getTableName(o);
+                inTable[i] = tableName;
+            }
+            // 生成表数据
+            CopyOptions copyOptions = new CopyOptions();
+
+            copyOptions.setIgnoreNullValue(true);
+            for (int i = 0; i < ins.size(); i++) {
+                List<?> list = ins.get(i);
+                Map<String, String> fieldNameMap = buildFieldNameMap(list.get(0).getClass());
+                copyOptions.setFieldValueEditor((type,value)-> StrUtil.toString(value));
+                copyOptions.setFieldMapping(MapUtil.reverse(fieldNameMap));
+                inTableDatas[i] = new HashMap[list.size()];
+                for (int j = 0; j < list.size(); j++) {
+                    Object o = list.get(j);
+                    HashMap<String, Object> map = new HashMap<>(4);
+                    BeanUtil.beanToMap(o, map, copyOptions);
+                    inTableDatas[i][j] = (HashMap) map;
+                }
+            }
         }
 
         /**
@@ -243,15 +315,17 @@ public class SapUtils {
         List<Map<String, String>> fieldNameMaps = new ArrayList<>();
         for (int i = 0; i < outs.size(); i++) {
             Class<?> out = outs.get(i);
-            SapTable sapTable = out.getAnnotation(SapTable.class);
-            outTables.add(sapTable.name().toUpperCase());
-            Map<String, String> fieldNameMap = buildFieldMap(out);
+            outTables.add(getTableName(out));
+            Map<String, String> fieldNameMap = buildFieldNameMap(out);
             fieldNameMaps.add(fieldNameMap);
             outTableDatas[i] = fieldNameMap.keySet().toArray(new String[]{});
         }
-        HashMap<String,String> map = new HashMap<>();
-        for (Map.Entry<?, ?> entry : paramMap.entrySet()) {
-            map.put(StrUtil.toString(entry.getKey()), StrUtil.toString(entry.getValue()));
+        HashMap<String, String> map = null;
+        if (paramMap != null) {
+            map = new HashMap<>(paramMap.size());
+            for (Map.Entry<?, ?> entry : paramMap.entrySet()) {
+                map.put(StrUtil.toString(entry.getKey()), StrUtil.toString(entry.getValue()));
+            }
         }
         SapReturnObject newResult = SapConnectionPool.getResultNew(INTERFACE_ID
                     , functionName, map, inTable, inTableDatas, outTables.toArray(new String[]{}), outTableDatas, null);
@@ -275,16 +349,22 @@ public class SapUtils {
     }
 
     private static <T> List<T> runFuncWithParamForOne(String functionName, Map<?, ?> paramMap
-            , Class<T> out){
+            , Class<T> out) {
         List<List<?>> res = runFunc(functionName, paramMap, null, ListUtil.of(out));
-        return (List<T>)res.get(0);
+        return (List<T>) res.get(0);
     }
 
+    private static <T> List<T> runFuncWithOneTableForOne(String functionName, List<? extends Object> talbeObj
+            , Class<T> out) {
+        List<List<?>> res = runFunc(functionName, null, ListUtil.of(talbeObj), ListUtil.of(out));
+        return (List<T>) res.get(0);
+    }
+
+
     public static void main(String[] args) {
-//        JCO.createClient(new Properties());
-//
-//        test3();
-        System.out.println(runFuncWithParamForOne("ZQCRFC_AUFNR2SV", MapBuilder.create().put("PAUFNR", "6100000").build(), AufnrPre.class));
+//        System.out.println(runFuncWithParamForOne("ZQCRFC_AUFNR2SV", MapBuilder.create().put("PAUFNR", "6100000").build(), AufnrPre.class));
+
+        System.out.println(runFuncWithOneTableForOne("ZQM_MATNR_EXP", ListUtil.of(new MatnrExpIn("000000025500013782")), MatnrExp.class));
 //
 //        System.out.println(getAufnr2Sv("61"));
 

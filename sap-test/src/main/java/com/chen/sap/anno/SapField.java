@@ -10,4 +10,9 @@ import java.lang.annotation.*;
 @Inherited
 public @interface SapField {
     String name();
+
+    boolean in() default true;
+
+    int addZero() default -1;
+
 }

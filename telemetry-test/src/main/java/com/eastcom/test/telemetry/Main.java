@@ -1,13 +1,7 @@
 package com.eastcom.test.telemetry;
 
 
-import com.eastcom.test.telemetry.interceptor.HeaderClientInterceptor;
 import com.eastcom.test.telemetry.session.Session;
-import grpc_service.GrpcServiceGrpc;
-import grpc_service.GrpcServiceOuterClass.*;
-import io.grpc.Channel;
-import io.grpc.ClientInterceptors;
-import io.grpc.ManagedChannelBuilder;
 import lombok.extern.slf4j.Slf4j;
 
 
