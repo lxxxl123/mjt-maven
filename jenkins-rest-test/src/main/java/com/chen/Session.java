@@ -150,7 +150,6 @@ public class Session {
         @Cleanup
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         HttpEntity entity = httpClient.execute(httpPost).getEntity();
-        System.out.println(EntityUtils.toString(entity));
         check(EntityUtils.toString(entity));
 
     }
