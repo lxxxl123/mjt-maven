@@ -1,12 +1,13 @@
-package chen.util;
-
-import lombok.Data;
+package chen.util.support;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author chenwh3
+ */
 public class BracketFind {
 
     char left = '(';
@@ -14,7 +15,7 @@ public class BracketFind {
 
     Set<Character> charSet = new HashSet<>();
 
-    private BracketFind(){
+    public BracketFind(){
         /**
          * 单双引号视为转义
          */
@@ -23,7 +24,7 @@ public class BracketFind {
     }
 
 
-    public int findBracket(String str , int start) {
+    private int findBracket(String str , int start) {
 
         /**
          * 0 - 这个状态下遇到()会把它当成字符串
@@ -41,7 +42,7 @@ public class BracketFind {
                     num--;
                 }
                 if (num == 0) {
-                    return i;
+                    return i+1;
                 }
             }
             if (charSet.contains(chars[i])) {
@@ -67,18 +68,31 @@ public class BracketFind {
             return "";
         }
     }
-    int strLeft = 0;
+    private int strLeft = 0;
 
-    int strRight = 0;
+    private int strRight = 0;
+
+    private String s = "";
 
     public int left(){
         return strLeft;
     }
     public int right(){
-        return right;
+        return strRight;
+    }
+    public String group(){
+        return s.substring(strLeft, strRight);
     }
     public boolean find(String s, String regex){
         Pattern ptn = Pattern.compile(regex);
+        return find(s, ptn);
+    }
+
+    /**
+     * 从指定正则开始找配对的括号 , 并且跳过'' , "" 中的括号
+     */
+    public boolean find(String s, Pattern ptn){
+        this.s = s;
         Matcher matcher = ptn.matcher(s);
         if (matcher.find()) {
             int left = matcher.start();

@@ -54,7 +54,7 @@ public class UpdateQms200 {
     }
 
     public static void main(String[] args) throws Exception{
-//        build(true);
-        build(false);
+        build(true);
+//        build(false);
     }
 }
