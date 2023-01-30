@@ -14,7 +14,12 @@ public class CopyUtils {
         String[] fileList = files.trim().split("[\r\n]");
         for (String file : fileList) {
             File f = new File(oriPath + "/" + file);
-            FileUtil.copy(f.getAbsolutePath(), aimPath + "/" + file, true);
+            File aim = new File(aimPath + "/" + file);
+            if (f.exists()) {
+                FileUtil.copy(f.getAbsolutePath(), aim.getAbsolutePath(), true);
+            } else {
+                aim.delete();
+            }
         }
     }
 
