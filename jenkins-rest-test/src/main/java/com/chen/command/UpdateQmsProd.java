@@ -1,5 +1,6 @@
 package com.chen.command;
 
+import com.chen.CopyUtils;
 import com.chen.GitTool;
 
 import java.awt.*;
@@ -23,7 +24,7 @@ public class UpdateQmsProd {
         // 2. 复制文件
         git.moveFile("sh update-front-prod.sh");
         // 3. 复制后端文件
-//        CopyUtils.copyFile("D:\\20221014\\qms-platform", "D:\\workspace", "git diff --name-only head head~1");
+        CopyUtils.copyFile("D:\\20221014\\qms-platform", "D:\\workspace", "git diff --name-only head head~1");
 
         Desktop.getDesktop().open(new File("D:\\workspace\\qms-service"));
 

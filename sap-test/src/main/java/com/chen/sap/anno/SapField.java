@@ -9,7 +9,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 public @interface SapField {
-    String name();
+    String name() default "";
+
+    boolean ignore() default false;
 
     boolean in() default true;
 

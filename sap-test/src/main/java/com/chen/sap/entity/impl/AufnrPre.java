@@ -27,7 +27,7 @@ public class AufnrPre {
 
     private String vornr;
 
-    @SapField(name = "KTEXT1")
+    @SapField(name = "KTEXT")
     private String cpdLine;
 
 }

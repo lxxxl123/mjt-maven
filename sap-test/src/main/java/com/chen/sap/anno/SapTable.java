@@ -15,4 +15,9 @@ public @interface SapTable {
 
 
     String name();
+
+    /**
+     * 获取的结果是否 trim
+     */
+    boolean trim() default true;
 }

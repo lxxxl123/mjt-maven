@@ -1,5 +1,6 @@
 package com.chen.command;
 
+import cn.hutool.json.JSONObject;
 import com.chen.GitTool;
 import com.chen.JobManager;
 
@@ -49,8 +50,8 @@ public class UpdateQms200 {
         git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.exeGit("git push --force");
-        git.exeGit("git checkout -f " + BRAND_NAME);
-        JobManager.buildAndDeployQmsPlatform(frontEndName);
+//        git.exeGit("git checkout -f " + BRAND_NAME);
+//        JobManager.buildAndDeployQmsPlatform(frontEndName);
     }
 
     public static void main(String[] args) throws Exception{

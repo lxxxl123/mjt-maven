@@ -13,13 +13,13 @@ import java.io.IOException;
  */
 public class UpdateApi200 {
 
-    public static void copyFile() throws IOException {
+    public static void copyFile(int rowSize) throws IOException {
         GitTool gitTool = new GitTool();
         gitTool.setPath("D:\\20221014\\qmsApicenter\\qmsApiCenter");
         gitTool.exeGit("svn update");
         String oriPath = "D:\\20221014\\idea-workspace\\qmsapicenter";
         String aimPath = "D:\\20221014\\qmsApicenter\\qmsApiCenter";
-        CopyUtils.copyFile(oriPath, aimPath, "git diff --name-only head head~1");
+        CopyUtils.copyFile(oriPath, aimPath, "git diff --name-only head head~" + rowSize);
         Desktop.getDesktop().open(new File("D:\\20221014\\qmsApicenter\\qmsApiCenter"));
     }
 
@@ -29,7 +29,7 @@ public class UpdateApi200 {
 
 
     public static void main(String[] args) throws Exception {
-//        copyFile();
+//        copyFile(2);
         buildApi();
     }
 }
