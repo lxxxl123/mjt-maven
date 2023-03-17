@@ -1,5 +1,8 @@
 package chen.util;
 
+import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.TypeUtil;
+import com.alibaba.fastjson.util.TypeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Array;
@@ -58,7 +61,9 @@ public class CollUtils {
     public static Collection<String> toStrColl(Object obj) {
         return toColl(obj).stream().map(Object::toString).filter(StringUtils::isNotBlank).collect(Collectors.toList());
     }
-
+    public static Collection<Integer> toIntColl(Object obj) {
+        return toColl(obj).stream().map(Convert::toInt).collect(Collectors.toList());
+    }
 
 
 }

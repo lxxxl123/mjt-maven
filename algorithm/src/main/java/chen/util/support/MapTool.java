@@ -10,6 +10,7 @@ import java.util.*;
 
 /**
  * 对非驱动表建立索引 ， 遍历驱动表 ， 根据索引找到对应的数据 ， 然后拼接数据
+ * @author chenwh3
  */
 public class MapTool {
 

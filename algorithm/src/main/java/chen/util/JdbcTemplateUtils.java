@@ -9,6 +9,7 @@
 //import com.haday.qms.core.tool.support.BracketFind;
 //import com.haday.tp.query.core.utils.SpringUtil;
 //import lombok.extern.slf4j.Slf4j;
+//import org.apache.commons.codec.binary.StringUtils;
 //import org.springframework.dao.DataAccessException;
 //import org.springframework.jdbc.core.JdbcTemplate;
 //
@@ -100,16 +101,16 @@
 //
 //    /**
 //     * 分页查询
-//     *
+//     * @param countMethodName 分页查询独立的sql
 //     * @param args [0] - page 分页查询 , 必须包含current 和 size , 分页必须包含 isSearchCount
 //     * @return 分页结果
 //     */
-//    public static Page<Map<String, Object>> getPageByMapper(Object mapper, String methodName, Object... args) {
+//    public static Page<Map<String, Object>> getPageByMapper(Object mapper , String methodName, String countMethodName, Object... args) {
 //        Page<?> page = (Page<?>) args[0];
 //        long pageIndex = page.getCurrent();
 //        long pageSize = page.getSize();
 //
-//        String sql = SqlUtil.getMapperSql(mapper, methodName, args);
+//        String sql = SqlUtil.getMapperSql(mapper, countMethodName, args);
 //        if (page.isSearchCount()) {
 //            //查数量
 //            /**
@@ -129,8 +130,10 @@
 //                page.setTotal(getJdbtTemplate().queryForObject(selectCountSql, Long.class));
 //            } catch (Exception e) {
 //                if (e.getMessage().contains("该语句没有返回结果集")) {
-//                    log.warn("尝试重新查询",e);
+//                    log.warn("尝试重新查询", e);
 //                    page.setTotal(getJdbtTemplate().queryForObject(selectCountSql, Long.class));
+//                } else {
+//                    throw e;
 //                }
 //            }
 //        }
@@ -145,6 +148,11 @@
 //        }
 //        if (ORDER_BY.equals(orderBy)) {
 //            orderBy = "ORDER BY CURRENT_TIMESTAMP";
+//        }
+//
+//
+//        if (!StringUtils.equals(countMethodName,methodName)) {
+//            sql = SqlUtil.getMapperSql(mapper, methodName, args);
 //        }
 //
 //        /**
@@ -179,6 +187,17 @@
 //            log.error("JdbcTemplate 查询出错 , sql = {}", selectSql, e);
 //            throw new ServiceException(e.getMessage());
 //        }
+//    }
+//
+//
+//    /**
+//     * 分页查询
+//     *
+//     * @param args [0] - page 分页查询 , 必须包含current 和 size , 分页必须包含 isSearchCount
+//     * @return 分页结果
+//     */
+//    public static Page<Map<String, Object>> getPageByMapper(Object mapper , String methodName, Object... args) {
+//        return getPageByMapper(mapper, methodName, methodName, args);
 //    }
 //
 //}

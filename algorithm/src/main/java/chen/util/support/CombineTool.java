@@ -8,6 +8,8 @@ import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.lang.func.Func1;
 import cn.hutool.core.lang.func.LambdaUtil;
 import cn.hutool.core.util.ReflectUtil;
+import cn.hutool.core.util.StrUtil;
+import com.haday.qms.core.tool.utils.StringUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.keyvalue.MultiKey;
 import org.apache.commons.collections4.map.MultiKeyMap;
@@ -15,6 +17,7 @@ import reactor.util.function.Tuple2;
 import reactor.util.function.Tuples;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * 用于合并数据
@@ -27,6 +30,9 @@ public class CombineTool<T,N,A> {
     List<N> nonDriveTables ;
     List<Tuple2<String, String>> allEqCol = new ArrayList<>();
 
+    /**
+     * 判断是否把驱动表复制到目标对象 , 否则沿用原来的驱动表的对象
+     */
     private boolean copyFlag;
 
     private boolean onlyTopOne = true;
@@ -58,7 +64,7 @@ public class CombineTool<T,N,A> {
      */
     private MultiKeyMap<Object, List<N>> index ;
 
-    private CopyOptions copyOptions;
+    private CopyOptions copyOptions = new CopyOptions();
 
     private boolean trimKey = true;
 
@@ -124,9 +130,42 @@ public class CombineTool<T,N,A> {
         index = indexMap;
     }
 
+
+    private Consumer<A> afterMerge;
+
+    private Consumer<A> forEachNoJoinRow;
+
+    public CombineTool<T,N,A> afterMerge(Consumer<A> afterMerge){
+        this.afterMerge = afterMerge;
+        return this;
+    }
+
+    public CombineTool<T,N,A> forEachNoJoinRow(Consumer<A> forEachNoJoinRow){
+        this.forEachNoJoinRow = forEachNoJoinRow;
+        return this;
+    }
+
+
+    /**
+     * 忽略非驱动表空值 , 避免覆盖主表有数据的值
+     */
+    public CombineTool<T,N,A> ignoreBlank(){
+        this.copyOptions.setPropertiesFilter((field,val)->{
+            if (val == null || val instanceof String && StrUtil.isBlank((String) val)) {
+                return false;
+            }
+            return true;
+        });
+        return this;
+    }
+
+    public CombineTool<T, N, A> ignorePropertys(String...propertys) {
+        this.copyOptions.setIgnoreProperties(propertys);
+        return this;
+    }
+
     public final List<A> combine() {
         if (CollUtil.isNotEmpty(fieldNameMap)) {
-            copyOptions = new CopyOptions();
             copyOptions.setFieldMapping(fieldNameMap);
         }
         if (CollectionUtils.isEmpty(driveTable)  || CollectionUtils.isEmpty(allEqCol)) {
@@ -160,11 +199,17 @@ public class CombineTool<T,N,A> {
      */
     protected List<A> buildRow(T driveRow, List<N> nonDriveRows) {
         if (CollUtil.isEmpty(nonDriveRows)) {
+            A res = null;
             if (!copyFlag) {
-                return ListUtil.of((A) driveRow);
+                res = (A) driveRow;
             } else{
-                return ListUtil.of(BeanUtil.toBean(driveRow, aimClazz));
+                res = BeanUtil.toBean(driveRow, aimClazz);
             }
+            if (forEachNoJoinRow != null) {
+                forEachNoJoinRow.accept(res);
+
+            }
+            return ListUtil.of(res);
         }
         List<A> res = new ArrayList<>();
         for (N nonDriveRow : nonDriveRows) {
@@ -175,6 +220,9 @@ public class CombineTool<T,N,A> {
                 copy = BeanUtil.toBean(driveRow, aimClazz);
             }
             BeanUtil.copyProperties(nonDriveRow, copy, copyOptions);
+            if (afterMerge != null) {
+                afterMerge.accept(copy);
+            }
             res.add(copy);
             if (onlyTopOne || !copyFlag) {
                 break;
