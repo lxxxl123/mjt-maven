@@ -1,8 +1,6 @@
 package chen.util;
 
 import cn.hutool.core.convert.Convert;
-import cn.hutool.core.util.TypeUtil;
-import com.alibaba.fastjson.util.TypeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Array;

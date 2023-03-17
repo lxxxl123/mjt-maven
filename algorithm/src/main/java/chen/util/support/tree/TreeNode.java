@@ -1,7 +1,6 @@
 package chen.util.support.tree;
 
 import cn.hutool.core.convert.Convert;
-import com.alibaba.fastjson.util.TypeUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
