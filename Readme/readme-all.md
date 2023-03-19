@@ -25,8 +25,11 @@ newgrp docker     #更新用户组
 ### docker 常用命令
 
 ```shell
-docker ps
-docker 
+docker images
+docker ps [-a]
+docker start [containerId]
+# 自启动
+docker update --restart=always [i=containerId] 
 ```
 ## 安装mysql
 - url : https://www.runoob.com/docker/docker-install-mysql.html

@@ -1,0 +1,1 @@
+Hello ${name} ${fuckshit} ${project.baseUri} @fuckshit@

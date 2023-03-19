@@ -19,7 +19,6 @@
         <module>netty-proxy</module>
         <module>design-model</module>
         <module>rsocket-test</module>
-        <module>store-mongodb</module>
         <module>fast-jar</module>
         <module>sshd-test</module>
         <module>telemetry-test</module>
@@ -29,8 +28,10 @@
         <module>tls-test</module>
         <module>spring-feign-test</module>
         <module>sch2-test</module>
-        <module>dubbo-test</module>
         <module>easypoi</module>
+        <module>jenkins-rest-test</module>
+        <module>sap-test</module>
+        <module>manifold</module>
     </modules>
 
 
@@ -71,6 +72,9 @@
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-core</artifactId>
         </dependency>
+
+
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -152,6 +156,12 @@
                 <groupId>es.moki.ratelimitj</groupId>
                 <artifactId>ratelimitj-inmemory</artifactId>
                 <version>0.7.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>(1.8,]</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

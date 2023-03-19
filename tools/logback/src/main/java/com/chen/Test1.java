@@ -39,17 +39,18 @@ public class Test1 {
             if (next instanceof ConsoleAppender) {
                 Encoder<ILoggingEvent> encoder = ((ConsoleAppender<ILoggingEvent>) next).getEncoder();
                 encoder.stop();
-                ((PatternLayoutEncoder) encoder).setPattern("[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%le] [T:%t] [C:%c{1} %L]%X{sessionId}%X{traceId}%X{user}%X{ne}%X{test} %m %n");
+                ((PatternLayoutEncoder) encoder).setPattern("[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%le] [T:%t] [C:%c{1} %L] %X{prefix}%X{sessionId}%X{traceId}%X{user}%X{ne}%X{test} %m %n");
                 encoder.start();
                 System.out.println(encoder);
             }
         }
 
 
-        MDC.put("sessionId", " [sessionId:53a1898b-247f-4fd4-bca7-cca8e216b147]");
-        MDC.put("ne"," [ne:device-25]");
-        MDC.put("user"," [user:dxcj]");
-        MDC.put("test","test str ");
+//        MDC.put("sessionId", " [sessionId:53a1898b-247f-4fd4-bca7-cca8e216b147]");
+//        MDC.put("ne"," [ne:device-25]");
+//        MDC.put("user"," [user:dxcj]");
+//        MDC.put("test","test str ");
+        MDC.put("prefix","kkkkksdfadsf");
 //        CatServiceLogUtils.initTraceId();
         Test2.log("123%X{sessionId}");
 //        System.out.println(new Test1().getA());

@@ -1,7 +1,6 @@
 package chen.util.reflect;
 
-import com.baomidou.mybatisplus.core.toolkit.sql.StringEscape;
-import com.baomidou.mybatisplus.core.toolkit.support.BiIntFunction;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Collection;
 import java.util.regex.Matcher;
