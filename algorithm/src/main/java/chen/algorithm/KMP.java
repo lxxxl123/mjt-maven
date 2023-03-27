@@ -1,5 +1,7 @@
 package chen.algorithm;
 
+import java.util.Arrays;
+
 /**
  * KMP算法  , 用于匹配子串 , 核心思路:有限状态机
  *
@@ -28,9 +30,11 @@ public class KMP {
                 if (need == j) {
                     dp[i][need] = i + 1;
                 } else {
+                    // 找到当前的前缀数组
                     dp[i][j] = dp[X][j];
                 }
             }
+            // X为前缀数组的长度
             X = dp[X][need];
         }
 
@@ -57,11 +61,10 @@ public class KMP {
         int l2 = needle.length();
         int l1 = haystack.length();
         //失败跳转值
+        // 当前位置前缀数组长度
         int[] next = new int[l2];
         char[] chars = needle.toCharArray();
-        for (int i = 0; i < next.length; i++) {
-            next[i] = -1;
-        }
+        Arrays.fill(next, -1);
         for (int i = 1, x = 0; i < l2; i++) {
             //找上一个可以匹配的值
             while (x > 0 && chars[x] != chars[i]) {
