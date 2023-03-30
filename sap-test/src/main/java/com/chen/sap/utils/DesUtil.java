@@ -277,8 +277,10 @@ public class DesUtil {
         try {
 //            decryptLog("460a82970d683555"); //sa
 //            decryptLog("9696483debb2a134"); // ht123
-            decryptLog("eb5b9cbe4fbf7185"); //ht
-            decryptLog("00ad2c8e756fac19f5f231e7ea3316b6"); // 7HJIv5kU
+//            decryptLog("eb5b9cbe4fbf7185"); //ht
+//            decryptLog("00ad2c8e756fac19f5f231e7ea3316b6"); // 7HJIv5kU
+            decryptLog("64bab908cdba3c66f5f231e7ea3316b6"); //ZCALLRFC
+            decryptLog("5b439921f65a4c5b64f82e9d3f0129eb"); // haday@123
         } catch (Exception e) {
             e.printStackTrace();
         }

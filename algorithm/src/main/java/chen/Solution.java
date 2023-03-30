@@ -1,9 +1,7 @@
 package chen;
 
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -12,20 +10,26 @@ import java.util.Map;
  */
 
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        Map<Integer,Integer> map =  new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (map.containsKey(nums[i])) {
-                return new int[]{map.get(nums[i]), i};
+    public int findLengthOfLCIS(int[] nums) {
+        int len = nums.length;
+        int[] dp = new int[len];
+        Arrays.fill(dp,1);
+        int max = 1;
+        for (int i = 1; i < nums.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[j] < nums[i]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+                max = Math.max(dp[i], max);
             }
-            map.put(target - nums[i], i);
         }
-        return null;
+
+        return max;
     }
 
     public static void main(String[] args) {
-        int arr[] = {2,7,4,3} ;
-        int[] ints = new Solution().twoSum(arr, 9);
-        System.out.println(Arrays.toString(ints));
+        int arr[] = {1,3,6,7,9,4,10,5,6};
+        int res = new Solution().findLengthOfLCIS(arr);
+        System.out.println(res);
     }
 }
