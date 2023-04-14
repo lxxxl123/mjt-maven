@@ -23,7 +23,7 @@ public class UpdateApi200 {
         gitTool.exeGit("svn update");
         String oriPath = projectGitPath;
         String aimPath = projectSvnPath;
-        CopyUtils.copyFile(oriPath, aimPath, "git diff --name-only head head~" + rowSize);
+        CopyUtils.copyFile(oriPath, aimPath, "git diff --name-status -a head head~" + rowSize);
         Desktop.getDesktop().open(new File(projectSvnPath));
     }
 

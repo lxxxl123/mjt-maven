@@ -1,5 +1,6 @@
 package com.chen.command;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import com.chen.GitTool;
 import com.chen.JobManager;
@@ -15,11 +16,8 @@ public class UpdateQms200 {
 
     public static final String GIT_COMMIT_AM_TEMP = "git commit -am \"temp\"";
 
-    //    public static final String BRAND_NAME = "feature/market-complainV1.0.0";
-    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
-//    public static final String BRAND_NAME = "feature/sampleCheckIn-v1.0.0";
-
-//        public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
+//    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
+        public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
 
     public static void build(boolean buidlFront) throws Exception {
 
@@ -33,10 +31,13 @@ public class UpdateQms200 {
          *  build front end , 构建前端
          */
         if (buidlFront) {
-            git.exeMvn("mvn clean install -f pom.xml");
+            String res = git.exeMvn("mvn clean install -f pom.xml");
+            if (StrUtil.containsAny(res,"Failure","Command execution failed")) {
+                throw new RuntimeException("Build Failure");
+            }
         }
 
-        // 处理后端数据
+//        // 处理后端数据
         git.setPath("D:\\20221014\\qms-platform\\");
         git.exeGit("rm ./.git/index.lock");
         git.exeGit(GIT_COMMIT_AM_TEMP);
