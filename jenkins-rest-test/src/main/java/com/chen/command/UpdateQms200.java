@@ -16,8 +16,8 @@ public class UpdateQms200 {
 
     public static final String GIT_COMMIT_AM_TEMP = "git commit -am \"temp\"";
 
-//    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
-        public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
+    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
+//        public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
 
     public static void build(boolean buidlFront) throws Exception {
 

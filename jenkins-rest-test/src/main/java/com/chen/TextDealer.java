@@ -20,13 +20,12 @@ public class TextDealer {
         for (String union_all : union_alls) {
             HashMap<Object, Object> map = new HashMap<>();
             list.add(map);
-            String[] split = union_all.split("\n");
+            String[] split = union_all.split(",");
             for (String s1 : split) {
                 if (s1.contains(" as ")) {
-                    s1 = StrUtil.removeSuffix(s1.trim(), ",");
                     String[] split1 = s1.split(" +as +");
-                    String val= ReUtil.get("'(.*)'", split1[0], 1);
-                    String key = split1[1];
+                    String val= ReUtil.get("'(.*)'", split1[0], 1).trim();
+                    String key = split1[1].trim();
                     map.put(key, val);
                 }
             }
