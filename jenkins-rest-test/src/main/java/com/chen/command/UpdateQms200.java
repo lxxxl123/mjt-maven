@@ -1,13 +1,9 @@
 package com.chen.command;
 
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONObject;
+import com.chen.CopyUtils;
 import com.chen.GitTool;
 import com.chen.JobManager;
-
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * @author chenwh3
@@ -17,16 +13,22 @@ public class UpdateQms200 {
     public static final String GIT_COMMIT_AM_TEMP = "git commit -am \"temp\"";
 
     public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
-//        public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
+    public static final String MVM_PATH = "D:\\\\code\\\\maven\\\\apache-maven-3.8.6\\\\bin\\\\mvn.cmd";
+    public static final String GIT_PATH = "C:\\\\Program Files\\\\Git\\\\bin\\\\sh.exe";
+    public static final String FRONT_PATH = "D:\\20221014\\qms-front\\";
+    public static final String BACK_END_PATH = "D:\\20221014\\qms-platform\\";
+
+    public static final String BACK_END_PATH_CP = "D:\\20221014\\qms-platform-copy\\";
+    //        public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
 
     public static void build(boolean buidlFront) throws Exception {
 
         GitTool git = new GitTool();
         git.setCharset("gbk");
         String frontEndName = BRAND_NAME + "-front-end";
-        git.setMvn("D:\\\\code\\\\maven\\\\apache-maven-3.8.6\\\\bin\\\\mvn.cmd");
-        git.setSh("C:\\\\Program Files\\\\Git\\\\bin\\\\sh.exe");
-        git.setPath("D:\\20221014\\qms-front\\");
+        git.setMvn(MVM_PATH);
+        git.setSh(GIT_PATH);
+        git.setPath(FRONT_PATH);
         /**
          *  build front end , 构建前端
          */
@@ -38,10 +40,15 @@ public class UpdateQms200 {
         }
 
 //        // 处理后端数据
-        git.setPath("D:\\20221014\\qms-platform\\");
-        git.exeGit("rm ./.git/index.lock");
+        git.setPath(BACK_END_PATH);
         git.exeGit(GIT_COMMIT_AM_TEMP);
+
+        git.setPath(BACK_END_PATH_CP);
+        git.exeGit("rm ./.git/index.lock");
         git.checkout(BRAND_NAME);
+
+        CopyUtils.copyFile(BACK_END_PATH, BACK_END_PATH_CP, "git diff --name-status -a head head~" + 5);
+
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.exeGit("git rebase origin/master");
         git.exeGit("git branch " + frontEndName);
@@ -52,11 +59,11 @@ public class UpdateQms200 {
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.exeGit("git push --force");
         git.exeGit("git checkout -f " + BRAND_NAME);
-        JobManager.buildAndDeployQmsPlatform(frontEndName);
+//        JobManager.buildAndDeployQmsPlatform(frontEndName);
     }
 
     public static void main(String[] args) throws Exception{
-        build(true);
-//        build(false);
+//        build(true);
+        build(false);
     }
 }

@@ -11,11 +11,11 @@ import java.io.IOException;
 /**
  * @author chenwh3
  */
-public class UpdateApi200 {
+public class UpdateHip {
 
 
-    public static final String projectSvnPath = "D:\\20221014\\qmsApicenter\\qmsApiCenter";
-    public static final String projectGitPath = "D:\\20221014\\idea-workspace\\qmsapicenter";
+    public static final String projectSvnPath = "D:\\test\\HIP";
+    public static final String projectGitPath = "D:\\20221014\\HIP";
 
     public static void copyFile(int rowSize) throws IOException {
         GitTool gitTool = new GitTool();
@@ -27,13 +27,10 @@ public class UpdateApi200 {
         Desktop.getDesktop().open(new File(projectSvnPath));
     }
 
-    public static void buildApi() throws IOException, InterruptedException {
-        JobManager.buildTrigger("QmsApiCenter_build_develop", "QmsApiCenter_deploy");
-    }
 
 
     public static void main(String[] args) throws Exception {
-//        copyFile(20);
-        buildApi();
+        copyFile(1);
+//        buildApi();
     }
 }
