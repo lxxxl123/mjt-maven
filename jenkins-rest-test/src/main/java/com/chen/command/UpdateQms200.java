@@ -46,24 +46,28 @@ public class UpdateQms200 {
         git.setPath(BACK_END_PATH_CP);
         git.exeGit("rm ./.git/index.lock");
         git.checkout(BRAND_NAME);
+        git.exeGit("git reset --hard origin/" + BRAND_NAME);
 
         CopyUtils.copyFile(BACK_END_PATH, BACK_END_PATH_CP, "git diff --name-status -a head head~" + 5);
 
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.exeGit("git rebase origin/master");
+        git.exeGit("git clean -f");
         git.exeGit("git branch " + frontEndName);
         git.checkout(frontEndName);
         git.exeGit("git reset --hard " + BRAND_NAME);
+        git.exeGit("git clean -f");
         git.moveFile("sh update-front.sh");
         git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.exeGit("git push --force");
-        git.exeGit("git checkout -f " + BRAND_NAME);
-//        JobManager.buildAndDeployQmsPlatform(frontEndName);
+//        git.exeGit("git checkout -f " + BRAND_NAME);
+        JobManager.buildAndDeployQmsPlatform(frontEndName);
     }
 
     public static void main(String[] args) throws Exception{
 //        build(true);
         build(false);
+//        JobManager.buildAndDeployQmsPlatform(BRAND_NAME + "-front-end");
     }
 }
