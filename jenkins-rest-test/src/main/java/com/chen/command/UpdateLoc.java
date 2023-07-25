@@ -8,7 +8,7 @@ import com.chen.JobManager;
 /**
  * @author chenwh3
  */
-public class UpdateQms200 {
+public class UpdateLoc {
 
     public static final String GIT_COMMIT_AM_TEMP = "git commit -am \"temp\"";
 
@@ -41,12 +41,12 @@ public class UpdateQms200 {
 
 //        // 处理后端数据
         git.setPath(BACK_END_PATH);
+        git.exeGit("git fetch");
         git.exeGit(GIT_COMMIT_AM_TEMP);
 
         git.setPath(BACK_END_PATH_CP);
         git.exeGit("rm ./.git/index.lock");
         git.checkout(BRAND_NAME);
-        git.exeGit("git fetch");
         git.exeGit("git reset --hard origin/" + BRAND_NAME);
 
         CopyUtils.copyFile(BACK_END_PATH, BACK_END_PATH_CP, "git diff --name-status -a head head~" + 5);
@@ -62,12 +62,12 @@ public class UpdateQms200 {
         git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.exeGit("git push --force");
-        JobManager.buildAndDeployQmsPlatform(frontEndName);
+
+        git.exeMvn("clean compile -f pom.xml");
     }
 
     public static void main(String[] args) throws Exception{
-//        build(true);
-        build(false);
-//        JobManager.buildAndDeployQmsPlatform(BRAND_NAME + "-front-end");
+//        build(false);
+        build(true);
     }
 }

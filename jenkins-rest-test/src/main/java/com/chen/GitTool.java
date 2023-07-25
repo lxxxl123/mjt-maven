@@ -26,7 +26,7 @@ public class GitTool {
 
     private static final Pattern BRANCH_PATTERN = Pattern.compile("\\*\\s([a-zA-Z.\\-/\\d]+)");
 
-    private static final Pattern CHECKOUT_PATTERN = Pattern.compile("(Switched to (a new)?branch)|(Already on)|(Your branch is behind)");
+    private static final Pattern CHECKOUT_PATTERN = Pattern.compile("(Switched to (a new)?\\s*branch)|(Already on)|(Your branch is behind)");
 
     private String branch;
 
