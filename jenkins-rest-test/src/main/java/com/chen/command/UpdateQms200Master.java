@@ -27,80 +27,42 @@ public class UpdateQms200Master {
     static {
         git.setMvn(MVM_PATH);
         git.setSh(GIT_PATH);
-        git.setCharset("gbk");
+        git.setCharset("UTF-8");
     }
 
-    public static void updateBranchAndMergeTo(String path, String frontBranch, String toBranch) {
-        git.setPath(path);
-
-        // merge front
-        git.exeGit(GIT_COMMIT_AM_TEMP);
-        git.exeGit("rm ./.git/index.lock");
-
-        // refresh branch
-        git.exeGit("git fetch");
-
-        git.checkout(frontBranch);
-        git.exeGit("git fetch");
-        git.exeGit("git reset --hard origin/" + frontBranch);
-
-        git.checkout(toBranch);
-        git.exeGit("git fetch");
-        git.exeGit("git reset --hard origin/" + toBranch);
-
-        git.exeGit("git merge " + frontBranch);
-
-        git.exeGit("git push");
-
-        log.info("\n分支合并完成" + frontBranch + " -> " + toBranch);
-
-    }
 
     public static void buildFrontAndCopy(String branchName, String frontPath, String backPath, boolean buildNpm) {
-        git.setPath(backPath);
-        git.exeGit("rm ./.git/index.lock");
-        git.checkout(branchName);
-        git.exeGit("git fetch");
-        git.exeGit("git reset --hard origin/" + branchName + "(full)");
-        git.exeGit("git clean -f");
-        git.exeGit("git push -f");
+        log.info("--------------------------------后端代码 reset ");
+        GitObj back = new GitObj(backPath, true);
+        back.checkoutResetHardPush(branchName, branchName + "(full)");
 
+
+        log.info("--------------------------------前端切换分支");
         if (buildNpm) {
-            git.setPath(frontPath);
-            git.checkout(branchName);
-            git.exeGit("git pull");
-            String res = git.exeMvn("mvn clean install -f pom.xml");
+            GitObj front = new GitObj(frontPath, true);
+            front.checkOut(branchName);
+            String res = front.git.exeMvn("mvn clean install -f pom.xml");
             if (StrUtil.containsAny(res, "Failure", "Command execution failed")) {
                 throw new RuntimeException("Build Failure");
             }
         }
 
 
-        git.setPath(backPath);
-        git.checkout(branchName + "-front-end");
+        log.info("--------------------------------后端分支reset2");
+        back.checkoutResetHardPush(branchName + "-front-end", branchName);
+        back.git.exeGit("git clean -f");
 
-        git.exeGit("git fetch");
-        git.exeGit("git reset --hard origin/" + branchName);
-        git.exeGit("git clean -f");
+        log.info("--------------------------------前端代码复制");
+        back.git.moveFile("sh update-front-cp.sh");
+        back.git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
+        back.git.exeGit("git commit -am \"前端代码\"");
+        back.git.exeGit("git push -f");
 
-        git.moveFile("sh update-front-cp.sh");
-        git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
-        git.exeGit("git commit -am \"前端代码\"");
-        git.exeGit("git push -f");
-
-        git.checkout(branchName+ "(full)");
-        log.info("\n前端代码构建完成 -- " + branchName);
+        back.checkOut(branchName+ "(full)");
+        log.info("--------------------------------前端代码构建完成 -- {}", branchName);
 
     }
 
-    public static void build() throws Exception {
-        String frontEndBranch = BRAND_MASTER_200 + "-front-end";
-
-//
-        buildFrontAndCopy(BRAND_MASTER_200, FRONT_PATH_CP, BACK_END_PATH_CP, true);
-//
-        JobManager.buildAndDeployQmsPlatform(frontEndBranch);
-    }
 
 
     public static final String BRAND_QALS_DATA = "feature/qalsData-V1.0.0";
@@ -111,12 +73,20 @@ public class UpdateQms200Master {
 
 
     public static void resetHard(String branch){
+        log.info("--------------------------------合并分支 {}", branch);
         GitObj backObj = new GitObj(BACK_END_PATH_CP, true);
         backObj.checkoutResetHardPush(BRAND_MASTER_200_FULL, branch);
 
         GitObj frontObj = new GitObj(FRONT_PATH_CP, true);
         frontObj.checkoutResetHardPush(BRAND_MASTER_200, branch);
     }
+
+    public static void build() throws Exception {
+        String frontEndBranch = BRAND_MASTER_200 + "-front-end";
+        buildFrontAndCopy(BRAND_MASTER_200, FRONT_PATH_CP, BACK_END_PATH_CP, false);
+//        JobManager.buildAndDeployQmsPlatform(frontEndBranch);
+    }
+
 
     public static void main(String[] args) throws Exception {
         resetHard(BRAND_QALS_DATA);
