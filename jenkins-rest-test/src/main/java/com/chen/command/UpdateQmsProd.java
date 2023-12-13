@@ -24,7 +24,7 @@ public class UpdateQmsProd {
         String oriPath = projectGitPath;
         String aimPath = projectSvnPath;
         CopyUtils.copyFile(oriPath, aimPath, StrUtil.format("git diff --name-status head head~{} ", rowSize));
-//        Desktop.getDesktop().open(new File(projectSvnPath));
+        Desktop.getDesktop().open(new File(projectSvnPath));
     }
 
     public static void main(String[] args) throws IOException {
@@ -39,7 +39,7 @@ public class UpdateQmsProd {
 //        // 2. 复制文件
 //        git.moveFile("sh update-front-prod.sh");
         // 3. 复制后端文件
-        copyFile(3);
+        copyFile(1);
 //        CopyUtils.copyFile("D:\\20221014\\qms-platform", "D:\\workspace", "git diff --name-only head head~1");
 
         Desktop.getDesktop().open(new File(projectSvnPath));

@@ -11,10 +11,10 @@ import java.io.IOException;
 /**
  * @author chenwh3
  */
-public class UpdateApi200 {
+public class UpdateApiProd {
 
 
-    public static final String projectSvnPath = "D:\\20221014\\qmsApicenter\\qmsApiCenter";
+    public static final String projectSvnPath = "D:\\20221014\\qmsApiCenter-master";
     public static final String projectGitPath = "D:\\20221014\\idea-workspace\\qmsapicenter";
 
     public static void copyFile(int rowSize) throws IOException {
@@ -33,7 +33,7 @@ public class UpdateApi200 {
 
 
     public static void main(String[] args) throws Exception {
-        copyFile(5);
+        copyFile(1);
 //        buildApi();
     }
 }
