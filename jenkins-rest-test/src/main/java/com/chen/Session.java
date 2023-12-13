@@ -172,7 +172,7 @@ public class Session {
         HttpEntity entity = execute.getEntity();
         String res = EntityUtils.toString(entity);
         check(res);
-        if (res.contains(TIME_REMAIN) || res.contains(PENDING_WAITING_FOR_NEXT_AVAILABLE_EXECUTOR)) {
+        if (StringUtils.containsAny(res,TIME_REMAIN,PENDING_WAITING_FOR_NEXT_AVAILABLE_EXECUTOR,"Estimated remaining time:")) {
             if (jobSeq == null) {
                 jobSeq = ReUtil.extractMulti(String.format("%s/(\\d+)/console", jobName), res, "$1");
             }

@@ -58,7 +58,7 @@ public class UpdateQms200Master {
         back.git.exeGit("git commit -am \"前端代码\"");
         back.git.exeGit("git push -f");
 
-        back.checkOut(branchName+ "(full)");
+//        back.checkOut(branchName+ "(full)");
         log.info("--------------------------------前端代码构建完成 -- {}", branchName);
 
     }
@@ -83,13 +83,13 @@ public class UpdateQms200Master {
 
     public static void build() throws Exception {
         String frontEndBranch = BRAND_MASTER_200 + "-front-end";
-        buildFrontAndCopy(BRAND_MASTER_200, FRONT_PATH_CP, BACK_END_PATH_CP, false);
-//        JobManager.buildAndDeployQmsPlatform(frontEndBranch);
+        JobManager.buildAndDeployQmsPlatform(frontEndBranch);
     }
 
 
     public static void main(String[] args) throws Exception {
         resetHard(BRAND_QALS_DATA);
+        buildFrontAndCopy(BRAND_MASTER_200, FRONT_PATH_CP, BACK_END_PATH_CP, true);
         build();
     }
 }
