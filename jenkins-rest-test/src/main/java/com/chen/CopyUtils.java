@@ -1,18 +1,31 @@
 package com.chen;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.ArrayUtil;
 import com.sun.org.apache.xpath.internal.operations.Or;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CopyUtils {
 
     public static void copyFile(String oriPath, String aimPath, String cmd) {
         GitTool gitTool = new GitTool();
         gitTool.setPath(oriPath);
-        String files = gitTool.exeGit(cmd);
-        String[] fileList = files.trim().split("[\r\n]");
+        String fileText = gitTool.exeGit(cmd);
+        String[] fileList = fileText.trim().split("[\r\n]");
+
+        List<String> files = new ArrayList<>(fileList.length);
         for (String file : fileList) {
+            String[] split = file.split("\\s+");
+            for (int i = 1; i < split.length; i++) {
+                files.add(split[i]);
+            }
+        }
+
+        for (String file : files) {
+            System.out.println(file);
             File f = new File(oriPath + "/" + file);
             File aim = new File(aimPath + "/" + file);
             if (f.exists()) {

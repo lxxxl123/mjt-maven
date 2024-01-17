@@ -935,8 +935,9 @@ public class SapConnectionDemo {
 	}
 
 	public static void main(String[] args) {
-		SapConnectionDemo.test12();
-		SapConnectionDemo.test10();
+		JCO.createClient(new Properties());
+//		SapConnectionDemo.test12();
+//		SapConnectionDemo.test10();
 		//SapConnectionDemo.test3();
 
 	}

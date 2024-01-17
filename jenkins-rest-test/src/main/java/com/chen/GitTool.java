@@ -7,9 +7,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,7 +24,7 @@ public class GitTool {
 
     private static final Pattern BRANCH_PATTERN = Pattern.compile("\\*\\s([a-zA-Z.\\-/\\d]+)");
 
-    private static final Pattern CHECKOUT_PATTERN = Pattern.compile("(Switched to branch)|(Already on)|(Your branch is behind)");
+    private static final Pattern CHECKOUT_PATTERN = Pattern.compile("(Switched to (a new)?\\s*branch)|(Already on)|(Your branch is behind)");
 
     private String branch;
 
@@ -41,19 +39,19 @@ public class GitTool {
     }
 
     public void setPath(String path) {
+        log.info("set current path = {}", path);
         this.file = new File(path);
     }
 
     public static String readInputStreamtoConsole(InputStream inputStream, String charset) throws IOException {
-        byte[] bytes = new byte[1024];
-        int read;
         StringBuilder sb = new StringBuilder();
         @Cleanup
-        InputStream i = inputStream;
-        while ((read = i.read(bytes)) > -1) {
-            String s = new String(bytes, 0, read, charset);
-            System.out.println(s);
-            sb.append(s);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, charset));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+            sb.append(line);
+            sb.append("\r\n");
         }
         return sb.toString();
     }

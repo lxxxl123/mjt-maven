@@ -71,6 +71,7 @@ public class Session {
     @Setter
     @Getter
     private String host = "http://192.168.26.2:8080";
+//    private String host = "http://192.168.26.2:8081";
 
     private String jobSeq;
 
@@ -163,22 +164,34 @@ public class Session {
         }
     }
 
+    private boolean isRunning = false;
+
     public boolean getProcess(String jobName) throws IOException {
         @Cleanup
         CloseableHttpClient httpClient = HttpClients.custom().build();
         HttpGet get = new HttpGet(CharSequenceUtil.format("{}{}{}/buildHistory/ajax", host, JOB_QMS_JOB, jobName));
 
-        CloseableHttpResponse execute = httpClient.execute(get, context);
-        HttpEntity entity = execute.getEntity();
-        String res = EntityUtils.toString(entity);
-        check(res);
-        if (res.contains(TIME_REMAIN) || res.contains(PENDING_WAITING_FOR_NEXT_AVAILABLE_EXECUTOR)) {
-            if (jobSeq == null) {
-                jobSeq = ReUtil.extractMulti(String.format("%s/(\\d+)/console", jobName), res, "$1");
+        try {
+            CloseableHttpResponse execute = httpClient.execute(get, context);
+            HttpEntity entity = execute.getEntity();
+            String res = EntityUtils.toString(entity);
+            check(res);
+            if (StringUtils.containsAny(res, TIME_REMAIN, PENDING_WAITING_FOR_NEXT_AVAILABLE_EXECUTOR, "Estimated remaining time:")) {
+                if (jobSeq == null) {
+                    jobSeq = ReUtil.extractMulti(String.format("%s/(\\d+)/console", jobName), res, "$1");
+                } else {
+                    isRunning = true;
+                }
+                return true;
             }
-            return true;
+            return false;
+        } catch (Exception e) {
+            log.error("", e);
+            if (isRunning) {
+                return false;
+            }
+            throw e;
         }
-        return false;
     }
 
     public static String formatHtml(String s) {
