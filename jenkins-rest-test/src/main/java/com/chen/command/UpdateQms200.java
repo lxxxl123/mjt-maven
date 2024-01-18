@@ -20,8 +20,8 @@ public class UpdateQms200 {
 
     public static final String BACK_END_PATH_CP = "D:\\20221014\\qms-platform-copy\\";
 
-            public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
-//    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
+//            public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
+    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
 
     public static void build(boolean buidlFront) throws Exception {
 
@@ -46,11 +46,14 @@ public class UpdateQms200 {
         backCpGit.git.checkout(BRAND_NAME);
         backCpGit.git.exeGit("git reset --hard origin/" + BRAND_NAME);
 
-        CopyUtils.copyFile(BACK_END_PATH, BACK_END_PATH_CP, "git diff --name-status -a head head~" + 5);
+//        CopyUtils.copyFile(BACK_END_PATH, BACK_END_PATH_CP, "git diff --name-status -a head head~" + 5);
 
-        backCpGit.git.exeGit(GIT_COMMIT_AM_TEMP);
+//        backCpGit.git.exeGit(GIT_COMMIT_AM_TEMP);
         backCpGit.git.exeGit("git rebase origin/master");
         backCpGit.git.exeGit("git clean -f");
+        backCpGit.git.exeGit("git push --force --set-upstream origin " + BRAND_NAME);
+
+        /*切换分支*/
         backCpGit.git.exeGit("git branch " + frontEndName);
         backCpGit.git.checkout(frontEndName);
         backCpGit.git.exeGit("git reset --hard origin/" + BRAND_NAME);
@@ -58,8 +61,9 @@ public class UpdateQms200 {
         backCpGit.git.moveFile("sh update-front.sh");
         backCpGit.git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
         backCpGit.git.exeGit(GIT_COMMIT_AM_TEMP);
-        backCpGit.git.exeGit("git push --force");
-        JobManager.buildAndDeployQmsPlatform(frontEndName);
+        backCpGit.git.exeGit("git push --force --set-upstream origin " + frontEndName);
+
+//        JobManager.buildAndDeployQmsPlatform(frontEndName);
     }
 
     public static void main(String[] args) throws Exception{
