@@ -3,7 +3,6 @@ package com.chen.command;
 import cn.hutool.core.util.StrUtil;
 import com.chen.CopyUtils;
 import com.chen.GitTool;
-import com.chen.JobManager;
 
 /**
  * @author chenwh3
@@ -49,7 +48,7 @@ public class UpdateLoc {
         git.checkout(BRAND_NAME);
         git.exeGit("git reset --hard origin/" + BRAND_NAME);
 
-        CopyUtils.copyFile(BACK_END_PATH, BACK_END_PATH_CP, "git diff --name-status -a head head~" + 5);
+        CopyUtils.gitCopy(BACK_END_PATH, BACK_END_PATH_CP, "git diff --name-status -a head head~" + 5);
 
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.exeGit("git rebase origin/master");

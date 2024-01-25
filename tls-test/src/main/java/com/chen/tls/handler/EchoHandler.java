@@ -11,6 +11,9 @@ import io.netty.util.AttributeKey;
 
 import java.nio.charset.StandardCharsets;
 
+/**
+ * @author chenwh3
+ */
 public class EchoHandler extends ChannelInboundHandlerAdapter {
 
 

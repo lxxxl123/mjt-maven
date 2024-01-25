@@ -23,7 +23,7 @@ public class UpdateQmsProd {
         gitTool.exeGit("svn update");
         String oriPath = projectGitPath;
         String aimPath = projectSvnPath;
-        CopyUtils.copyFile(oriPath, aimPath, StrUtil.format("git diff --name-status head head~{} ", rowSize));
+        CopyUtils.gitCopy(oriPath, aimPath, StrUtil.format("git diff --name-status head head~{} ", rowSize));
         Desktop.getDesktop().open(new File(projectSvnPath));
     }
 

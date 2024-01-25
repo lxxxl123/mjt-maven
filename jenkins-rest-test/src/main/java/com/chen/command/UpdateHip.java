@@ -2,7 +2,6 @@ package com.chen.command;
 
 import com.chen.CopyUtils;
 import com.chen.GitTool;
-import com.chen.JobManager;
 
 import java.awt.*;
 import java.io.File;
@@ -23,7 +22,7 @@ public class UpdateHip {
         gitTool.exeGit("svn update");
         String oriPath = projectGitPath;
         String aimPath = projectSvnPath;
-        CopyUtils.copyFile(oriPath, aimPath, "git diff --name-status -a head head~" + rowSize);
+        CopyUtils.gitCopy(oriPath, aimPath, "git diff --name-status -a head head~" + rowSize);
         Desktop.getDesktop().open(new File(projectSvnPath));
     }
 

@@ -1,7 +1,6 @@
 package chen.english;
 
 /**
- *
  * Alex , get out! mom !
  * Alex , leave you sister alone
  * I was just getting my book , gosh.
@@ -56,14 +55,6 @@ package chen.english;
  * you have got to talk to mom ,
  * She's , like , completely freaking out and embarrassing me .
  * Well , honey , your mom isn't always cool about thing as ..
- *
- *
- *
- *
- *
- *
- *
- *
  */
 public class E1S1_6 {
 

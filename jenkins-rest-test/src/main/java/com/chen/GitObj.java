@@ -38,7 +38,7 @@ public class GitObj {
     public void init(){
         git.exeGit("rm ./.git/index.lock");
         git.exeGit(GIT_COMMIT_AM_TEMP);
-        git.exeGit("git clean -f");
+        git.exeGit("git clean -f -d");
         git.exeGit("git fetch");
     }
 

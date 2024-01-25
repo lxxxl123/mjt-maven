@@ -1,8 +1,6 @@
 package com.chen;
 
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.ArrayUtil;
-import com.sun.org.apache.xpath.internal.operations.Or;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,7 +8,7 @@ import java.util.List;
 
 public class CopyUtils {
 
-    public static void copyFile(String oriPath, String aimPath, String cmd) {
+    public static void gitCopy(String oriPath, String aimPath, String cmd) {
         GitTool gitTool = new GitTool();
         gitTool.setPath(oriPath);
         String fileText = gitTool.exeGit(cmd);
@@ -35,5 +33,6 @@ public class CopyUtils {
             }
         }
     }
+
 
 }
