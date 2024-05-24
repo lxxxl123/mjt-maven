@@ -33,7 +33,7 @@ public class UpdateApiProd {
 
 
     public static void main(String[] args) throws Exception {
-        copyFile(1);
+        copyFile(20);
 //        buildApi();
     }
 }

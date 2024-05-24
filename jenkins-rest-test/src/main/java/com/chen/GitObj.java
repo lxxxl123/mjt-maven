@@ -1,6 +1,12 @@
 package com.chen;
 
 /**
+ * "Lily" , isn't that gonna be hard for her to say ?
+ * excuse me , Phill
+ * okey , i know that i say I thought this was a bad idea
+ * But , uh , what do I know ?
+ * I mean , it's not like I wrote the book on fatherhood
+ *
  * @author chenwh3
  */
 public class GitObj {

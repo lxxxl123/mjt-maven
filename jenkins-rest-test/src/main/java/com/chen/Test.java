@@ -12,9 +12,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 public class Test {
@@ -99,7 +97,15 @@ public class Test {
     }
 
     public static void main(String[] args) throws Exception {
-        post();
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+//        Deque<Integer> deque = new LinkedList<>();
+        long from = System.currentTimeMillis();
+        for (int i = 0; i < 1000000; i++) {
+            deque.push(1);
+        }
+        System.out.println(deque.size());
+        System.out.println("time:" + (System.currentTimeMillis() - from));
+
     }
 
 
