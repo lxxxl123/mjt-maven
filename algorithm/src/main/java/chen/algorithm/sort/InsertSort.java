@@ -4,6 +4,11 @@ package chen.algorithm.sort;
 import java.util.Arrays;
 
 
+/**
+ * time complexity: O(n^2)
+ * space complexity: O(1)
+ * stability: yes
+ */
 public class InsertSort {
 
     /**
