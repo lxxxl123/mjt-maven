@@ -73,8 +73,8 @@ public class UpdateQms200 {
         JobManager.buildAndDeployQmsPlatform(frontEndName);
     }
 
-//    private static String backMergeBranch = "";
-    private static String backMergeBranch = "origin/feature/dongbj-dev-V2.0.0";
+    private static String backMergeBranch = "";
+//    private static String backMergeBranch = "origin/feature/dongbj-dev-V2.0.0";
 
     public static void main(String[] args) throws Exception {
 //        build(true);
