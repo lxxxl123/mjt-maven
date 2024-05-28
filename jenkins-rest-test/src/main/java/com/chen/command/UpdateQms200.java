@@ -6,6 +6,9 @@ import com.chen.GitObj;
 import com.chen.GitTool;
 import com.chen.JobManager;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+
 /**
  * @author chenwh3
  */
@@ -20,8 +23,10 @@ public class UpdateQms200 {
 
     public static final String BACK_END_PATH_CP = "D:\\20221014\\qms-platform-copy\\";
 
-            public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
-//    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
+//    public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
+    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
+
+
 
     public static void build(boolean buidlFront) throws Exception {
 
@@ -34,7 +39,7 @@ public class UpdateQms200 {
          */
         if (buidlFront) {
             String res = frontGit.git.exeMvn("mvn clean install -f pom.xml");
-            if (StrUtil.containsAny(res,"Failure","Command execution failed")) {
+            if (StrUtil.containsAny(res, "Failure", "Command execution failed")) {
                 throw new RuntimeException("Build Failure");
             }
         }
@@ -57,6 +62,9 @@ public class UpdateQms200 {
         backCpGit.git.checkout(frontEndName);
         backCpGit.git.exeGit("git reset --hard origin/" + BRAND_NAME);
         backCpGit.git.exeGit("git clean -f -d");
+        if (StrUtil.isNotBlank(backMergeBranch)) {
+            backCpGit.git.exeGit("git merge " + backMergeBranch);
+        }
         backCpGit.git.moveFile("sh update-front.sh");
         backCpGit.git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
         backCpGit.git.exeGit(GIT_COMMIT_AM_TEMP);
@@ -65,7 +73,10 @@ public class UpdateQms200 {
         JobManager.buildAndDeployQmsPlatform(frontEndName);
     }
 
-    public static void main(String[] args) throws Exception{
+    private static String backMergeBranch = "";
+//    private static String backMergeBranch = "origin/feature/dongbj-dev-V2.0.0";
+
+    public static void main(String[] args) throws Exception {
 //        build(true);
         build(false);
 //        JobManager.buildAndDeployQmsPlatform(BRAND_NAME + "-front-end");

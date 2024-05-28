@@ -2,6 +2,7 @@ package com.chen.command;
 
 import cn.hutool.core.util.StrUtil;
 import com.chen.CopyUtils;
+import com.chen.GitObj;
 import com.chen.GitTool;
 
 import java.awt.*;
@@ -26,12 +27,22 @@ public class UpdateQmsProd {
         CopyUtils.gitCopy(oriPath, aimPath, StrUtil.format("git diff --name-status head head~{} ", rowSize));
         Desktop.getDesktop().open(new File(projectSvnPath));
     }
+    public static final String FRONT_PATH = "D:\\20221014\\qms-front\\";
+
+    public static void buildFront(){
+        GitObj frontGit = new GitObj(FRONT_PATH);
+        String res = frontGit.git.exeMvn("mvn clean install -f pom.xml");
+        if (StrUtil.containsAny(res,"Failure","Command execution failed")) {
+            throw new RuntimeException("Build Failure");
+        }
+    }
 
     public static void main(String[] args) throws IOException {
-//        GitTool git = new GitTool();
-//        git.setMvn("D:\\\\code\\\\maven\\\\apache-maven-3.8.6\\\\bin\\\\mvn.cmd");
-//        git.setSh("C:\\\\Program Files\\\\Git\\\\bin\\\\sh.exe");
-//        git.setPath("D:\\20221014\\qms-front\\");
+//        buildFront();
+        GitTool git = new GitTool();
+        git.setMvn("D:\\\\code\\\\maven\\\\apache-maven-3.8.6\\\\bin\\\\mvn.cmd");
+        git.setSh("C:\\\\Program Files\\\\Git\\\\bin\\\\sh.exe");
+        git.setPath("D:\\20221014\\qms-front\\");
 //
 //
 //        // 1. 构建前端
@@ -40,7 +51,6 @@ public class UpdateQmsProd {
 //        git.moveFile("sh update-front-prod.sh");
         // 3. 复制后端文件
         copyFile(1);
-//        CopyUtils.copyFile("D:\\20221014\\qms-platform", "D:\\workspace", "git diff --name-only head head~1");
 
         Desktop.getDesktop().open(new File(projectSvnPath));
 
