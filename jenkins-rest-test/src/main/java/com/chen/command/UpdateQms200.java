@@ -81,4 +81,5 @@ public class UpdateQms200 {
         build(false);
 //        JobManager.buildAndDeployQmsPlatform(BRAND_NAME + "-front-end");
     }
+
 }

@@ -45,12 +45,12 @@ public class UpdateQmsProd {
         git.setPath("D:\\20221014\\qms-front\\");
 //
 //
-//        // 1. 构建前端
-//        git.exeMvn("mvn clean install -f pom.xml");
-//        // 2. 复制文件
-//        git.moveFile("sh update-front-prod.sh");
         // 3. 复制后端文件
         copyFile(1);
+//         1. 构建前端
+//        git.exeMvn("mvn clean install -f pom.xml");
+//         2. 复制文件
+//        git.moveFile("sh update-front-prod.sh");
 
         Desktop.getDesktop().open(new File(projectSvnPath));
 

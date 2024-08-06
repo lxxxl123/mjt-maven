@@ -27,13 +27,10 @@ public class UpdateApiProd {
         Desktop.getDesktop().open(new File(projectSvnPath));
     }
 
-    public static void buildApi() throws IOException, InterruptedException {
-        JobManager.buildTrigger("QmsApiCenter_build_develop", "QmsApiCenter_deploy");
-    }
+
 
 
     public static void main(String[] args) throws Exception {
-        copyFile(20);
-//        buildApi();
+        copyFile(1);
     }
 }

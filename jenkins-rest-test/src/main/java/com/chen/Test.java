@@ -1,5 +1,6 @@
 package com.chen;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HtmlUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
@@ -14,6 +15,11 @@ import org.apache.http.util.EntityUtils;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+/**
+ * When threatened , it can eject a noxious chemical spray from its abdomen
+ *
+ *
+ */
 @Slf4j
 public class Test {
 
