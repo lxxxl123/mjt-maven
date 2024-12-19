@@ -23,12 +23,12 @@ public class UpdateQms200 {
 
     public static final String BACK_END_PATH_CP = "D:\\20221014\\qms-platform-copy\\";
 
-//    public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
-    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
+        public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
+//    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
+//    public static final String BRAND_NAME = "feature/QT07-v1.0.0";
 
 
-
-    public static void build(boolean buidlFront) throws Exception {
+    public static void build(boolean buildFront) throws Exception {
 
         String frontEndName = BRAND_NAME + "-front-end";
 
@@ -37,7 +37,7 @@ public class UpdateQms200 {
         /**
          *  build front end , 构建前端
          */
-        if (buidlFront) {
+        if (buildFront) {
             String res = frontGit.git.exeMvn("mvn clean install -f pom.xml");
             if (StrUtil.containsAny(res, "Failure", "Command execution failed")) {
                 throw new RuntimeException("Build Failure");
@@ -53,9 +53,11 @@ public class UpdateQms200 {
 //        CopyUtils.copyFile(BACK_END_PATH, BACK_END_PATH_CP, "git diff --name-status -a head head~" + 5);
 
 //        backCpGit.git.exeGit(GIT_COMMIT_AM_TEMP);
-        backCpGit.git.exeGit("git rebase origin/master");
-        backCpGit.git.exeGit("git clean -f -d");
-        backCpGit.git.exeGit("git push --force --set-upstream origin " + BRAND_NAME);
+
+        //作用不大
+//        backCpGit.git.exeGit("git rebase origin/master");
+//        backCpGit.git.exeGit("git clean -f -d");
+//        backCpGit.git.exeGit("git push --force --set-upstream origin " + BRAND_NAME);
 
         /*切换分支*/
         backCpGit.git.exeGit("git branch " + frontEndName);
@@ -63,7 +65,10 @@ public class UpdateQms200 {
         backCpGit.git.exeGit("git reset --hard origin/" + BRAND_NAME);
         backCpGit.git.exeGit("git clean -f -d");
         if (StrUtil.isNotBlank(backMergeBranch)) {
-            backCpGit.git.exeGit("git merge " + backMergeBranch);
+            backCpGit.git.merge( backMergeBranch);
+        }
+        if (StrUtil.isNotBlank(backMergeBranch1)) {
+            backCpGit.git.merge(backMergeBranch1);
         }
         backCpGit.git.moveFile("sh update-front.sh");
         backCpGit.git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
@@ -73,9 +78,14 @@ public class UpdateQms200 {
         JobManager.buildAndDeployQmsPlatform(frontEndName);
     }
 
-    private static String backMergeBranch = "";
-//    private static String backMergeBranch = "origin/feature/dongbj-dev-V2.0.0";
+    private static String backMergeBranch1 = "";
+//    private static String backMergeBranch1 = "origin/feature/dongbj-dev-V2.0.1";
 
+//    private static String backMergeBranch = "";
+    private static String backMergeBranch = "origin/feature/unqualify-V1.0.0";
+
+    //    private static String backMergeBranch = "origin/feature/labCodeExtend-V1.0.0";
+//
     public static void main(String[] args) throws Exception {
 //        build(true);
         build(false);

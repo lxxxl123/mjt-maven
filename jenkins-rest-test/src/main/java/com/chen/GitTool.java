@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.sql.rowset.serial.SerialException;
 import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -76,6 +77,15 @@ public class GitTool {
         log.info(CMD, cmd);
         Process exec = RuntimeUtil.exec(null, file, cmd);
         return getResult(exec);
+    }
+
+    public String merge(String branch) {
+        String res = exeGit("git merge " + branch);
+        if (res.contains("merge failed")) {
+            throw new RuntimeException("合并失败");
+        }
+        return res;
+
     }
 
     public String exeMvn(String cmd) {

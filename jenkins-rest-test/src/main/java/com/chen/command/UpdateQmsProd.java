@@ -46,7 +46,11 @@ public class UpdateQmsProd {
 //
 //
         // 3. 复制后端文件
-        copyFile(1);
+        copyFile(2);
+
+//        GitTool gitTool = new GitTool();
+//        gitTool.setPath(projectSvnPath);
+//        gitTool.exeGit("svn update");
 //         1. 构建前端
 //        git.exeMvn("mvn clean install -f pom.xml");
 //         2. 复制文件

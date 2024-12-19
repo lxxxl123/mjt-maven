@@ -1,5 +1,7 @@
 package com.chen;
 
+import javax.sql.rowset.serial.SerialException;
+
 /**
  * "Lily" , isn't that gonna be hard for her to say ?
  * excuse me , Phill
@@ -45,7 +47,10 @@ public class GitObj {
         git.exeGit("rm ./.git/index.lock");
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.exeGit("git clean -f -d");
-        git.exeGit("git fetch");
+        String res = git.exeGit("git fetch");
+        if (res.contains("Failed")) {
+            throw new RuntimeException("fetch 失败");
+        }
     }
 
 
