@@ -46,7 +46,7 @@ public class UpdateQmsProd {
 //
 //
         // 3. 复制后端文件
-        copyFile(2);
+        copyFile(1);
 
 //        GitTool gitTool = new GitTool();
 //        gitTool.setPath(projectSvnPath);

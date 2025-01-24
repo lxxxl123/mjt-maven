@@ -70,6 +70,10 @@ public class UpdateQms200 {
         if (StrUtil.isNotBlank(backMergeBranch1)) {
             backCpGit.git.merge(backMergeBranch1);
         }
+
+        if (StrUtil.isNotBlank(backMergeBranch2)) {
+            backCpGit.git.merge(backMergeBranch2);
+        }
         backCpGit.git.moveFile("sh update-front.sh");
         backCpGit.git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
         backCpGit.git.exeGit(GIT_COMMIT_AM_TEMP);
@@ -79,16 +83,17 @@ public class UpdateQms200 {
     }
 
     private static String backMergeBranch1 = "";
-//    private static String backMergeBranch1 = "origin/feature/dongbj-dev-V2.0.1";
+//    private static String backMergeBranch1 = "origin/feature/dongbj-dev-V2.0.0";
 
 //    private static String backMergeBranch = "";
-    private static String backMergeBranch = "origin/feature/unqualify-V1.0.0";
+    private static String backMergeBranch = "origin/feature/qualityFollow-V1.0.0";
 
-    //    private static String backMergeBranch = "origin/feature/labCodeExtend-V1.0.0";
-//
+//    private static String backMergeBranch2 = "";
+    private static String backMergeBranch2 = "origin/feature/djw-dev1.0.0";
+
     public static void main(String[] args) throws Exception {
-//        build(true);
-        build(false);
+        build(true);
+//        build(false);
 //        JobManager.buildAndDeployQmsPlatform(BRAND_NAME + "-front-end");
     }
 
