@@ -4,6 +4,11 @@ package chen.algorithm.sort;
 import java.util.Arrays;
 
 
+/**
+ * time complexity: O(n^2)
+ * space complexity: O(1)
+ * stability: yes
+ */
 public class InsertSort {
 
     /**
@@ -17,12 +22,12 @@ public class InsertSort {
     public static void insertSort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int j = i - 1;
-            int temp = arr[i];
-            while (j >= 0 && arr[j] > temp) {
-                arr[j + 1] = arr[j];
+            int cur = arr[i];
+            while (j >= 0 &&  cur < arr[j]) {
+                arr[j + 1] = arr[j]; // 右移
                 j--;
             }
-            arr[j + 1] = temp;
+            arr[j + 1] = cur;
         }
     }
 

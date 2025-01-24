@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * 归并排序 O(logN) 递归实现
+ * space complexity O(N) 栈空间
  * 应用场景 : 内存外排序
  * 其他功能 : 可以找出每个元素 左侧或右侧大于或小于改元素的所有值或数量 -- 用于寻找逆序对
  * @see "https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof"

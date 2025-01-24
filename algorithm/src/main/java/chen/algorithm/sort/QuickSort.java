@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 /**
  * 思路：基数选择+双指针
+ * time complexity: O nlog(n)
+ * space complexity: O(nlog(n)) , 递归栈空间
+ * stability: no
  */
 public class QuickSort {
 
@@ -21,20 +24,17 @@ public class QuickSort {
         if (l >= r) {
             return;
         }
+        // 选中最左位基数
         int p = arr[l];
         int left = l;
         int right = r;
         while (l < r) {
-
             while  (p <= arr[r] && l < r) {
                 r--;
             }
-
             while (arr[l] <= p && l < r) {
                 l++;
             }
-
-
             if (l < r) {
                 swap(arr, l, r);
             }
@@ -53,7 +53,7 @@ public class QuickSort {
 
 
     public static void main(String[] args) {
-        int[] arr = new int[]{2, 4, 1, 3, 7, 4, 8, 0};
+        int[] arr = new int[]{5, 1, 2, 3, 4, 6, 7};
         new QuickSort().sort(arr);
         System.out.println(Arrays.toString(arr));
     }
