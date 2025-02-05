@@ -37,8 +37,6 @@ public class UpdateHip {
      * copy到800
      * Jenkins更新
      *
-     * @param args
-     * @throws Exception
      */
     public static void main(String[] args) throws Exception {
         copyFile(1);

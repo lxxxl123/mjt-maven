@@ -45,16 +45,18 @@ public class UpdateQmsProd {
         git.setPath("D:\\20221014\\qms-front\\");
 //
 //
-        // 3. 复制后端文件
-        copyFile(1);
 
+
+        /*1. 构建前端*/
 //        GitTool gitTool = new GitTool();
 //        gitTool.setPath(projectSvnPath);
 //        gitTool.exeGit("svn update");
-//         1. 构建前端
 //        git.exeMvn("mvn clean install -f pom.xml");
-//         2. 复制文件
 //        git.moveFile("sh update-front-prod.sh");
+        /*2. 复制文件*/
+
+        // 3. 复制后端文件
+        copyFile(6);
 
         Desktop.getDesktop().open(new File(projectSvnPath));
 
