@@ -56,7 +56,7 @@ public class UpdateQmsProd {
         /*2. 复制文件*/
 
         // 3. 复制后端文件
-        copyFile(6);
+        copyFile(1);
 
         Desktop.getDesktop().open(new File(projectSvnPath));
 
