@@ -14,16 +14,36 @@ public class UpdateHip {
 
 
     public static final String projectSvnPath = "D:\\workspaces\\hip-prod";
-    public static final String projectGitPath = "D:\\20221014\\HIP";
+    public static final String projectTestGitPath = "D:\\20221014\\HIP";
+    public static final String projectGitPath = "D:\\20221014\\hip_git\\hip-qms";
 
-    public static void copyFile(int rowSize) throws IOException {
+    public static void copyGitToSvn(int rowSize) throws IOException {
         GitTool gitTool = new GitTool();
-        gitTool.setPath(projectSvnPath);
-        gitTool.exeGit("svn update");
         String oriPath = projectGitPath;
         String aimPath = projectSvnPath;
+        gitTool.setPath(aimPath);
+        gitTool.exeGit("svn update");
+
         CopyUtils.gitCopy(oriPath, aimPath, "git diff --name-status -a head head~" + rowSize);
         Desktop.getDesktop().open(new File(projectSvnPath));
+    }
+
+    public static void copyTestToChenwh3(int rowSize) throws IOException {
+        GitTool git = new GitTool();
+        String oriPath = projectTestGitPath;
+        String aimPath = projectGitPath;
+        git.setPath(aimPath);
+        git.removeIndexLog();
+        git.exeGit("git clean -f");
+        git.exeGit("git fetch");
+        git.exeGit("git reset --hard origin/feature/chenwh3");
+        git.exeGit("git rebase origin/master");
+        while (rowSize > 0) {
+            git.exeGit("git cherry-pick origin/feature/chenwh3~" + rowSize);
+            rowSize--;
+        }
+
+        Desktop.getDesktop().open(new File(aimPath));
     }
 
 
@@ -39,7 +59,7 @@ public class UpdateHip {
      *
      */
     public static void main(String[] args) throws Exception {
-        copyFile(1);
-//        buildApi();
+//        copyTestToChenwh3(2);
+        copyGitToSvn(1);
     }
 }

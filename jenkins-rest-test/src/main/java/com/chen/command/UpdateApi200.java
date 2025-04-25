@@ -33,9 +33,7 @@ public class UpdateApi200 {
 
 
     public static void main(String[] args) throws Exception {
-        copyFile(10);
-//        buildApi();
-
-
+//        copyFile(2);
+        buildApi();
     }
 }

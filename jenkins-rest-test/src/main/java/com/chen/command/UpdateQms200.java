@@ -38,7 +38,7 @@ public class UpdateQms200 {
          *  build front end , 构建前端
          */
         if (buildFront) {
-            String res = frontGit.git.exeMvn("mvn clean install -f pom.xml");
+            String res = frontGit.git.exeMvn("mvn clean install -f pom.xml -Dfile.encoding=utf-8");
             if (StrUtil.containsAny(res, "Failure", "Command execution failed")) {
                 throw new RuntimeException("Build Failure");
             }
@@ -74,6 +74,10 @@ public class UpdateQms200 {
         if (StrUtil.isNotBlank(backMergeBranch2)) {
             backCpGit.git.merge(backMergeBranch2);
         }
+
+        if (StrUtil.isNotBlank(backMergeBranch3)) {
+            backCpGit.git.merge(backMergeBranch3);
+        }
         backCpGit.git.moveFile("sh update-front.sh");
         backCpGit.git.exeGit("git add \"qms-service/src/main/resources/static/*\"");
         backCpGit.git.exeGit(GIT_COMMIT_AM_TEMP);
@@ -85,15 +89,17 @@ public class UpdateQms200 {
     private static String backMergeBranch1 = "";
 //    private static String backMergeBranch1 = "origin/feature/dongbj-dev-V2.0.0";
 
-//    private static String backMergeBranch = "";
-    private static String backMergeBranch = "origin/feature/qualityFollow-V1.0.0";
+    private static String backMergeBranch = "";
+//    private static String backMergeBranch = "origin/feature/qualityFollow-V1.0.0";
+    private static String backMergeBranch2 = "";
+//    private static String backMergeBranch2 = "origin/feature/djw-dev2.0.0";
 
-//    private static String backMergeBranch2 = "";
-    private static String backMergeBranch2 = "origin/feature/djw-dev1.0.0";
+        private static String backMergeBranch3 = "";
+//    private static String backMergeBranch3 = "origin/feature/yuxj-dev1.0";
 
     public static void main(String[] args) throws Exception {
-        build(true);
-//        build(false);
+//        build(true);
+        build(false);
 //        JobManager.buildAndDeployQmsPlatform(BRAND_NAME + "-front-end");
     }
 

@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.sql.rowset.serial.SerialException;
 import java.io.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,32 +40,48 @@ public class GitTool {
 //        checkBranch();
     }
 
+    public static GitTool ofPath(String path) {
+        GitTool gitTool = new GitTool();
+        gitTool.setPath(path);
+        return gitTool;
+
+    }
+
+
     public void setPath(String path) {
         log.info("set current path = {}", path);
         this.file = new File(path);
     }
 
-    public static String readInputStreamtoConsole(InputStream inputStream, String charset) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        @Cleanup
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, charset));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            System.out.println(line);
-            sb.append(line);
-            sb.append("\r\n");
-        }
-        return sb.toString();
+    public static CompletableFuture<String> readInputStreamtoConsole(InputStream inputStream, String charset) throws IOException {
+        return readInputStreamtoConsole(inputStream, charset, "");
+    }
+    public static CompletableFuture<String> readInputStreamtoConsole(InputStream inputStream, String charset, String prefix) throws IOException {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                StringBuilder sb = new StringBuilder();
+                @Cleanup
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, charset));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(prefix + line);
+                    sb.append(line);
+                    sb.append("\r\n");
+                }
+                return sb.toString();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     public String getResult(Process process) {
         String charset = this.charset;
         try {
-            String r1 = readInputStreamtoConsole(process.getInputStream(), charset);
-            String r2 = readInputStreamtoConsole(process.getErrorStream(), charset);
-            if (StringUtils.isBlank(r2)) {
-                return r1;
-            }
+            CompletableFuture<String> c1 = readInputStreamtoConsole(process.getInputStream(), charset);
+            CompletableFuture<String> c2 = readInputStreamtoConsole(process.getErrorStream(), charset, "[ERROR]");
+            String r2 = c2.join();
+            String r1 = c1.join();
             return r1 + "\n" + r2;
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -77,6 +94,10 @@ public class GitTool {
         log.info(CMD, cmd);
         Process exec = RuntimeUtil.exec(null, file, cmd);
         return getResult(exec);
+    }
+
+    public String removeIndexLog(){
+        return exeGit("rm ./.git/index.lock");
     }
 
     public String merge(String branch) {
