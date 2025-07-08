@@ -50,7 +50,7 @@ public class UpdateQmsProd {
         /*1. 构建前端*/
         GitTool gitTool = new GitTool();
         gitTool.setPath(projectSvnPath);
-//        gitTool.exeGit("svn update");
+        gitTool.exeGit("svn update");
 //        git.exeMvn("mvn clean install -f pom.xml");
         git.moveFile("sh update-front-prod.sh");
         /*2. 复制文件*/

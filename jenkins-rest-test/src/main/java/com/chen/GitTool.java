@@ -106,7 +106,6 @@ public class GitTool {
             throw new RuntimeException("合并失败");
         }
         return res;
-
     }
 
     public String exeMvn(String cmd) {

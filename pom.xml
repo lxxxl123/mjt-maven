@@ -13,20 +13,16 @@
         <module>test</module>
         <module>algorithm</module>
         <module>other</module>
-        <module>spring-freemarker</module>
         <module>spring-mvc</module>
         <module>spring-gateway</module>
         <module>netty-proxy</module>
         <module>design-model</module>
-        <module>rsocket-test</module>
         <module>fast-jar</module>
         <module>sshd-test</module>
-        <module>telemetry-test</module>
         <module>grpc-test</module>
         <module>mysql-driver</module>
         <module>spring-stomp</module>
         <module>tls-test</module>
-        <module>spring-feign-test</module>
         <module>sch2-test</module>
         <module>easypoi</module>
         <module>jenkins-rest-test</module>
@@ -141,11 +137,11 @@
             </dependency>
 
             <!--限流器大全-->
-            <dependency>
-                <groupId>io.github.resilience4j</groupId>
-                <artifactId>resilience4j-ratelimiter</artifactId>
-                <version>1.7.1</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>io.github.resilience4j</groupId>-->
+<!--                <artifactId>resilience4j-ratelimiter</artifactId>-->
+<!--                <version>1.7.1</version>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>

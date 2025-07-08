@@ -1,6 +1,6 @@
 package com.chen;
 
-import javax.sql.rowset.serial.SerialException;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * "Lily" , isn't that gonna be hard for her to say ?
@@ -48,7 +48,7 @@ public class GitObj {
         git.exeGit(GIT_COMMIT_AM_TEMP);
         git.exeGit("git clean -f -d");
         String res = git.exeGit("git fetch");
-        if (res.contains("Failed")) {
+        if (StrUtil.containsAnyIgnoreCase(res, "failed", "fatal")) {
             throw new RuntimeException("fetch 失败");
         }
     }

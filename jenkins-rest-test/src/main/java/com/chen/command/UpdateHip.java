@@ -15,7 +15,7 @@ public class UpdateHip {
 
     public static final String projectSvnPath = "D:\\workspaces\\hip-prod";
     public static final String projectTestGitPath = "D:\\20221014\\HIP";
-    public static final String projectGitPath = "D:\\20221014\\hip_git\\hip-qms";
+        public static final String projectGitPath = "D:\\20221014\\hip_git\\hip-qms";
 
     public static void copyGitToSvn(int rowSize) throws IOException {
         GitTool gitTool = new GitTool();
