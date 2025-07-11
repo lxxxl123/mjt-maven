@@ -1,7 +1,8 @@
-package chen.graph;
+package chen.graph.shortPath;
 
 /**
  * Dijkstra：求某段到原点的最短路径
+ * 适用于无向图和有向图
  *
  * 设 白点 为 已确定最短路径的点
  * 蓝点 为 未确定最短路径的点 ， 但已通过相邻白点计算出值
