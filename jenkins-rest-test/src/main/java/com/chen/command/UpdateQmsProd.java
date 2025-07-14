@@ -51,12 +51,12 @@ public class UpdateQmsProd {
         GitTool gitTool = new GitTool();
         gitTool.setPath(projectSvnPath);
         gitTool.exeGit("svn update");
-//        git.exeMvn("mvn clean install -f pom.xml");
-        git.moveFile("sh update-front-prod.sh");
+////        git.exeMvn("mvn clean install -f pom.xml");
+//        git.moveFile("sh update-front-prod.sh");
         /*2. 复制文件*/
 
         // 3. 复制后端文件
-        copyFile(1);
+        copyFile(2);
 
         Desktop.getDesktop().open(new File(projectSvnPath));
 
