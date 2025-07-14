@@ -16,8 +16,39 @@ import java.util.PriorityQueue;
  * 输入:
  * n = 3, edges = [[0,1,100],[1,2,100],[0,2,500]], src = 0, dst = 2, k = 1
  * 输出: 200
+ *
+ *
+ * ############ 除了Dijk外，还可以使用动态规划和Bellman-Ford算法
+ * ## Dijkstra算法
+ * 1. 使用visit记录已访问过的节点的k值（即路径数量），允许重复访问，但k值必须小于之前的k值
+ *
+ * ## 动态规划求解
+ * 1. f[k][t] = min(f[k-1][t], f[k-1][t-{last}] + price) ## k表示中转次数（路径数量），t表示节点 f表示费用
  */
 public class Flight {
+
+    /**
+     * dp解法
+     */
+    public int findCheapestPriceDp(int n, int[][] flights, int src, int dst, int k) {
+        int dp[][] = new int[k + 2][n];
+        int inf = Integer.MAX_VALUE / 2;
+        for (int i = 0; i < k + 2; i++) {
+            Arrays.fill(dp[i], inf);
+            dp[i][src] = 0;
+        }
+
+
+        for (int t = 1; t <= k + 1; t++) {
+            for (int[] flight : flights) {
+                int j = flight[0], i = flight[1], cost = flight[2];
+                dp[t][i] = Math.min(dp[t][i], dp[t - 1][j] + cost);
+            }
+        }
+
+        return dp[k + 1][dst] == inf ? -1 : dp[k + 1][dst];
+    }
+
 
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
 
@@ -64,9 +95,9 @@ public class Flight {
     }
 
     public static void main(String[] args) {
-        int[][] array = JSONUtil.parse("[[0,1,1],[0,2,5],[1,2,1],[2,3,1]]").toBean(int[][].class);
+        int[][] array = JSONUtil.parse("[[0,1,2],[1,2,1],[2,0,10]]").toBean(int[][].class);
 
-        int i = new Flight().findCheapestPrice(4, array, 0, 3,1);
+        int i = new Flight().findCheapestPriceDp(3, array, 1, 2,1);
         System.out.println(i);
     }
 
