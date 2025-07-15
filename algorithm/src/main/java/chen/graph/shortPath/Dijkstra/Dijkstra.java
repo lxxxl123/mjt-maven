@@ -1,4 +1,4 @@
-package chen.graph.shortPath;
+package chen.graph.shortPath.Dijkstra;
 
 /**
  * Dijkstra：求某段到原点的最短路径

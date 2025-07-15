@@ -1,4 +1,4 @@
-package chen.graph.shortPath;
+package chen.graph.shortPath.Dijkstra;
 
 import cn.hutool.json.JSONUtil;
 
