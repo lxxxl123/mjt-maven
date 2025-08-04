@@ -23,8 +23,8 @@ public class UpdateQms200 {
 
     public static final String BACK_END_PATH_CP = "D:\\20221014\\qms-platform-copy\\";
 
-//        public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
-    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
+        public static final String BRAND_NAME = "feature/qalsData-V1.0.0";
+//    public static final String BRAND_NAME = "feature/chargReport-v1.0.0";
 //    public static final String BRAND_NAME = "feature/QT07-v1.0.0";
 
 
@@ -98,8 +98,8 @@ public class UpdateQms200 {
 //    private static String backMergeBranch3 = "origin/feature/yuxj-dev1.0";
 
     public static void main(String[] args) throws Exception {
-//        build(true);
-        build(false);
+        build(true);
+//        build(false);
 //        JobManager.buildAndDeployQmsPlatform(BRAND_NAME + "-front-end");
     }
 
