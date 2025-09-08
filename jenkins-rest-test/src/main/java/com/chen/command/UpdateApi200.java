@@ -21,8 +21,8 @@ public class UpdateApi200 {
 
 
         GitObj backCpGit = new GitObj(BACK_END_PATH, true);
-        backCpGit.git.checkout(brandName);
-        backCpGit.git.exeGit("git reset --hard origin/" + brandName);
+//        backCpGit.git.checkout(brandName);
+//        backCpGit.git.exeGit("git reset --hard origin/" + brandName);
 
 //        CopyUtils.copyFile(BACK_END_PATH, BACK_END_PATH_CP, "git diff --name-status -a head head~" + 5);
 
@@ -34,16 +34,16 @@ public class UpdateApi200 {
 //        backCpGit.git.exeGit("git push --force --set-upstream origin " + BRAND_NAME);
 
         /*切换分支*/
-        backCpGit.git.exeGit("git branch " + brandName);
-        backCpGit.git.checkout(brandName);
+//        backCpGit.git.exeGit("git branch " + brandName);
+//        backCpGit.git.checkout(brandName);
 
         JobManager.buildApi(brandName);
     }
 
     public static void main(String[] args) throws Exception {
 //        build(BRAND_NAME_Master);
-//        build(BRAND_NAME_Develop);
-        build(BRAND_NAME_Chenwh3);
+        build(BRAND_NAME_Develop);
+//        build(BRAND_NAME_Chenwh3);
     }
 
 }
