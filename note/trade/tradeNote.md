@@ -11,6 +11,11 @@
     - 很难判断止损操作有没错，鉴于基差-35%，看空；
   - thinking:
     - think a bit frustrated , because today lose all in [egg , pig , trans]
+  - 总结：
+    - 生猪：-1.30%
+    - 鸡蛋：-0.42%
+    - 欧线集运：-1.83%
+    - 合计： -3.55%
     
 - 2025-10-29
   - 看多纯碱2601: 
