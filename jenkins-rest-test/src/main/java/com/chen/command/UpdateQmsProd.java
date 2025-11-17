@@ -42,7 +42,7 @@ public class UpdateQmsProd {
         gitTool.setPath(projectSvnPath);
         gitTool.exeGit("svn update");
 
-        /*1. 构建前端*/
+//        /*1. 构建前端*/
 //        buildFront();
 //
 //        /*2. 复制文件*/
