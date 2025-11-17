@@ -13,11 +13,6 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - paralyse:  render part of body unable to move or feel or both
 - parasol: a sun umbrella
 
-## go past
-
-- go past: overtake , go beyond
-- surpass: go beyond in achievement
-- sb has gone too far:  sb do sth unacceptabl
 
 ## to some degree
 
@@ -38,11 +33,6 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - root: the part of plant that hold the plant firm in the ground
 - 
 
-## grain
-
-- grain:
-    - (ex.)a grain of rock = sand
-    - (n.)seeds
 
 
 ## executive
@@ -59,7 +49,8 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 ## abdomen
 
-- the lower part of human body
+- abdomen /æ'demen/
+  - (n.) the lower part of human body
 
 ## absurd
 
@@ -82,9 +73,17 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - beware
     - beware of :  like "watch out" , used to warn sb
 
+## awkward
+
+- awkward/o'kwed/: 
+  - (adj.) not suitable or not comfortable
+  - (adj.) difficult to deal with
+
 ## bachelor
 
 - bachelor:
+  - (n.): a person who is not married
+
 
 ## bait
 
@@ -211,10 +210,9 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
     - on the clock : sb is under time presure
     - off the clock :  sb is under the free time
 
-## clump
+## coal
 
-- clump /klamp/
-- lump /lamp/
+- coal: (n.) a type of fuel used to power the fire
 
 ## coarse:
 
@@ -224,7 +222,8 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 ## coin
 
 - coin: (n.) **is a small, flat piece of metal money.**
-- coincidence: (n.): sth unlikely but surprised event happen
+- coincidence/keʊ'in'si'dens/: 
+  - (n.): sth unlikely but surprised event happen
 - coffin: a box with dead people
 
 ## conceive
@@ -324,6 +323,9 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 - dine
 - dinner
+- dim
+  - (n.) faint light
+  - (sent): the lamp give out a dim light
 
 ## dish
 
@@ -407,7 +409,7 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 ## flax
 
-- flax: a type of textile material , no more dominant
+- flax: a type of textile material, no more dominant used then the past
 - flex
 
 ## flavor
@@ -416,9 +418,7 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - flavour:
 
 ## flour
-
-- flour: powder
-    - 
+- flour powder
 
 ## forge
 
@@ -430,18 +430,31 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - frosting
 - frost
 
+## grin
+
+- grin
+- grim
+
+## go past
+- go past: overtake , go beyond
+- surpass: go beyond in achievement
+- sb has gone too far:  sb do sth unacceptabl
+
 ## goggles
 
 - goggles/go’gel/: a special eyewear(like glasses) that fix your eyes and use in some professional
 
 ## grant
-
 - grant:
 - immigrant: a person who come from different country.
 - vagrant/vei’gran/: the pool man , with no home , no job.
 
+## grain
+- grain:
+  - (ex.)a grain of rock = sand
+  - (n.)seeds
+  
 ## grape
-
 - grape: a type of fruit
 
 ## hammer
@@ -566,8 +579,21 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
     - place sth in even on  the top of sth else
 - clay:
 
-## lean
+## lamp
 
+- lamp/læmp/: 
+  - (n.): the device that can give out light and being placed anywhere conveniently
+- lamb: 
+  - (n.): a small animal with long legs
+- clump /klamp/
+- lump /lʌmp/
+  - (n.)a piece of solid substance, with no particular shape or size
+  - (p.) lumps of: lots of
+  - (n.) a stupid person
+- lung/lʌŋ/: a type of organ important for breathing
+
+
+## lean
 - lean
     - lean toward to do : likely do
 
@@ -595,11 +621,6 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - loom
     - (vt): sth appear , which always large and frightening
     - (n) a device for weaving cloth
-
-## lump
-
-- lump: a piece of solid substance
-- lung: a type of organ important for breathing
 
 ## luster
 
@@ -778,6 +799,11 @@ Amy, a high-ranking executive at a company, oversaw a large department. One day,
 - ponder:(vt) think in detail
 - bond: form relationship
 
+## pot
+
+- pot: 
+  - (n.)a type of large container used to cook food
+
 ## pour
 
 - pour
@@ -800,6 +826,10 @@ Amy, a high-ranking executive at a company, oversaw a large department. One day,
 - pretent
 - pretentious:(adj.) too proud
 
+## profit
+
+- profit: the money that you earn from doing business or trading
+
 ## pun
 
 - pun/pʌn/:
@@ -810,6 +840,10 @@ Amy, a high-ranking executive at a company, oversaw a large department. One day,
 
 - rail
     - (side rail) : used to seperate the car and the pedestrian
+
+## raise
+- raise
+- praise
 
 ## razor
 - razor
@@ -894,6 +928,9 @@ a hollow shape in the shallow stream.
         - enough blood has been shed to this war
 
 ## shift
+
+## shore
+- shore：the land along the edge of the sea or lake
 
 - shift: a period of working time
 
@@ -1071,6 +1108,9 @@ a hollow shape in the shallow stream.
 - tile: a piece of baked clay
 - file:
 - fertile: (adj.) a fertile land can product good quality of crops
+- tidy: 
+  - (adj.) neat
+  - (adj.) large
 
 ## tongue
 
@@ -1158,7 +1198,6 @@ a hollow shape in the shallow stream.
     - : turn the direction in hurry
 
 ## well
-
 - well /wel/
 - whale /weil/
     - (n.) the one of the biggest animal in the world
