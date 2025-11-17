@@ -67,6 +67,11 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - appear:
     - appear to be nothing , but talk : sb says empty words
 
+## ascent
+
+- ascent/e'sent/: 
+  - (n.) the act of moving upwards
+
 ## aware
 
 - aware
