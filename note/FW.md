@@ -1,17 +1,6 @@
 # FW
 
 
-## paradox
-
-```
-he saw a paradox today : a paralysed parrot fall down with parasol with parachute
-```
-
-- paradox: a statement or situation that appears self-contradictory
-- parachute: a equipment that help man land safely from high altitudes
-- parrot: a tropical bird would repeat human voice
-- paralyse:  render part of body unable to move or feel or both
-- parasol: a sun umbrella
 
 
 ## to some degree
@@ -42,10 +31,6 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 ---
 # A
 
-## Athens
-- Athen /æ'θens/
-  - (n.) a capital city of the Greece
-- Athenian /æ'θi'nien/
 
 ## abdomen
 
@@ -55,6 +40,11 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 ## absurd
 
 - absurd: (adj.) stupid , silly or unreasonable in a humorous way
+
+## accuracy
+
+- accuracy: the degree of correctness of something
+- inaccuracy: the degree of incorrectness of something
 
 ## alongside
 
@@ -71,6 +61,18 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 - ascent/e'sent/: 
   - (n.) the act of moving upwards
+- indecent/in'di'sent/
+  - (adj.) morally offensive, especially in a sexual way
+
+## Athens
+
+- Athen /æ'θens/
+  - (n.) a capital city of the Greece
+- Athenian /æ'θi'nien/
+
+## attic
+
+- attic: the space at the top of the building , always used to store the old things
 
 ## aware
 
@@ -150,21 +152,41 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - bow/bau/:
     - (vi/vt) bend you hear or your body
     - (n.) a type of weapon used to shot the arrow
-- bowl /beul/ : a type of container used to serve staple food like (rice,noodles,soups )in China
+- bowl /beʊl/ : a type of container used to serve staple food like (rice,noodles,soups )in China
 - bowel/bau’el/: the organ of a long tude that carried the solid waste from the stomach
 
 ## brew
+
+- brew:
+  - (vt) make sth by using water and other ingredients
+  - (n.) the act of making sth by using water and other ingredients
+- breeze
+  - (n.) a light wind
+  - (n.) sth that is easy to do
+  - (p.) breeze in : to walk somewhere confidently
+  - (vi.) breeze to do: to achieve something easily
 
 ## butter
 
 - butter
 - butterfly
 
+# C
+
 ## cable
 
 - cable/kei’bel/: a set of wire
+- cabin/kæ'bin/
+  - (n.) a small house made of wood
+  - (n.) a separate space in the building or ship or aircraft
 
 ## candidate
+
+## cereal
+
+- cereal/si'ri'el/:
+  - (n.) a type of food made from different types of grains
+  - (n.) a type of grass that is grown to product grain
 
 ```markdown
 "She could blast the candle-holding candidate into oblivion with her uncanny cannon then snap a candid shot of the chaos, grinning like a victor."
@@ -245,6 +267,12 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - contrast (n) : opposite
 - contrary (adj) : opposite
 
+## congress
+
+- congress:
+  - (n.) a large formal meeting
+  - (n.) the act of having sex
+
 ## cord
 
 - cord: a type of rope
@@ -283,6 +311,11 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
     - (vi) leave somewhere and go another place
 
 ## dedicate
+
+## deputy
+
+- deputy
+  - (n.): a person who represent the boss or only under the boss
 
 ## detach
 
@@ -353,6 +386,12 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - drapery:
 - drag
 - drop
+
+## drink
+
+- drink
+- drinker:
+  - (n.) someone drink alcohol
 
 ## drone
 
@@ -435,10 +474,19 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - frosting
 - frost
 
+## glow
+
+- glow: 
+  - (n.) the light that come from the sun
+  - (vi.) produce continuous light
+
 ## grin
 
 - grin
+  - (n.) a face that show a happy or surprised look
+  - (n.) a wide smile
 - grim
+  - (adj.) terrible
 
 ## go past
 - go past: overtake , go beyond
@@ -472,6 +520,12 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
     - free help from others
     - a type of printed materials
 - takeout:
+
+## haste
+
+- haste/hei'st/
+  - (n.): too much hurry
+  - (p.) in haste: in too much hurry
 
 ## hence
 
@@ -512,6 +566,12 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 - indie
 - die
+
+
+## inflate
+
+- inflate/in'fleit/: (vt) make sth larger
+  - moderate inflation: a financial situation where the price of something increase slowly
 
 ## inhabit
 
@@ -621,6 +681,11 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - linen/li;nin/: a type of fabric of flax plant
 - nylon
 
+## lobby
+
+- lobby:
+  - (vt): persuade the politician to do sth
+
 ## loom
 
 - loom
@@ -669,6 +734,13 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - metal/me’təl/
 - medal/me’dəl/
 - mental/men’təl/
+
+## moderate
+
+- moderate
+  - (adj.): not too much or too little
+  - (ant.) excessive, extreme
+
 
 ## mud
 
@@ -754,6 +826,19 @@ Amy, a high-ranking executive at a company, oversaw a large department. One day,
 - panel
     - (n.) a piece of flat wood
 
+## paradox
+
+```
+he saw a paradox today : a paralysed parrot fall down with parasol with parachute
+```
+
+- paradox: a statement or situation that appears self-contradictory
+- parachute: a equipment that help man land safely from high altitudes
+- parrot: a tropical bird would repeat human voice
+- paralyse:  render part of body unable to move or feel or both
+- parasol: a sun umbrella
+
+
 ## pattern:
 
 - pattern /pæ’tən/: any repeated design
@@ -765,6 +850,10 @@ Amy, a high-ranking executive at a company, oversaw a large department. One day,
     - task a few days off:  spend time away from work
     - (v): a plane or bird leave the ground
     - (vt): strip the clothes
+
+## pest
+
+ - pest
 
 ## pedestrian
 
@@ -938,6 +1027,12 @@ a hollow shape in the shallow stream.
 - shore：the land along the edge of the sea or lake
 
 - shift: a period of working time
+
+## sign
+
+- sign
+- resign
+  - (vi.): quit the job
 
 ## slender
 
@@ -1187,17 +1282,17 @@ a hollow shape in the shallow stream.
 
 ## vine
 
-- vine
-- vein
-    - vein /vein/: a small tube to carry blood
-    - vine /vain/: a type of climbing plant
+- vine/vain/: a type of climbing plant 
+- vein/vein/: a small tube to carry blood
 
-## weave
+## wave
 
+- wave/weiv/
+  - (vi): to raise your hand and move it back and forth as greeting
 - weave:
     - combine sth in a complicated way
     - (vt) use thread-like or sth small things to establish sth complex
-        - spilder weaves a web to catch  bugs
+        - spilder weaves a web to catch bugs
 - have:
 - swerve/swɛ:v/
     - : turn the direction in hurry
