@@ -63,6 +63,9 @@
   - (n.) the act of moving upwards
 - indecent/in'di'sent/
   - (adj.) morally offensive, especially in a sexual way
+  - (adj.) not suitable for a sexual context
+- accent/æ'ksent/
+  - (n.) a way of speaking or writing that is different from the usual way
 
 ## Athens
 
