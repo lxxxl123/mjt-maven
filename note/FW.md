@@ -128,9 +128,16 @@
 - belly /bel’i/
     - (n.) like abdomen
 
+## birth
+
+- birth:
+  - (n.) the time when a child comes out of the womb
+  - (v.) create or produce a child or sth
+
 ## bison
 
 - bison /bai’son/ : a type of animal , like a large cow
+
 
 ## blend
 
@@ -557,6 +564,8 @@
 ## hook
 
 - hook: a curved device used to catch or hold sth
+- hoax /heʊks/: 
+  - (n.) a lie or false information
 
 ## identify
 
@@ -683,6 +692,7 @@
 
 - linen/li;nin/: a type of fabric of flax plant
 - nylon
+- 
 
 ## lobby
 
@@ -694,6 +704,12 @@
 - loom
     - (vt): sth appear , which always large and frightening
     - (n) a device for weaving cloth
+
+## lot
+
+- lot
+- lottery
+  - (n.) a game of chance
 
 ## luster
 
@@ -901,6 +917,19 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - pot: 
   - (n.)a type of large container used to cook food
 
+## pound
+
+- pound /paʊnd/
+  - (n.) a unit to measure weight, approximately 454 grams
+  - (n.) the standard unit of money used in UK
+  - (p.) pound note: paper money
+  - (n.) the symbol of #
+- ounce /aʊns/
+  - (n.) a unit to measure weight, approximately 28.35 grams, 14 ounce = 1 pound
+- penny
+  - (complex number.) pence
+  - (n.) a unit to measure money, 0.01 pound
+
 ## pour
 
 - pour
@@ -971,6 +1000,15 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 - ridge: a long , narrow raised part of surface
 
+## rough
+
+- rough/rʌf/
+- roughly/rʌf'li/
+  - (adv.) approximately 
+  - (adv.) without taking a lot of care to do
+  - (adj.) in a violent or angry way
+
+
 ## rotate
 
 - rotate: turn sth in a circle
@@ -979,7 +1017,8 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 - rug: (n.) small carpet
 - rub: (vt) press sth against other with circular movement
-- 
+- rubble
+  - (n.) the piles of broken bricks and stones from broken buildings
 
 ## sand
 
