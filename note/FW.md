@@ -924,6 +924,7 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
   - (n.) the standard unit of money used in UK
   - (p.) pound note: paper money
   - (n.) the symbol of #
+  - (vi/vt) hit repeatedly with a lot of force
 - ounce /aʊns/
   - (n.) a unit to measure weight, approximately 28.35 grams, 14 ounce = 1 pound
 - penny
