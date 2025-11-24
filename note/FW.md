@@ -1001,6 +1001,11 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 - ridge: a long , narrow raised part of surface
 
+## rival
+
+- rival
+  - (n.) the man or company that compete with 
+
 ## rough
 
 - rough/rʌf/
@@ -1185,6 +1190,9 @@ a hollow shape in the shallow stream.
 
 - succeed /se’si’d/
 - creed /kri’d/
+- succumb /se'kʌm/
+    - (vi) to lose determination to oppose sth
+    - (vi) succumb to sth: suffer badly from sth 
 
 ## suck
 
@@ -1236,6 +1244,8 @@ a hollow shape in the shallow stream.
         - be tempted to do sth
         - i was tempted to do …
 - temp
+- temptation
+  - (n.) sth that you want to do but generally is harmful or unwise
 
 ## thank
 
