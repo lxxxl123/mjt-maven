@@ -1,19 +1,11 @@
 # FW
 
-
-
-
 ## to some degree
 
 - to some degree
 - in some way
 - somewhat
 
-## traditional
-
-- traditional
-- transaction
-- transparent
 
 
 ## roof
@@ -26,7 +18,9 @@
 
 ## executive
 
-- executive: some one in a high position
+- executive: 
+  - (n.) someone in a high position
+  - (adj.) related to important job or business
 
 ---
 # A
@@ -164,6 +158,10 @@
         - (adj) say  sth directly
         - (adj) not sharp
 
+## bloke
+- bloke
+  - (n.) a man
+
 ## boast
 
 - boast
@@ -230,6 +228,13 @@
 - carpet /car’pit/: a blanket used to cover the floor
 - cargo /ka;goʊ/: the goods carray by truck , ship or other large vehicle
 
+## cart
+
+- cart
+  - (n.) a vehicle used to carry goods
+  - (n.) a vehicle is pulled by a horse
+
+
 ## case
 
 - case /keis/
@@ -240,6 +245,11 @@
 - cattle:
 - battle:
 
+
+## charge
+
+- 
+
 ## charm
 
 - charm: the quality that make you attracted
@@ -247,11 +257,19 @@
 - championship: a high-level competition
 
 
+
 ## chic
 
 - chic
   - (adj.) stylish , modern , fashionable
 - child /tʃail/
+
+
+## chief
+
+- chief:
+  - (n.) the person in charge of the group
+  - (adj.) main or most important
 
 
 ## clear
@@ -348,6 +366,11 @@
     - (vi) leave somewhere and go another place
 
 ## dedicate
+
+## defend
+- defend:
+- defendant
+  - (n.) a person who is charged with something
 
 ## deputy
 
@@ -488,6 +511,10 @@
 
 ## fix
 
+- fit
+  - (adj.) suitable 
+  - (adj.) healthy or strong
+  - (v.) to be the right size to go into a particular space
 - fix:
     - (vt): put
 - fibre:
@@ -521,6 +548,11 @@
 - forge:
     - (vt.) make an illegal copy of sth inorder to deceive
     - (vt.) make metal weapon or metal tools
+
+## fraud
+
+- fraud
+  - (n.) the crime of deceiving others
 
 ## frost
 - frosting
@@ -673,6 +705,9 @@
 - insert
     - put / fix sth inside
 
+## insane
+- insane: (adj.) very mad or crazy
+
 ## interscet
 
 - intersect
@@ -692,7 +727,15 @@
 ## jail
 - jail/dʒeil/
   - (n.) a place where criminals are kept
+  - (vt.) put sb in jail
 
+## jealous
+  - jealous/dʒel'es/: (adj.) angry because sb has something that you want
+
+## job
+- job
+- jog
+  - (v): run slowly
 
 # k
 ## knit 
@@ -878,6 +921,8 @@
 - often: (adv.) usually
 - offender
   - (n.) a crime or a person with guilty
+- offence
+  - (n.) a illegal act ; a crime
 
 ## oral
 
@@ -1016,17 +1061,21 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - powder: a dry substance consists of extreme small piece
     - milk powder
 
+## practical
+- practical: 
+  - (adj.) useful and work
+
+## pretend
+
+- pretend
+- pretentious:(adj.) too proud
+
 ## prime
 
 - prime: main ,most important
 - prone:
-    - (adj) likely to show bad state
-    - (phrase): be prone to sth / do sth
-
-## pretent
-
-- pretent
-- pretentious:(adj.) too proud
+  - (adj) likely to show bad state
+  - (phrase): be prone to sth / do sth
 
 ## profit
 
@@ -1042,7 +1091,7 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 ## rail
 
 - rail
-    - (side rail) : used to seperate the car and the pedestrian
+    - (side rail) : used to separate the car and the pedestrian
 
 ## raise
 - raise
@@ -1131,6 +1180,11 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
     - *(adj.)better in quality*
     - (adj.) change in smooth and unnoticed way
 - sew: to join two piece of cloth by putting thread through them with a needle
+
+## sentence
+- sentence
+  - (n.): a group of words
+  - (n.) the punishment after judge in court
 
 ## shallow
 
@@ -1223,6 +1277,13 @@ a hollow shape in the shallow stream.
 
 - splash: use a bit water hit sth
 
+
+## suite
+
+- (n.) a set of connected rooms
+- (n.) a set of furniture
+- (n.) a set of sofeware
+
 ## sure
 
 - sure
@@ -1231,6 +1292,10 @@ a hollow shape in the shallow stream.
 ## sustain
 
 - sustain: keep
+
+## stab
+- stab: 
+  - (vt) hit with a sharp object
 
 ## station
 
@@ -1382,6 +1447,13 @@ a hollow shape in the shallow stream.
 - tough /tʌf/:
     - (adj): strong
 
+## traditional
+
+- traditional
+- transaction
+- transparent
+
+
 ## trap
 
 - trap: a device for catching sth
@@ -1395,6 +1467,14 @@ a hollow shape in the shallow stream.
     - (vt.)remove the clothes from the body
     - (n.)a long , flat , narrow piece
 - streak: a long thin mark , like fibre
+
+
+## trial
+- trial: 
+  - (n.) a exam for practice before a real exam
+  - (n.) a person or thing that is annoying and causes a lot of trouble
+  - (n.) in the court of law , the process of judging 
+  - (v.) test
 
 ## tumor
 
