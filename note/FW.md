@@ -52,10 +52,16 @@
     - next to or beside in position
     - work with or together or with
 
+## amuse
+
+- amuse:
+  - (v.) to make someone laugh or happy
+
 ## appear
 
 - appear:
     - appear to be nothing , but talk : sb says empty words
+
 
 ## ascent
 
@@ -118,7 +124,13 @@
 ## bet
 
 - bet: to risk money on the result of some event , like gamble
-- bat: like a mouse can fly
+- bat: 
+  - (n.) like a mouse can fly
+  - (n.) an equipment used to hit the ball in baseball game
+  - (v.) to hit sth small , usually with
+- batter
+  - (n.) the man who hit the ball , generally in baseball game
+  - (v.) to hit sth with force many times
 - bed:
 - bedding
 - bath
@@ -176,6 +188,9 @@
   - (p.) breeze in : to walk somewhere confidently
   - (vi.) breeze to do: to achieve something easily
 
+## burglar
+  - (n.) a person who illegally enter a building and steal something ; like a thief
+
 ## butter
 
 - butter
@@ -231,9 +246,13 @@
 - enchant /in’tfa’n/:   to please sb very much
 - championship: a high-level competition
 
-## child
 
+## chic
+
+- chic
+  - (adj.) stylish , modern , fashionable
 - child /tʃail/
+
 
 ## clear
 
@@ -313,6 +332,14 @@
 - crunch
     - (n.)the sound the teeth crash the food
     - (n.) the exercise that use to train the abdomen while lying on your back on the floor /  the exercise also call “sit-up”
+
+## curve
+
+- curve:
+  - (n.) a line that bend continuously`
+  - (adj.) round
+- curly
+  - (adj.) like curve , often describe hair
 
 ## **defect**
 
@@ -411,6 +438,11 @@
 
 - dye: change the color of sth
 
+## dynamic
+- dynamic:
+  - (adj.) have lots of ideas and enthusiasm ; like active
+  - (adj.) constantly change or vary
+
 ## envy
 
 ## essence
@@ -461,8 +493,10 @@
 - fibre:
     - sth is thread-like
 
-## flax
+## flat
 
+- flat:
+  - (adj.) not round or curve
 - flax: a type of textile material, no more dominant used then the past
 - flex
 
@@ -474,6 +508,14 @@
 ## flour
 - flour powder
 
+## fly
+- fly
+  - (v.) 
+  - (n.) a type of insect , often pass for a bug
+- fry
+  - (v): to cook with much oil 
+  - (n.) fries: long thin pieces of fried potato
+
 ## forge
 
 - forge:
@@ -483,6 +525,12 @@
 ## frost
 - frosting
 - frost
+
+## generous
+- generous: 
+  - (adj.) willing to give out a lot of money or property
+- generosity
+  - (n.) the quality of being generous
 
 ## glow
 
@@ -556,6 +604,10 @@
 - herb
     - (n.) a type plant whose leave use in making medicine
 
+## help
+- help:
+  - (p.) have a second helping of sth : eat sth again
+
 ## hip
 
 - hip:  ass
@@ -566,6 +618,11 @@
 - hook: a curved device used to catch or hold sth
 - hoax /heʊks/: 
   - (n.) a lie or false information
+
+## house
+
+- household:
+  - (n.) a group of people , often a family , who live together
 
 ## identify
 
@@ -630,7 +687,16 @@
 - tissue
     - (n.) a piece of soft paper that absorbs liquids
     - (n.) a group of connected cells
-    - 
+
+# j
+## jail
+- jail/dʒeil/
+  - (n.) a place where criminals are kept
+
+
+# k
+## knit 
+- knit/ni't/:
 
 ## labor
 
@@ -660,6 +726,7 @@
 
 - lamp/læmp/: 
   - (n.): the device that can give out light and being placed anywhere conveniently
+  - (vt.) punch sb with fist
 - lamb: 
   - (n.): a small animal with long legs
 - clump /klamp/
@@ -807,9 +874,12 @@
     - a bit
     - a bit strange , hard to interpret
 
-## oral
+## often
+- often: (adv.) usually
+- offender
+  - (n.) a crime or a person with guilty
 
-- 
+## oral
 
 ## ordinary
 
@@ -900,6 +970,11 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 - pointed: (adj) sth has thin , sharp end
 
+## poll
+- poll /peʊl/
+  - (n.) a study result to show the people’s opinion or behavior
+  - (vt.) the action to get the numbers of vote 
+
 ## polite
 
 - polite: (adj.)
@@ -962,6 +1037,7 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - pun/pʌn/:
 - pan/pæn/:
 - pen /pen/
+- pub/pʌb/: a place to drink / bar
 
 ## rail
 
@@ -970,7 +1046,8 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 ## raise
 - raise
-- praise
+- praise/prei'z/
+  - (v.) to express approval or admiration of sb
 
 ## razor
 - razor
@@ -981,10 +1058,20 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 ## reach
 
+
+## relief
+- relief/ri'li'f/:
+  - (n.) the act of freeing or removing sth from a tight or difficult position
+  - (p.) disaster relief : sth that help sb to get out of a difficult situation
+
 ## remark
 
 - remark
 - remarkable: (adj.) sth is suprise you
+
+## renown
+- renown:
+  - (n.) reputation
 
 ## resilient
 
@@ -1004,7 +1091,7 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 ## rival
 
 - rival
-  - (n.) the man or company that compete with 
+  - (n.) the man or company that compete with / opponent
 
 ## rough
 
@@ -1106,6 +1193,12 @@ a hollow shape in the shallow stream.
     - (n.) the imformation make by others that make spoiling
     - (n.) the tips the reveal secret or surprise
 
+## social
+- social
+- socialize
+  - (v.) spend time with sb for making friend or enjoying
+  - (vt) make sb live normally in society
+
 ## soil
 
 - soil: earth or country
@@ -1186,6 +1279,14 @@ a hollow shape in the shallow stream.
 
 - vi : refuse to work
 
+## subtle
+
+- subtle
+  - (adj.) a bit
+  - (adj.) not obvious or clear or noticable
+  - (adj.) small but important
+
+
 ## succeed
 
 - succeed /se’si’d/
@@ -1228,8 +1329,12 @@ a hollow shape in the shallow stream.
 
 - tape/tei’p/: (n.) magnetic strip to record voice or picture
 
-## tense
 
+## ten
+
+- ten
+- tenant
+  - (n.) a person who rents a room , house or land; same as renter
 - tense
     - (adj) a bit nervous
     - (n) a form of verb
@@ -1364,8 +1469,21 @@ a hollow shape in the shallow stream.
 - wire /waie/
     - a thread-like metal
     - (vt) to send money online
+- wit
+  - (n.) wisdom
+
+## work
+- work:
+- worship:
+  - (v.) to show respect or admiration for God
 
 ## wound
+
+## wool
+- wool
+  - (n.) soft hair that grows on the body of a sheep or goat
+- wolf
+  - (n.) a type of animal that often predates the sheep and goat
 
 ## whore
 
