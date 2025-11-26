@@ -1,10 +1,5 @@
 # FW
 
-## to some degree
-
-- to some degree
-- in some way
-- somewhat
 
 
 
@@ -358,6 +353,15 @@
 - crunch
     - (n.)the sound the teeth crash the food
     - (n.) the exercise that use to train the abdomen while lying on your back on the floor /  the exercise also call “sit-up”
+
+## curb
+
+- curb: 
+  - (n.) the edge of a raised path nearest the road
+  - (v.) control or limit sth that is not wanted
+
+- kerb: (n.) same as curb
+
 
 ## curve
 
@@ -773,6 +777,7 @@
   - (v): run slowly
 
 # k
+
 ## knit 
 - knit/ni't/:
 
@@ -1132,6 +1137,10 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - pen /pen/
 - pub/pʌb/: a place to drink / bar
 
+## race
+- race
+- brace
+
 ## rail
 
 - rail
@@ -1479,6 +1488,12 @@ a hollow shape in the shallow stream.
   - (adj.) neat
   - (adj.) large
 
+## to some degree
+
+- to some degree
+- in some way
+- somewhat
+
 ## tongue
 
 ## torture
@@ -1535,9 +1550,15 @@ a hollow shape in the shallow stream.
 
 - twist: turn a bit
 
+
+## type
+- type
+- tyre
+  - (n.) a wheel 
+
 ## umami
 
-- umami /u’ma’mi/ : the sixth flavor distinct from the tranditional five (***sour, sweet, bitter, spicy , salty*** )
+- umami /u’ma’mi/ : the sixth flavor distinct from the traditional five (***sour, sweet, bitter, spicy , salty*** )
 
 ## vain
 
