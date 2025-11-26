@@ -12,15 +12,6 @@
 
 - roof: the cover of the building
 - root: the part of plant that hold the plant firm in the ground
-- 
-
-
-
-## executive
-
-- executive: 
-  - (n.) someone in a high position
-  - (adj.) related to important job or business
 
 ---
 # A
@@ -300,6 +291,12 @@
   - (n.): sth unlikely but surprised event happen
 - coffin: a box with dead people
 
+## collapse
+- collapse:
+- collapsed:
+    - (adj.) sth is falling down ; like a person is collapsed
+        - (p.) she is collapsed on the ground
+
 ## conceive
 
 - conceive
@@ -308,6 +305,11 @@
         - my uncle still conceive of me as a 5-year-old child
 - receive: get sth from others
 - deceive: cheat
+
+## conscious
+- conscious:
+  - (adj.) aware of the situation
+  - (adj.) think or act in a certain way
 
 ## contrast
 
@@ -323,6 +325,12 @@
 ## cord
 
 - cord: a type of rope
+
+## cough
+
+- cough:
+    - (n.) a sound that is made when you cough
+    - (v.) to force air out of you lungs with a short , loud sound
 
 ## cozy(cosy)
 
@@ -478,6 +486,12 @@
 
 - evoke (vt)make sb feel a emotion or remember sth
 
+## executive
+
+- executive:
+  - (n.) someone in a high position
+  - (adj.) related to important job or business
+
 ## exploit
 
 - exploit :
@@ -515,6 +529,10 @@
   - (adj.) suitable 
   - (adj.) healthy or strong
   - (v.) to be the right size to go into a particular space
+  - (n.) a sudden uncontrolled movement or feeling
+    - (p.) in a fit of : she killed him in a fit of anger
+  - (n.) a set of clothes
+    - (synonym): outfit
 - fix:
     - (vt): put
 - fibre:
@@ -656,6 +674,10 @@
 - household:
   - (n.) a group of people , often a family , who live together
 
+## iconic
+- iconic:
+  - (adj.) very famous, especially being considered as a symbol of a period or event
+
 ## identify
 
 ## ignite
@@ -698,15 +720,28 @@
 
 - innovation
 
+
+## insane
+- insane: 
+  - (adj.) very mad or crazy
+  - (adj.) extremely good
+
 ## insect
 
 - insect
-    - bug
+  - bug
 - insert
-    - put / fix sth inside
+  - put / fix sth inside
 
-## insane
-- insane: (adj.) very mad or crazy
+## instrument
+
+- instrument/in'stre'ment/:
+  - (n.) a tool to play music
+  - (n.) a tool without any electrical power
+    - (p.) blunt instrument: 钝器
+  - (n.) a device used to measure speed or height in vehicles 
+
+
 
 ## interscet
 
@@ -917,7 +952,13 @@
     - a bit
     - a bit strange , hard to interpret
 
+# o
+## oak
+- oak: (n.) a tree with large , strong , hard , tough , and often red bark(橡树/木)
+
+
 ## often
+
 - often: (adv.) usually
 - offender
   - (n.) a crime or a person with guilty
@@ -959,6 +1000,9 @@ Amy, a high-ranking executive at a company, oversaw a large department. One day,
 
 - panel
     - (n.) a piece of flat wood
+    - (n.) a group of people chosen to give advice or discuss sth
+      - (p.) a panel of experts
+    - (vt) decorate with flat piece of wood , metal or cloth;
 
 ## paradox
 
@@ -1440,6 +1484,8 @@ a hollow shape in the shallow stream.
 ## torture
 
 - torture /to’tʃe/
+  - (vt) cause great pain to sb
+  - (n.) very unpleasant experience
 
 ## touch
 
@@ -1567,4 +1613,4 @@ a hollow shape in the shallow stream.
 
 ## whore
 
-- whore: (n.) a female prostitude
+- whore/ho'(r)/: (n.) a female prostitude
