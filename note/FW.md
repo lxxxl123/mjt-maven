@@ -180,6 +180,16 @@
 - bowl /beʊl/ : a type of container used to serve staple food like (rice,noodles,soups )in China
 - bowel/bau’el/: the organ of a long tude that carried the solid waste from the stomach
 
+
+## brace
+
+- brace
+  - (vt) to prepare yourself for sth bad
+    - (sentence.) time seems stand still as you brace yourself for the impact
+  - (vt) support
+  - (n) sth that can support , strengthen
+- brave
+
 ## brew
 
 - brew:
@@ -286,6 +296,8 @@
 
 ## chief
 
+- chef
+  - (n.) the man who cook
 - chief:
   - (n.) the person in charge of the group
   - (adj.) main or most important
@@ -296,6 +308,15 @@
 - clear
 - nuclear
 - nucleur: the core of the cell or the atom
+
+
+## clip
+
+- clip
+  - (vt) cut sth with a scissor
+  - (vt) hit sth with a short sharp movement
+    - (sen.) he clipped the edge of the kerb with his from tyre
+  - (vt) fasten sth with (metal/hair/plastic) clip
 
 ## clock
 
@@ -338,6 +359,15 @@
 - conscious:
   - (adj.) aware of the situation
   - (adj.) think or act in a certain way
+
+## content
+
+- content:
+  - (vt) to make sth happy or satisfied
+  - (n.) a happy feeling
+  - (adj.) pleased with current situation and not hoping to change or improvement
+  - (n.) everything that is contained within something
+
 
 ## contrast
 
@@ -496,6 +526,11 @@
 - drag
 - drop
 
+## dress
+- dress
+- dresser
+  - (n.) a furniture always with a mirror to dress up yourself
+
 ## drink
 
 - drink
@@ -546,6 +581,11 @@
 - eyewear /ai’wer/
 
 # F
+
+
+## fair
+- fairly
+  - (adv) very
 
 ## fancy
 
@@ -868,6 +908,10 @@
     - (n.): a curved piece material that is transparent and change the direction of the light
     - contact lens: the lens to improve the eye’s sight
 
+## lie
+- lie:
+  - (p.) white lie : a lie with kindness / a kind lie
+
 ## line
 
 - line
@@ -903,6 +947,14 @@
 
 - luster
 - luxury
+
+# m
+
+## maid
+
+- maid: (n.) 
+  - a woman who work as a servant in home or hotel
+  - a girl who has not had sex
 
 ## mammal
 
@@ -964,6 +1016,10 @@
 - nail
     - (n) a small piece of metal , used to fixed sth
     - (n) a hard , thin area the cover the upper side of your finger
+
+## name
+- name-calling
+  - 
 
 ## native
 
@@ -1231,6 +1287,13 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 ## resilient
 
 - resilient: be able to happy after sth bad has happened
+
+## resort
+
+- resort:
+  - (n.) a place where sb travel for rest
+  - (vi)
+    - resort to : use the final way to
 
 ## rest
 
@@ -1542,7 +1605,7 @@ a hollow shape in the shallow stream.
 - tile: a piece of baked clay
 - file:
 - fertile: (adj.) a fertile land can product good quality of crops
-- tidy: 
+- tidy/tai'di/: 
   - (adj.) neat
   - (adj.) large
 
