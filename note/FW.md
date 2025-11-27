@@ -63,6 +63,14 @@
 
 - attic: the space at the top of the building , always used to store the old things
 
+
+## auto
+
+- auto
+- autoclave
+  - (n.) a device use steam at high pressure to clean or cook sth
+  - (vt) use a autoclave to clean or cook sth
+
 ## aware
 
 - aware
@@ -101,16 +109,27 @@
 - (adv) by the smallest amount
     - his dog is so friendly that barely bark at strangers
 
-## bet
+## back
 
-- bet: to risk money on the result of some event , like gamble
-- bat: 
+- back
+- bacterium/bæk'tie'ri'em/
+  - (plural) bacteria
+  - (n.) a very small organism that can live in air, water, plant or animal, often one that can cause disease
+
+## bat
+
+- bat:
   - (n.) like a mouse can fly
   - (n.) an equipment used to hit the ball in baseball game
   - (v.) to hit sth small , usually with
 - batter
   - (n.) the man who hit the ball , generally in baseball game
   - (v.) to hit sth with force many times
+
+
+## bet
+
+- bet: to risk money on the result of some event , like gamble
 - bed:
 - bedding
 - bath
@@ -191,28 +210,25 @@
 
 ## candidate
 
-## cereal
 
-- cereal/si'ri'el/:
-  - (n.) a type of food made from different types of grains
-  - (n.) a type of grass that is grown to product grain
+## cage
 
-```markdown
-"She could blast the candle-holding candidate into oblivion with her uncanny cannon then snap a candid shot of the chaos, grinning like a victor."
-```
+- cage 
 
-- candidate: a person wait for being selected
-- can: be able to
-- candid: frank
-- cannon: a type of mounted hot weapon
-- candle: a crucial source of **light at night in ancient times**
-- uncanny: strange or mysterious
-- canal: a narrow tube
+## capitalize
+- capitalize: 
+  - (vt) to make sth start with a capital letter, like a to A
+  - (vt) make full use of sth
 
 ## carpet
 
 - carpet /car’pit/: a blanket used to cover the floor
 - cargo /ka;goʊ/: the goods carray by truck , ship or other large vehicle
+
+## carry
+
+- carry
+  - (p.) carry out: implement
 
 ## cart
 
@@ -231,6 +247,23 @@
 - cattle:
 - battle:
 
+## cereal
+
+- cereal/si'ri'el/:
+  - (n.) a type of food made from different types of grains
+  - (n.) a type of grass that is grown to product grain
+
+```markdown
+"She could blast the candle-holding candidate into oblivion with her uncanny cannon then snap a candid shot of the chaos, grinning like a victor."
+```
+
+- candidate: a person wait for being selected
+- can: be able to
+- candid: frank
+- cannon: a type of mounted hot weapon
+- candle: a crucial source of **light at night in ancient times**
+- uncanny: strange or mysterious
+- canal: a narrow tube
 
 ## charge
 
@@ -410,6 +443,10 @@
 - dense
     - (adj) : sth close together
         - dense fog
+
+## dentist
+
+- dentist: (n.) a person who treat the teeth
 
 ## departure
 
@@ -743,6 +780,7 @@
   - (n.) a tool to play music
   - (n.) a tool without any electrical power
     - (p.) blunt instrument: 钝器
+  - (n.) the way or method to achieve a goal
   - (n.) a device used to measure speed or height in vehicles 
 
 
@@ -881,9 +919,11 @@
 
 - meadow: a field with flower
 
-## mediocre
+## med
 
-- mediocre: not very good
+- medieval/med'i'vel/
+  - (n.) related to middle age
+- mediocre/mi'di'oʊ'ker/: not very good
 
 ## mere
 
@@ -943,6 +983,17 @@
     - (n.) a job or position is very suitable for sb
     - (adj.) sth affect only a small number of people
 
+## nuance
+
+- nuance
+  - a bit
+  - a bit strange , hard to interpret
+
+## nursery
+
+- nursery:
+    - (n.) a place where children are taken care of while their parent is busy
+
 ## noun
 
 - noun /naun/
@@ -951,11 +1002,6 @@
 
 - numb: unable to do or feel without feeling or power
 
-## nuance
-
-- nuance
-    - a bit
-    - a bit strange , hard to interpret
 
 # o
 ## oak
@@ -973,6 +1019,13 @@
 ## oral
 
 ## ordinary
+
+## organ
+
+- organ
+- organism
+  - (n.) a single living thing
+
 
 ## overlook
 
@@ -1478,6 +1531,11 @@ a hollow shape in the shallow stream.
 
 - thigh: the upper leg
 
+## thug
+
+- thug/θʌg/: 
+  - (n.) a man who act violently , a criminal
+
 ## tie
 
 - tie: fa
@@ -1580,6 +1638,12 @@ a hollow shape in the shallow stream.
 
 - vibe: atmosphere
 
+
+## vicious
+
+- vicious
+  - (adj.) sb or sth is aggressive or violent and tends to cause harm or damage
+
 ## verge
 
 - verge /vɛ‘dʒ’
@@ -1589,6 +1653,13 @@ a hollow shape in the shallow stream.
 
 - vine/vain/: a type of climbing plant 
 - vein/vein/: a small tube to carry blood
+
+
+## virus
+
+- virus:
+  - (n.) a very small organism that can cause disease in humans , animal or plants
+  - (n.) a harmful computer program that can cause damage to a computer or network
 
 ## wave
 
