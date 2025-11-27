@@ -83,6 +83,14 @@
   - (adj.) not suitable or not comfortable
   - (adj.) difficult to deal with
 
+
+## back
+
+- back
+- bacterium/bæk'tie'ri'em/
+  - (plural) bacteria
+  - (n.) a very small organism that can live in air, water, plant or animal, often one that can cause disease
+
 ## bachelor
 
 - bachelor:
@@ -104,17 +112,17 @@
     - (n.) the noise that the dog make
 - park
 
+## basic
+- basic
+- basis
+  - (n.) the foundation of something
+  - (n.) a way or method of doing something
+
 ## barely
 
 - (adv) by the smallest amount
     - his dog is so friendly that barely bark at strangers
 
-## back
-
-- back
-- bacterium/bæk'tie'ri'em/
-  - (plural) bacteria
-  - (n.) a very small organism that can live in air, water, plant or animal, often one that can cause disease
 
 ## bat
 
@@ -1063,6 +1071,11 @@
 ## oak
 - oak: (n.) a tree with large , strong , hard , tough , and often red bark(橡树/木)
 
+
+## on
+- on:
+- ongoing
+  - (adj.) continue to exist or develop
 
 ## often
 
