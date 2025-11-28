@@ -64,6 +64,15 @@
 - attic: the space at the top of the building , always used to store the old things
 
 
+## argue
+- argue:
+  - (v.) to express or show your opinion or feeling about sth
+  - (v.) to challenge someone or something
+- argument
+  - (n.) a discussion or argument about sth
+  - (n.) the excuse or reason for sth
+
+
 ## auto
 
 - auto
@@ -117,6 +126,7 @@
 - basis
   - (n.) the foundation of something
   - (n.) a way or method of doing something
+  - (p.) on the basis that : because that
 
 ## barely
 
@@ -208,6 +218,11 @@
   - (n.) sth that is easy to do
   - (p.) breeze in : to walk somewhere confidently
   - (vi.) breeze to do: to achieve something easily
+
+## briefly
+- briefly
+  - (adv.) for a short time
+  - (adv.) use few words 
 
 ## burglar
   - (n.) a person who illegally enter a building and steal something ; like a thief
@@ -354,6 +369,13 @@
     - (adj.) sth is falling down ; like a person is collapsed
         - (p.) she is collapsed on the ground
 
+## compelling
+- compelling:
+  - (adj.) persuasive / if a reason is compelling , it make you believe it or accept it because it's strong
+    - (p.) compelling evidence
+  - (adj.) attractive
+
+
 ## conceive
 
 - conceive
@@ -469,7 +491,7 @@
 ## deli
 
 - deli: (short of delicatessen) : a counter in supermarket where you can buy food
-- deliberte
+- deliberate
     - intentional
     - think or discuss deeply
 - delete
@@ -548,6 +570,14 @@
 ## drone
 
 - drone/dreun/: (n.) a type of small aircraft with no pilot
+
+
+## duck
+- duck: 
+  - (n.) a type of animal
+  - (vt.) to push someone underwater for a short time
+  - (vt.) to move quickly to escape
+  - (vt) escape to do sth
 
 ## dye
 
@@ -795,6 +825,11 @@
 
 - integrity: the quality of being honest
 
+
+## intensity
+- intensity:
+  - (n.) the degree of sth , the strength of sth
+
 ## intern
 
 - intern
@@ -833,9 +868,9 @@
 
 
 
-## interscet
+## interset
 
-- intersect
+- interset
 - insect /in.sekt/ : a type of small animal with six legs
 - interlace
 
@@ -1197,6 +1232,8 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - politics: (n.)
 - police: (n.)
 
+## polish
+
 ## pond
 
 - pond: a pool
@@ -1355,6 +1392,13 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - sake /seik/
     - (n.)for my sake: i bet you that please ….
 
+## sage
+
+- sage/sei'dʒ/:
+- saga/sɑː'ge/:
+  - (n.) a long story about the past
+  - (n.) legend
+
 ## seam
 
 - seam: a line where two things join
@@ -1394,10 +1438,18 @@ a hollow shape in the shallow stream.
 
 ## shift
 
+- shift: a period of working time
+- 
 ## shore
+
 - shore：the land along the edge of the sea or lake
 
-- shift: a period of working time
+## show
+
+- show
+- shower/ʃaʊ'er/
+  - (n) a device that release the drops of water that you stand under to wash you body
+  - (n.) a action to use shower to wash
 
 ## sign
 
@@ -1428,6 +1480,12 @@ a hollow shape in the shallow stream.
 - spoiler
     - (n.) the imformation make by others that make spoiling
     - (n.) the tips the reveal secret or surprise
+
+## soak
+- soak
+- soaked
+  - (adj.) extremely wet
+
 
 ## social
 - social
@@ -1532,6 +1590,7 @@ a hollow shape in the shallow stream.
   - (adj.) a bit
   - (adj.) not obvious or clear or noticable
   - (adj.) small but important
+  - (adj.) achieve in a quiet way , also clever
 
 
 ## succeed
@@ -1765,11 +1824,12 @@ a hollow shape in the shallow stream.
     - (vt) to send money online
 - wit
   - (n.) wisdom
+  - (n.) the ability to think quickly
 
 ## work
 - work:
 - worship:
-  - (v.) to show respect or admiration for God
+  - (v.) to show respect or admiration for God or sb
 
 ## wound
 
