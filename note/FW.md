@@ -556,6 +556,11 @@
 - drag
 - drop
 
+## drawn
+
+- drawn
+  - (adj.) very tired and showing suffer
+
 ## dress
 - dress
 - dresser
@@ -638,6 +643,12 @@
 ## feather
 - feather
 - feature
+
+## fever
+- fever
+- fevered
+- febrile:
+  - (adj.) like fevered, extremely excited
 
 ## fine
 - fine (adj.): sth with very small or thin piece
@@ -1398,6 +1409,13 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - saga/sɑː'ge/:
   - (n.) a long story about the past
   - (n.) legend
+
+## scale
+
+- scale
+  - (n.)the size of sth
+
+
 
 ## seam
 
