@@ -1521,6 +1521,11 @@ a hollow shape in the shallow stream.
 - resign
   - (vi.): quit the job
 
+
+## sketch
+
+- (n.) a simple quickly-make drawing that dose not have many details
+
 ## slender
 
 - slender:(adj) thin and delicate , offten attractive
