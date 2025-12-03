@@ -80,6 +80,12 @@
   - (n.) a device use steam at high pressure to clean or cook sth
   - (vt) use a autoclave to clean or cook sth
 
+## avenue
+
+- avenue/æ'ven'nju/:
+  - (n) a wide road with trees and tall buildings on both sides
+  - (n.) a road leads to the large house
+
 ## aware
 
 - aware
@@ -223,6 +229,17 @@
 - briefly
   - (adv.) for a short time
   - (adv.) use few words 
+
+## brim
+
+- brim
+  - (n.) the very top edge of a container
+    - (p.) fill sth to the brim: to put sth in a container until it is full
+  - (vt) to be completely full of sth
+  
+- brimming
+  - (adj.) completely full of sth
+    - (sen.) Her voice shaking and her eyes brimming, she tried to tell them what had happened 
 
 ## burglar
   - (n.) a person who illegally enter a building and steal something ; like a thief
@@ -593,6 +610,11 @@
   - (adj.) have lots of ideas and enthusiasm ; like active
   - (adj.) constantly change or vary
 
+## earth
+- earth
+- earthenware
+  - (n.) make of quite rough clay
+
 ## envy
 
 ## essence
@@ -913,6 +935,11 @@
 ## knit 
 - knit/ni't/:
 
+## knock
+- knock
+  - (p.) knock over: make sth fall down
+    - (sen.) who knocked over that mug of coffee
+
 ## labor
 
 - labor
@@ -1060,6 +1087,12 @@
 ## mud
 
 - mud: (n.) wet , sticky earth
+- mug: 
+  - (n.) a big cup
+  - (n.) a person who is stupid and easily deceived
+  - (n.) someone's face
+  - (vt.) same as rob 
+    - (p.) he is mugged in broad daylight
 
 ## muscle
 
@@ -1363,6 +1396,14 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - breastfeeding
     - (n.) a way to feeding baby with mother’s milk
 
+
+## retreat
+
+- retreat
+  - (vi) go away from a place to escape danger
+  - (n.) a private or safe place
+  
+
 ## ridge
 
 - ridge: a long , narrow raised part of surface
@@ -1375,6 +1416,8 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 ## rough
 
 - rough/rʌf/
+  - (adj.) not even or smooth
+  - (adj.) dangerous or violent (area)
 - roughly/rʌf'li/
   - (adv.) approximately 
   - (adv.) without taking a lot of care to do
@@ -1406,6 +1449,9 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 ## sage
 
 - sage/sei'dʒ/:
+  - (adj.) wise
+    - (sen.) sage advice
+  - (n.) a type of plant is used to give flavor to some food
 - saga/sɑː'ge/:
   - (n.) a long story about the past
   - (n.) legend
@@ -1420,8 +1466,8 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 ## seam
 
 - seam: a line where two things join
-- *seamless:*
-    - *(adj.)better in quality*
+- seamless:
+    - (adj.) better in quality
     - (adj.) change in smooth and unnoticed way
 - sew: to join two piece of cloth by putting thread through them with a needle
 
@@ -1490,6 +1536,10 @@ a hollow shape in the shallow stream.
 ## spine
 
 - spine: the essencial part of the human body,  control the imformation transmission
+
+## splendid
+
+- splendid: (adj.) extremely good or impressive
 
 ## spoil
 

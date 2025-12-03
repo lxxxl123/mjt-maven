@@ -41,11 +41,11 @@ public class UpdateQmsProd {
         GitTool gitTool = new GitTool();
         gitTool.setPath(projectSvnPath);
         gitTool.exeGit("svn update");
-
-//        /*1. 构建前端*/
-//        buildFront();
 //
-//        /*2. 复制文件*/
+////        /*1. 构建前端*/
+//        buildFront();
+////
+////        /*2. 复制文件*/
 //        GitTool git = new GitTool();
 //        git.setMvn("D:\\\\code\\\\maven\\\\apache-maven-3.8.6\\\\bin\\\\mvn.cmd");
 //        git.setSh("C:\\\\Program Files\\\\Git\\\\bin\\\\sh.exe");
