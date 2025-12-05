@@ -437,6 +437,8 @@
   - (p.) contact lens: a hidden glass in your eye that help you see better
   - (vt.) touch
   - (vt.) communicate
+- contactless
+  - (adj.) without touching or using a physical contact
 
 ## content
 
@@ -592,7 +594,9 @@
 
 ## dish
 
-- a type of container that flat then a bowl
+-dish
+  - (n.) a type of container that is more flat than a bowl ,  plate
+  - (n.) a dish of food
 
 ## disrupt:
 
@@ -640,6 +644,10 @@
 - drone/dreun/: (n.) a type of small aircraft with no pilot
 
 
+## drum
+- drum: (n.) a type of instrument that need to be struck it to make sound
+  - (p.) strike the drum / hit the drum
+
 ## duck
 - duck: 
   - (n.) a type of animal
@@ -672,6 +680,11 @@
 ## evoke
 
 - evoke (vt)make sb feel a emotion or remember sth
+
+## exaggerate
+
+- exaggerate:
+  - (vt.) to make something sound or look more important than it really is
 
 ## executive
 
@@ -1003,6 +1016,12 @@
   - (v): run slowly
 
 # k
+
+## kid
+- kid
+- kit
+  - (n.) the young of some animals
+  - (n.) a sets of tools or equipments
 
 ## knit 
 - knit/ni't/:
@@ -1493,8 +1512,13 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - remarkable: (adj.) sth is suprise you
 
 ## renown
+
 - renown:
   - (n.) reputation
+
+## rent
+- (n.) the cost of renting a dorm or house or sth else regularly for using them for temporarily
+- (vt.) rent a house
 
 ## resilient
 
@@ -1531,6 +1555,10 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - rinse
   - (v) use water to clean the soap or dirt from sth
     - (p.) rinse thoroughly
+    - (p.) rinse your mouth: wash out your mouth
+  - (vt.) make joke about other in a way that is not kind
+  - (vt.) to beat sb in game easily (横扫)
+  - (vt.) make sb spend lots of money to buy something or take lots of money from sb (洗劫)
 
 ## rival
 
@@ -1684,6 +1712,12 @@ a hollow shape in the shallow stream.
 - spoiler
     - (n.) the imformation make by others that make spoiling
     - (n.) the tips the reveal secret or surprise
+
+## sport
+
+- sport
+- sportsmanship
+  - (n.) polite , nice,  respectful spirit in a sport
 
 ## soak
 - soak
@@ -1860,9 +1894,16 @@ a hollow shape in the shallow stream.
 - tenant
   - (n.) a person who rents a room , house or land; same as renter
 - tense
-    - (adj) a bit nervous
+  - (adj) a bit nervous
     - (n) a form of verb
         - past tense of the walk = walked
+
+## tend
+- tend
+- tendency
+  - (n.) the probability of something happening
+    - (p.) sb's tendency to do: sb tend to do
+
 
 ## tempt
 
