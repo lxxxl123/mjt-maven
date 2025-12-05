@@ -429,6 +429,15 @@
   - (adj.) aware of the situation
   - (adj.) think or act in a certain way
 
+## contact
+
+- contact
+  - (n.) communication
+  - (n.) a person , who can help you at work or socially
+  - (p.) contact lens: a hidden glass in your eye that help you see better
+  - (vt.) touch
+  - (vt.) communicate
+
 ## content
 
 - content:
@@ -960,6 +969,14 @@
 - insect /in.sekt/ : a type of small animal with six legs
 - interlace
 
+## irritate
+
+- irritate:
+  - (vt.) make someone feel angry or annoyed
+  - (vt.) make someone feel uncomfortable or uneasy , like stimulate, bother
+- irritation
+  - (n.) annoyance
+
 ## issue
 
 - issue:
@@ -968,6 +985,8 @@
 - tissue
     - (n.) a piece of soft paper that absorbs liquids
     - (n.) a group of connected cells
+
+
 
 # j
 ## jail
@@ -1507,6 +1526,12 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 - ridge: a long , narrow raised part of surface
 
+## rinse
+
+- rinse
+  - (v) use water to clean the soap or dirt from sth
+    - (p.) rinse thoroughly
+
 ## rival
 
 - rival
@@ -1775,6 +1800,7 @@ a hollow shape in the shallow stream.
   - (vi) : to cause a person or place to suffer severely
     - (p.) disaster strike
     - (p.) earthquake strike
+    - (p.) tragedy strike
 
 ## subtle
 
@@ -1922,6 +1948,12 @@ a hollow shape in the shallow stream.
   - (n.) in the court of law , the process of judging 
   - (v.) test
 
+## trust
+
+- trust
+- mistrust
+  - (vi) doubt
+
 ## tumor
 
 - tumor: a mass of diseased cell
@@ -1941,9 +1973,15 @@ a hollow shape in the shallow stream.
 - tyre
   - (n.) a wheel 
 
+# U
+
 ## umami
 
 - umami /u’ma’mi/ : the sixth flavor distinct from the traditional five (***sour, sweet, bitter, spicy , salty*** )
+
+## up
+
+- wash up: wash plate , always after dinning
 
 ## vain
 
