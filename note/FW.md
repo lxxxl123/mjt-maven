@@ -258,6 +258,12 @@
   - (n.) a small house made of wood
   - (n.) a separate space in the building or ship or aircraft
 
+## call
+
+- call
+  - (p.) call upon : ask sb to do sth
+    - (sen.) He called upon his friend to help him with the project
+
 ## candidate
 
 
@@ -296,6 +302,11 @@
 
 - cattle:
 - battle:
+
+## celebrity
+
+- celebrity: a person who is famous or well-known, especially in entertainment business
+  - (p.) celebrity crush: 
 
 ## cereal
 
@@ -343,6 +354,12 @@
   - (adj.) main or most important
 
 
+## claim
+
+- claim//
+  - 
+
+
 ## clear
 
 - clear
@@ -363,6 +380,11 @@
 - clock
     - on the clock : sb is under time presure
     - off the clock :  sb is under the free time
+
+# clove
+
+- clove
+  - (n.) a part of garlic
 
 ## coal
 
@@ -464,6 +486,11 @@
     - (n.)the sound the teeth crash the food
     - (n.) the exercise that use to train the abdomen while lying on your back on the floor /  the exercise also call “sit-up”
 
+## crush
+
+- crush
+  - (vt.) to press sth very hard so that it is broken
+
 ## curb
 
 - curb: 
@@ -480,6 +507,9 @@
   - (adj.) round
 - curly
   - (adj.) like curve , often describe hair
+
+
+# D
 
 ## **defect**
 
@@ -558,6 +588,13 @@
 ## disrupt:
 
 - disrupt: completely change
+
+## dorm
+
+- dorm
+  - (n.) same as dormitory
+- dormitory
+  - (n.) a place where live together temporarily
 
 ## doubt
 
@@ -662,6 +699,12 @@
 ## faint
 - faint: (adj.)slight
 
+
+## fastidious
+
+- fastidious
+- (adj.) be attentive to the detail , have high standard requirement
+
 ## feather
 - feather
 - feature
@@ -694,6 +737,9 @@
 
 - flat:
   - (adj.) not round or curve
+  - 
+- flatter/flæ'ter/
+  - (vt): to praise someone in order to make them feel attractive, sometimes in a way that is not sincere
 - flax: a type of textile material, no more dominant used then the past
 - flex
 
@@ -820,6 +866,13 @@
 - hook: a curved device used to catch or hold sth
 - hoax /heʊks/: 
   - (n.) a lie or false information
+
+## hotel
+
+- hotel: 
+  - (n.) a place where people stay for a short time
+- hostel
+  - like a hotel but often cheaper or free
 
 ## house
 
@@ -1084,6 +1137,16 @@
   - (ant.) excessive, extreme
 
 
+## modest
+
+- modest/mo'dis't/
+  - (adj.)
+- modesty/mo'des'ti/
+  - (n.)the quality of trying to make people don't notice your abilities 
+  - (p.) in all modesty: speak directly
+    - (sen.) In all modesty, we'd probably have lost the game if i hadn't been playing
+
+
 ## mud
 
 - mud: (n.) wet , sticky earth
@@ -1150,6 +1213,11 @@
 ## oak
 - oak: (n.) a tree with large , strong , hard , tough , and often red bark(橡树/木)
 
+
+## obsessive
+
+- obsessive
+  - (adj.) too interested in sb or sth , and spend much time on it
 
 ## on
 - on:
@@ -1329,9 +1397,23 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
   - (adj) likely to show bad state
   - (phrase): be prone to sth / do sth
 
+## prior
+- prior/prai'er/: 
+  - (adj.) sth more important than others
+- priority/prai'o're'ti/: 
+  - (n.) the order of importance of sb or sth
+  - (adj.) sth should be considered first
+- prioritize
+  - (vt): to decide which thing should be done first
+
 ## profit
 
 - profit: the money that you earn from doing business or trading
+
+## profound
+
+- profound
+  - (adj.) very / extreme strong or deep feeling of sth
 
 ## pun
 
@@ -1339,6 +1421,17 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - pan/pæn/:
 - pen /pen/
 - pub/pʌb/: a place to drink / bar
+
+
+## punctuation
+
+- punctuation:
+  - (n.) the mark of end of a sentence
+- punctuality/pʌn'tʃu'æl'e'ti/:
+  - (n.) the fact of doing sth at a expected time or correct time and not late
+
+
+# R
 
 ## race
 - race
@@ -1363,6 +1456,12 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 ## reach
 
+
+## rebel
+
+- rebel/ri'bel/
+- rebellion/ri'bel'li'en/
+  - (n.) a violent group who fight against the government or the authority
 
 ## relief
 - relief/ri'li'f/:
@@ -1517,6 +1616,13 @@ a hollow shape in the shallow stream.
 
 ## sign
 
+
+## sincere
+
+- sincere/sin'si'er/: 
+  - (adj.) express the truth or the importance of sb or sth,honest
+    - (sen) more than sincere words of support, we need action
+
 - sign
 - resign
   - (vi.): quit the job
@@ -1590,6 +1696,12 @@ a hollow shape in the shallow stream.
 
 - splash: use a bit water hit sth
 
+## suitcase
+
+- suitcase: 
+  - (n.) a bag or box used to carry things
+
+
 
 ## suite
 
@@ -1626,6 +1738,8 @@ a hollow shape in the shallow stream.
         - stick with doing : insist doing
             - 
 - sticker: sth thin paper that can fixed to a surface\
+- stickler:
+  - (n.) a people insist doing something he thinks is important
 
 ## stranger
 
@@ -1655,7 +1769,12 @@ a hollow shape in the shallow stream.
 
 ## strike
 
-- vi : refuse to work
+- strike
+  - (past.) struck
+  - (vi) : refuse to work
+  - (vi) : to cause a person or place to suffer severely
+    - (p.) disaster strike
+    - (p.) earthquake strike
 
 ## subtle
 
@@ -1915,3 +2034,17 @@ a hollow shape in the shallow stream.
 ## whore
 
 - whore/ho'(r)/: (n.) a female prostitude
+
+
+
+# sentence
+## use X to emphasize Y
+- More than X , we Y
+  - (sen.) More than needing a prefect plan , we need to take the first step.
+- if X , then certainly Y
+- X is one thing, but Y is another
+- Not only X , but also Y
+- X aside , let's talk about Y
+- Less X ,More Y
+- Not So much X as Y
+
