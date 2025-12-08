@@ -1980,8 +1980,7 @@ a hollow shape in the shallow stream.
       - (p.) tempt sb to do sth
       - (sen.)tempt the fox into the trap
     - (vi): want to do sth
-        - be tempted to do sth
-        - i was tempted to do …
+      - (p.) be tempted to do sth : have strong desire to do sth (always wrong, unwise , indulgent, a bad habit)
 - temp
 - temptation
   - (n.) sth that you want to do but generally is harmful or unwise
