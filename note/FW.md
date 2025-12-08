@@ -3,10 +3,6 @@
 
 
 
-## roof
-
-- roof: the cover of the building
-- root: the part of plant that hold the plant firm in the ground
 
 ---
 # A
@@ -465,10 +461,7 @@
 - cord: a type of rope
 
 ## cough
-
-- cough:
-    - (n.) a sound that is made when you cough
-    - (v.) to force air out of you lungs with a short , loud sound
+- see rough
 
 ## cozy(cosy)
 
@@ -576,6 +569,13 @@
 
 - dictate /di’tei/:
     - to give orders
+
+## diet
+
+- diet/dai'et/:
+    - (n.) the food and drink usually eaten by sb
+    - (vi.) limit the food that you take
+      - (sen.) my wife plan to lose weight through dieting
 
 ## dig
 
@@ -1205,9 +1205,25 @@
     - (n) a small piece of metal , used to fixed sth
     - (n) a hard , thin area the cover the upper side of your finger
 
+## nag 
+
+- nag
+  - (v) criticize or complain often in an annoying way
+    - (p.) nag sb to do sth
+      - (sen.) my mom often nag me to get my hair cut
+  - (n.)
+    - sb always nags
+- nod
+  - (v) to move you head down and up , especially to show agreement or support
+
 ## name
 - name-calling
-  - 
+
+
+## nasty
+- nasty
+  - (adj.): bad or very unpleasant
+
 
 ## native
 
@@ -1303,6 +1319,17 @@
 ```markdown
 Amy, a high-ranking executive at a company, oversaw a large department. One day, while driving in heavy traffic, she noticed cars overlapping lanes chaotically. Frustrated, she decided to accelerate and overtake the lead car in the flow. However, she overlooked the danger—a motorcyclist hidden in her blind spot. In her rush, she swerved and crashed into the side rail.
 ```
+
+
+# p
+
+## pact
+
+- pack
+- pact
+  - (n.) a formal agreement between two or more people
+    - (p.) a pact with sb
+    - (sen.) a non-aggressive pact
 
 ## palate
 
@@ -1485,6 +1512,10 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - praise/prei'z/
   - (v.) to express approval or admiration of sb
 
+## rancid
+- rancid
+  - (adj.) the food or the body become bad smell over time 
+
 ## razor
 - razor
 - raze
@@ -1565,15 +1596,26 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - rival
   - (n.) the man or company that compete with / opponent
 
+## roof
+
+- roof: the cover of the building
+- root: the part of plant that hold the plant firm in the ground
+
 ## rough
 
 - rough/rʌf/
   - (adj.) not even or smooth
   - (adj.) dangerous or violent (area)
+
+
 - roughly/rʌf'li/
   - (adv.) approximately 
   - (adv.) without taking a lot of care to do
   - (adj.) in a violent or angry way
+
+- cough/kof/:
+  - (n.) a sound that is made when you cough
+  - (v.) to force air out of you lungs with a short , loud sound
 
 
 ## rotate
@@ -1635,10 +1677,10 @@ The soldier stands in fallow, swallowed by war, his shadow reflects
 a hollow shape in the shallow stream.
 ```
 
-- fallow: farmland without crops
+- fallow/fæ'leʊ/: farmland without crops
 - shadow: a area of darkness , caused by light being block by sth
-- shallow: not deep
-- hollow: with a hole or empty area inside
+- shallow/ʃæ'leʊ/: not deep
+- hollow/ho'leʊ/: with a hole or empty area inside
 - swallow: an action to eat with muscles in throat
 
 ## shatter
@@ -1687,11 +1729,30 @@ a hollow shape in the shallow stream.
 
 ## slender
 
-- slender:(adj) thin and delicate , offten attractive
+- slender:
+  - (adj.) thin and delicate , often attractive
 - lender:  (n) the man or organization (bank) who lend money to sb
 - land:
     - (n.) the earth
     - (vt) get sth good unexpectedly
+
+## sneak
+
+- sneak
+  - (v): go somewhere secretly or make sb/sth somewhere secretly
+    - (p.) sneak in: 
+    - (p.) sneak sb in: Mike doesn't have a ticket , but I think we can sneak him in
+    - (p.) sneak up on sb: move close to sb without him seeing
+    - (p.) sneak out of: get out of somewhere secretly
+  - (v): same as snitch, to secretly tell sb in authority, especially a teacher
+    - (p.) sneak on sb to sb (informal) / tell on / snitch on sb to sb / inform on sb to sb (more formal)
+      - we try to sneak out of the house , but my brother sneak on us to the father
+  - (n.) a person who sneaks on others
+  - (v) look
+    - (p.) sneak a look at: glance at sb
+      - (sen.) i noticed that he sneak a look at what i was writing
+  - (adj.) done secretly
+    - the army launched a sneak attack under the cover of night
 
 ## spark
 
@@ -1699,7 +1760,7 @@ a hollow shape in the shallow stream.
 
 ## spine
 
-- spine: the essencial part of the human body,  control the imformation transmission
+- spine/spai/: the essential part of the human body,  control the information transmission
 
 ## splendid
 
@@ -1708,9 +1769,16 @@ a hollow shape in the shallow stream.
 ## spoil
 
 - spoil
-    - destory interest of sth
+  - (vt) destroy interest of sth
+    - (sen.) don't make him spoil your evening
+    - (p.) spoil the story / ending : tell the subsequent crucial story in advance
+  - (vt) destroy , or the food become bad over time
+  - (vt) give so much love to sb that make them grow in a bad way
+    - (sen.) don't spoil the children
+  - (vi) 
+
 - spoiler
-    - (n.) the imformation make by others that make spoiling
+    - (n.) the information make by others that make spoiling
     - (n.) the tips the reveal secret or surprise
 
 ## sport
@@ -1909,7 +1977,8 @@ a hollow shape in the shallow stream.
 
 - tempt:
     - (vt): to make sb do sth wrong or useless
-        - tempt the fox into the trap
+      - (p.) tempt sb to do sth
+      - (sen.)tempt the fox into the trap
     - (vi): want to do sth
         - be tempted to do sth
         - i was tempted to do …
