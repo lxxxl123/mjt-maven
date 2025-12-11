@@ -22,6 +22,12 @@
 - accuracy: the degree of correctness of something
 - inaccuracy: the degree of incorrectness of something
 
+
+## adhere
+- (v) to stick firmly
+  - (sen.) the smooth and dry surface help tile adhere to the wall
+  - (sen.) Glue won't adhere to any surface that's wet
+
 ## alongside
 
 - alongside:
@@ -293,6 +299,8 @@
 
 - case /keis/
     - (n.) stay close , just in case: 保持位置,以防万一
+- casualty
+  - (n.) a person is injured or killed in an accident
 
 ## cattle
 
@@ -404,11 +412,24 @@
     - (adj.) sth is falling down ; like a person is collapsed
         - (p.) she is collapsed on the ground
 
+## college
+- college/ko'li'dʒ/:
+  - (n.) a place where you can learn and get a degree
+- colleague/ko'li'g/
+  - one of a group of people who work together
+
 ## compelling
 - compelling:
   - (adj.) persuasive / if a reason is compelling , it make you believe it or accept it because it's strong
     - (p.) compelling evidence
   - (adj.) attractive
+
+## comply
+- comply
+- compliance/kem'plai'ens/:
+  - (n.) the act of following the rules or regulations
+  - (p.) compliance with law
+  - (p.) compliance with rules / regulations
 
 
 ## conceive
@@ -669,7 +690,19 @@
 - earthenware
   - (n.) make of quite rough clay
 
+## enroll
+- enroll
+  - (vi.) to join or become a member of a group or organization
+    - (sen.) enroll at the college
+    - (sen.) enroll in a program
+    - (p.) be enrolled in: already registered or signed up
+    - (p.) enroll for sth
+      - (sen.) you can enroll for health insurance through your employer
+
+
 ## envy
+- 
+
 
 ## essence
 
@@ -722,8 +755,11 @@
 - faint: (adj.)slight
 
 
-## fastidious
 
+## fast 
+- fast
+- fasten
+  - (vt): make sth fixed
 - fastidious
 - (adj.) be attentive to the detail , have high standard requirement
 
@@ -739,6 +775,8 @@
 
 ## fine
 - fine (adj.): sth with very small or thin piece
+- fine-tune
+  - (n.): to make very small in order to make it work as well as possible
 
 ## fix
 
@@ -762,8 +800,14 @@
   - 
 - flatter/flæ'ter/
   - (vt): to praise someone in order to make them feel attractive, sometimes in a way that is not sincere
+  - (p.) flatter yourself: to believe sth good about yourself although it might not be true
+    - (sen.) She flattered herself that she is a excellent teacher
+  - (p.) flatter to deceive: to give the appearance of being better than the true situation
+
 - flax: a type of textile material, no more dominant used then the past
 - flex
+  - (v.) make sth bent
+- flexible
 
 ## flavor
 
@@ -883,6 +927,14 @@
 - hip:  ass
 - hitch: (n.) a littlt problem
 
+
+## hinge
+- hinge/hin'dʒ/: 
+  - (n.) a piece of metal fasten the edge of door 
+  - (v.) 
+    - (p.) hinges on sth: depend completely on sth
+      - (sen.) the movie's plot hinges on a case of mistaken identity
+
 ## hook
 
 - hook: a curved device used to catch or hold sth
@@ -906,6 +958,9 @@
   - (adj.) very famous, especially being considered as a symbol of a period or event
 
 ## identify
+- identity
+  - (p.) mistaken identity: sb or sth is incorrectly identified as another person/thing
+- identify
 
 ## ignite
 
@@ -918,6 +973,12 @@
 - die
 
 
+## infer
+- infer
+- inference
+  - (n.) a guess that your make based on the information you have
+    - (p.) by inference sth: 
+
 ## inflate
 
 - inflate/in'fleit/: (vt) make sth larger
@@ -929,6 +990,14 @@
 - habit: (n.) sth that people usually do
 - habitat/hebi’tet/: (n.)the national environment where a animal or plant usually lives
 
+
+## injury
+- injury/in'dʒe'ri/:
+  - (n.) hurt
+- injured/in'dʒed/
+  - (adj.) physical harmed
+
+
 ## integrity
 
 - integrity: the quality of being honest
@@ -938,8 +1007,8 @@
 - intensity:
   - (n.) the degree of sth , the strength of sth
 
-## intern
-
+## inter
+- inter
 - intern
 - intent:
     - (n.) plan
@@ -947,6 +1016,9 @@
 - integrity:
     - (n.) wholeness
     - (n.) honesty
+- intervention:
+  - (n.) intentional action to change a situation, with the aim of improving it or preventing it from getting worse
+  - (p.) intervention in: intervention in economics
 
 ## innovation
 
@@ -965,6 +1037,18 @@
 - insert
   - put / fix sth inside
 
+## inspect
+- inspect
+  - (v) check
+- inspector
+  - (n.) someone who inspect sth or do sth to check if it's right or not
+
+## institution
+- institution
+  - (n.) a large or important organization , such as a university or a bank
+  - (n.) a custom or tradition that have existed for a long time and is accepted as a important part of a particular society
+  - (n.) the appearance/introduction of law, system,etc.
+
 ## instrument
 
 - instrument/in'stre'ment/:
@@ -973,8 +1057,6 @@
     - (p.) blunt instrument: 钝器
   - (n.) the way or method to achieve a goal
   - (n.) a device used to measure speed or height in vehicles 
-
-
 
 ## interset
 
@@ -1139,6 +1221,11 @@
     - (v): show / reveal / demonstrate
     - adj: easy to notice
 
+## marble
+- marble
+  - (n.) a small ball usually made of coloured and transparent glass, used in children's games
+  - (n.) a type of very hard rock
+
 ## meadow
 
 - meadow: a field with flower
@@ -1167,6 +1254,18 @@
 - metal/me’təl/
 - medal/me’dəl/
 - mental/men’təl/
+
+## method
+- method
+- methodology
+  - (n.) a system of ways of doing, teaching or studying
+
+## mini
+- mini
+- military/mi'li'teri/
+  - (adj): related to armed forces
+
+
 
 ## moderate
 
@@ -1232,6 +1331,8 @@
 ## neat
 
 - neat: tidy
+- nest: 
+  - (n.) a house build by bird
 
 ## nerve
 
@@ -1394,6 +1495,11 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - plague /plei’g/
     - a serious diseace
 
+## plot
+
+- plot
+  - (n.) a story of a book, film or play
+
 ## pointed
 
 - pointed: (adj) sth has thin , sharp end
@@ -1457,6 +1563,9 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 ## prime
 
+- price
+- pride
+  - (n.) the feeling of your own worth and respect for yourself/ the feeling of being worth and respectful
 - prime: main ,most important
 - prone:
   - (adj) likely to show bad state
@@ -1479,6 +1588,21 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 - profound
   - (adj.) very / extreme strong or deep feeling of sth
+
+## prospect
+- prospect
+  - (n.) future: the future of sb or sth
+    - (sen.) the new company has strong growth prospects(it's likely to grow well in the future)
+    - (p.) be no prospects for (doing) sth / sth
+      - (sen.) there are no prospects for a pay raise this year (No chance of getting a pay raise)
+    - (p.) in prospect: likely to happen in the future
+      - (sen.) With his new degree, a promotion is in prospect.
+  - (vi) to search for sth valuable
+    - (sen.) the company is prospecting for gold in the mountains
+- prospective:
+  - (adj.) likely to happen
+  - (adj.) potential for something good to happen
+
 
 ## pun
 
@@ -1519,7 +1643,7 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 ## razor
 - razor
 - raze
-  - (vt) to completely destory a city
+  - (vt) to completely destroy a city
 
 - razor: a knife to cut hair
 
@@ -1529,8 +1653,36 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 ## rebel
 
 - rebel/ri'bel/
+  - (n.) a person who fight against the government or the authority
 - rebellion/ri'bel'li'en/
   - (n.) a violent group who fight against the government or the authority
+
+
+## refuse
+- refuse
+- refugee
+  - (n.) a person who escape from their own country for disaster or war
+
+## regard
+
+- regard:
+  - (n.): consider
+    - (p.) pay no regard to: ignore
+  - (n.) respect
+    - (p.) have high regard for: respect
+  - (n.) regards:  good wish
+    - (p.) Beat regard. (standard closing f (sen.)or a email)
+  - (v.) consider
+    - (sen.) I regard my plan as very important.
+    - (sen.) how do you regard the new policy
+  - (adv.) about:
+    - (p.) Regarding the contract, i have no more questions
+    - (p.) in/with regard to: concerning, about = Regarding
+
+## regular
+- regular:
+- irregular:
+- regulatory
 
 ## relief
 - relief/ri'li'f/:
@@ -1605,6 +1757,7 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 - rough/rʌf/
   - (adj.) not even or smooth
+    - (sen.) Driving on this rough road has already done for my car.
   - (adj.) dangerous or violent (area)
 
 
@@ -1624,7 +1777,14 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 ## rug
 
-- rug: (n.) small carpet
+- rug: 
+  - (n.) small carpet
+- rugged/rʌ'gi/ `note! not dʒ`
+  - (adj.) wild or not even, not easy to travel over
+    - (p.) the rugged terrain
+  - (adj.) strong and attractive
+    - (sen.) she fell for his rugged looks
+    - (sen.) Jeeps are rugged vehicles, designed for rugged terrain.
 - rub: (vt) press sth against other with circular movement
 - rubble
   - (n.) the piles of broken bricks and stones from broken buildings
@@ -1664,6 +1824,11 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
     - (adj.) better in quality
     - (adj.) change in smooth and unnoticed way
 - sew: to join two piece of cloth by putting thread through them with a needle
+
+
+## semester
+- semester:
+  - (n.) a period of time into which a year is divided at a college or university
 
 ## sentence
 - sentence
@@ -1836,6 +2001,11 @@ a hollow shape in the shallow stream.
 - (n.) a set of furniture
 - (n.) a set of sofeware
 
+## super
+- super
+- supervise
+  - (vt) monitor , to watch a person or activity to make certain that everything is done correctly, safely
+
 ## sure
 
 - sure
@@ -1985,6 +2155,10 @@ a hollow shape in the shallow stream.
 - temptation
   - (n.) sth that you want to do but generally is harmful or unwise
 
+## terrain
+- (n.) an area of land , when consider its natural features
+  - (p.) the rough terrain
+
 ## thank
 
 - be thankful you don’t know
@@ -2056,6 +2230,11 @@ a hollow shape in the shallow stream.
   - (n.) a person or thing that is annoying and causes a lot of trouble
   - (n.) in the court of law , the process of judging 
   - (v.) test
+
+## trope
+- trope: an idea appear frequently
+- troop/tru;p/
+  - (n.) a group of solders
 
 ## trust
 
@@ -2194,4 +2373,13 @@ a hollow shape in the shallow stream.
 - X aside , let's talk about Y
 - Less X ,More Y
 - Not So much X as Y
+
+
+## into which
+- into which
+  - (sen.) A semester is a period of time into which a year is divided
+    - (same as) A semester is a period of time that a year is divided into
+    - (same as ) A semester is a period of time that divides an academic year into two parts
+  - (sen.) the box into which i put my books is on the shelf
+    - (same as ) the box where i put my books is on the shelf
 
