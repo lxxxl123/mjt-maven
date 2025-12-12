@@ -1,0 +1,7 @@
+An AI company periodically evaluates its systems and processes with the help of independent software vendors (ISVs). The company needs to receive email message notifications when an ISV's compliance reports become available. Which AWS service can the company use to meet this requirement?
+（一家 AI 公司在独立软件供应商（ISV）的帮助下定期评估其系统和流程。公司需要在 ISV 的合规报告可用时接收电子邮件通知。公司可以使用哪种 AWS 服务来满足这个要求？）
+选项：
+A. AWS Audit Manager（AWS 审计管理器）
+B. AWS Artifact（AWS 工件）
+C. AWS Trusted Advisor（AWS 可信顾问）
+D. AWS Data Exchange（AWS 数据交换）

@@ -44,16 +44,29 @@
 - appear:
     - appear to be nothing , but talk : sb says empty words
 
+## appropriate
+- (adj.) suitable, fitting, or correct for a particular context or situation
+
+## access
+- access
+  - (n.) the method of getting near to a place
+  - (n.) the right to use
+     - (p.) have access to sth
+- assess
+  - (v) to check or test something , evaluate 
 
 ## ascent
 
 - ascent/e'sent/: 
   - (n.) the act of moving upwards
+- descent:
+  - (n.) the act of moving downwards
 - indecent/in'di'sent/
   - (adj.) morally offensive, especially in a sexual way
   - (adj.) not suitable for a sexual context
 - accent/æ'ksent/
   - (n.) a way of speaking or writing that is different from the usual way
+
 
 ## Athens
 
@@ -165,6 +178,13 @@
 - belly /bel’i/
     - (n.) like abdomen
 
+## bias
+- bias/bai'es/
+  - (n.) prejudice
+  - (n.) preference
+  - 
+
+
 ## birth
 
 - birth:
@@ -192,6 +212,12 @@
 ## bloke
 - bloke
   - (n.) a man
+
+## blood 
+- blood
+  - (n.) 
+- flood
+  - (n.) a large amount of water covering an area, water disaster
 
 ## boast
 
@@ -360,8 +386,8 @@
 
 ## claim
 
-- claim//
-  - 
+- claim/klai'm/
+  - (p.) claim expense: to get back the money that you have spent for your company
 
 
 ## clear
@@ -441,6 +467,12 @@
 - receive: get sth from others
 - deceive: cheat
 
+## confident
+- confident:
+  - (adj.) sb is pride and believe in himself
+- confidential
+  - (adj.) sth is private or secret
+
 ## conscious
 - conscious:
   - (adj.) aware of the situation
@@ -464,6 +496,7 @@
   - (n.) a happy feeling
   - (adj.) pleased with current situation and not hoping to change or improvement
   - (n.) everything that is contained within something
+    - (p.) content moderation: review the content
 
 
 ## contrast
@@ -498,6 +531,11 @@
     - (n.)a line on cloth where it has been folded
     - (n.) folds
 - cease: (vt) stop
+
+## criterion
+- criterion /krai'tie'ri'en/
+  - (plural): criteria /krai'tie'rie/
+  - (n) a standard or a rule that is used to judge or decide something
 
 ## cross
 
@@ -613,6 +651,14 @@
   - (n.) faint light
   - (sent): the lamp give out a dim light
 
+## discriminate
+- discriminate:
+  - (synonym) : prejudice
+  - (v) treat sb or sth unfairly , differently, especially in a worse way from the way in which you treat others
+-   (v) to be able to see difference between two things
+- discrimination
+  - (n.) the act of separating or distinguishing different things
+
 ## dish
 
 -dish
@@ -699,10 +745,16 @@
     - (p.) enroll for sth
       - (sen.) you can enroll for health insurance through your employer
 
+## ensure
+- ensure
+  - (vi) : make sure that , make certain that
 
 ## envy
 - 
 
+## essay
+- essay/e'sei/
+  - (n.) a short piece of writing on a particular topic/subject
 
 ## essence
 
@@ -793,6 +845,10 @@
 - fibre:
     - sth is thread-like
 
+## flag
+- flag
+  - (v.) to put a mark on 
+
 ## flat
 
 - flat:
@@ -825,6 +881,13 @@
   - (v): to cook with much oil 
   - (n.) fries: long thin pieces of fried potato
 
+## foot 
+- food
+- foot:
+  - (n.) a part of the body that is used to walk
+- footage
+  - (n.) a piece of film showing an event
+
 ## forge
 
 - forge:
@@ -852,13 +915,6 @@
   - (n.) the light that come from the sun
   - (vi.) produce continuous light
 
-## grin
-
-- grin
-  - (n.) a face that show a happy or surprised look
-  - (n.) a wide smile
-- grim
-  - (adj.) terrible
 
 ## go past
 - go past: overtake , go beyond
@@ -881,6 +937,21 @@
   
 ## grape
 - grape: a type of fruit
+
+
+## grin
+
+- grin
+  - (n.) a face that show a happy or surprised look
+  - (n.) a wide smile
+- grim
+  - (adj.) terrible
+
+## guard
+- guard:
+  - (n.) a person who keep watch over someone or something
+- guardrail: 
+  - (n.) a piece of metal that keep the train or car safe from the track
 
 ## hammer
 
@@ -1013,6 +1084,10 @@
 - intent:
     - (n.) plan
     - (n.) attention
+    - (n.) aim
+      - (p.) intent detection
+- intention
+- intentional
 - integrity:
     - (n.) wholeness
     - (n.) honesty
@@ -1064,6 +1139,13 @@
 - insect /in.sekt/ : a type of small animal with six legs
 - interlace
 
+
+## invoke
+- invoke
+  - (v.) call on , activate , carry out
+- invocation
+  - (n.) the noun of invoke
+
 ## irritate
 
 - irritate:
@@ -1091,6 +1173,15 @@
 
 ## jealous
   - jealous/dʒel'es/: (adj.) angry because sb has something that you want
+
+## judge
+- judge
+- prejudge/pri'dʒʌdʒ/:
+  - (v.) make a judgment in advance
+- prejudice/pri'dʒe'dis/
+  - (n.) an unfair and unreasonable opinion or judgment about sth
+    - (p.) racial prejudice
+    - (p.) without prejudice to sth
 
 ## job
 - job
@@ -1161,6 +1252,10 @@
 - lens
     - (n.): a curved piece material that is transparent and change the direction of the light
     - contact lens: the lens to improve the eye’s sight
+
+## lessen
+- lessen:
+  - (v.) to reduce the amount of sth
 
 ## lie
 - lie:
@@ -1267,12 +1362,24 @@
 
 
 
+## mitigate
+- mitigate
+  - (v.) to reduce the effect of sth , make sth less severe, harmful
+  - (sen.) we wear sunscreen to mitigate against sun damage
+
+
+
 ## moderate
 
 - moderate
   - (adj.): not too much or too little
-  - (ant.) excessive, extreme
+    - (ant.) excessive, extreme
 
+- moderation
+  - (n.) examination
+  - (p.) in moderation: keep the situation under control
+  - (p.) content moderation: review the content
+    - (sen.) if someone posts hate speech on Twitter, content moderation would detect it and either remove the post or warn the user
 
 ## modest
 
@@ -1489,11 +1596,19 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 - pirate: /pai’re/the man rob at sea
 
+
+## plausible
+- plausible/plo'ze'bel/
+- (adj.) sth sound true
+
 ## play
 
 - play
 - plague /plei’g/
     - a serious diseace
+- plagiarize/plei'dʒe'raiz/:
+  - (v) to use someone else's work or idea without permission, and pretend that it is your own
+- plagiarism: (n.) copy someone else's work without permission
 
 ## plot
 
@@ -1556,6 +1671,8 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - practical: 
   - (adj.) useful and work
 
+
+
 ## pretend
 
 - pretend
@@ -1588,6 +1705,15 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 - profound
   - (adj.) very / extreme strong or deep feeling of sth
+
+## prompt
+- prompt
+  - (v.) to ask for sb to do sth quickly or urgently
+  - (v) make sth happen , cause
+    - (p.) prompt sb to do sth: make sb decide to do
+  - (n.) a sign on the computer screen , wait for inputting
+- promptly
+  - (adv.) immediately,quickly
 
 ## prospect
 - prospect
@@ -1670,8 +1796,8 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
     - (p.) pay no regard to: ignore
   - (n.) respect
     - (p.) have high regard for: respect
-  - (n.) regards:  good wish
-    - (p.) Beat regard. (standard closing f (sen.)or a email)
+  - (n.) regards:  good wish 
+    - (p.) Beat regard. (standard closing f (sen.)or an email)
   - (v.) consider
     - (sen.) I regard my plan as very important.
     - (sen.) how do you regard the new policy
@@ -1681,6 +1807,8 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 
 ## regular
 - regular:
+- regulate
+  - (v.) monitor
 - irregular:
 - regulatory
 
@@ -1703,6 +1831,10 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - (n.) the cost of renting a dorm or house or sth else regularly for using them for temporarily
 - (vt.) rent a house
 
+## residual
+- residual/ri'zi'dʒu'el/:
+  - (adj.) the remaining after something has been used up or done
+
 ## resilient
 
 - resilient: be able to happy after sth bad has happened
@@ -1721,6 +1853,20 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - breastfeeding
     - (n.) a way to feeding baby with mother’s milk
 
+
+## resume
+- resume/ri'zum/
+  - (v.) continue doing sth after a break , start again after pause
+  - (n.) /re'ze'mei/: a written statement of your educational and work experience
+    - (p.) resume: write a resume
+
+## retail
+- retail /re'teil/
+  - (n.) the activity of selling goods to the public , usually in a shop or a market
+  - (v) retail
+    - (p.) retail for x yuan
+- retailer
+  - (n.) a person who sell goods to the public
 
 ## retreat
 
@@ -1834,6 +1980,9 @@ he saw a paradox today : a paralysed parrot fall down with parasol with parachut
 - sentence
   - (n.): a group of words
   - (n.) the punishment after judge in court
+
+## sentiment
+- (n.) view, feeling, emotion
 
 ## shallow
 
@@ -1988,18 +2137,17 @@ a hollow shape in the shallow stream.
 
 - splash: use a bit water hit sth
 
-## suitcase
+## suit
 
+- suit
+  - (n.) a set of formal clothes
 - suitcase: 
   - (n.) a bag or box used to carry things
 
-
-
-## suite
-
-- (n.) a set of connected rooms
-- (n.) a set of furniture
-- (n.) a set of sofeware
+- suite
+  - (n.) a set of connected rooms
+  - (n.) a set of furniture
+  - (n.) a set of software
 
 ## super
 - super
@@ -2110,6 +2258,10 @@ a hollow shape in the shallow stream.
 - sturdy /ste:di/: (adj) physically thick , strong , unlikely to break
 - study: (vt) learn
 
+## tackle
+- tackle:
+- (v.) to deal with sth
+
 ## tailor
 
 - tailor/tei’ler/: (n.) sb who repair or make clothes
@@ -2166,6 +2318,12 @@ a hollow shape in the shallow stream.
 ## thigh
 
 - thigh: the upper leg
+
+## through
+- through/θru/
+- throughput/θru'put/
+  - (n.) the amount of traffic or flow through a system or device
+
 
 ## thug
 
